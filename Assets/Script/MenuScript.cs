@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class MenuScript : MonoBehaviour
 
     public void Jugar()
     {
-
+        SceneManager.LoadScene("Lab");
     }
 
     public void Salir()
