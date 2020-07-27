@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerInputs",
     "maps": [
         {
             "name": "Player",
@@ -58,6 +58,14 @@
                     "type": "Button",
                     "id": "ccc4cfa6-7eb8-48ec-addd-004ada5b8b4d",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "64288cea-4a17-4465-9d53-372944906de9",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }
@@ -247,6 +255,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Slow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1aaa87d1-46cb-4547-8081-947acdd657fa",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
