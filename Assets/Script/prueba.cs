@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class prueba : MonoBehaviour
@@ -8,6 +8,12 @@ public class prueba : MonoBehaviour
     void Start()
     {
         
+        Debug.Log("Sistema: " + System.Environment.OSVersion.ToString());
+        Debug.Log("Máquina: " + System.Environment.MachineName.ToString());
+        Debug.Log("Usuario: " + System.Environment.UserName.ToString());
+        Debug.Log("Num procesadores: " + System.Environment.ProcessorCount.ToString());
+
+        System.Console.WriteLine();
     }
 
     // Update is called once per frame
