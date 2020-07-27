@@ -1,0 +1,4 @@
+jugar=Play
+opciones=Option
+reportar=Report
+salir=Exit
