@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 4
   forcedFallTimer: 0.3
-  jumpForce: 5
+  jumpForce: 10
   maxYVelocity: -10
   highGravityMod: 1.5
 --- !u!1 &8725178051225634382
