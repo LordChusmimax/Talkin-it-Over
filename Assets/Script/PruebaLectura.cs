@@ -15,11 +15,10 @@ public class PruebaLectura : MonoBehaviour
 
     void Start()
     {
-        
-        leerArchivo();
+        leerArchivo(archivo);
     }
 
-    void leerArchivo()
+    public void leerArchivo(string archivo)
     {
         string ruta = "Assets/Script/Lenguajes/" + archivo + ".txt";
         if (Field == null)
