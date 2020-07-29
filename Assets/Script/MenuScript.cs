@@ -8,12 +8,17 @@ public class MenuScript : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Hola Mundo");
+        
     }
 
     public void Jugar()
     {
         SceneManager.LoadScene("Lab");
+    }
+
+    public void pruebas()
+    {
+        Debug.Log(PruebaLectura.Field["jugar"]);
     }
 
     public void Salir()
