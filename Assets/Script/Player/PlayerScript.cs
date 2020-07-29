@@ -20,7 +20,7 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] private bool faceLeft = false;
 
-    private PlayerInputs controls = null;
+    public PlayerInputs controls = null;
     private Rigidbody2D rb;
     private Collider2D col;
     private bool jumpPressed;
