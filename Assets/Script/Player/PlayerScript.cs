@@ -11,22 +11,23 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float movementSpeed = 4f;
 
     [Header("Jump/Fall")]
-    [InspectorName("Fall Timer")][Tooltip("Max time you can extend your jump")] [SerializeField] private float forcedFallTimer = 0.3f;
-    [InspectorName("Jump Force")] [SerializeField] private float jumpForce = 10f;
-    [InspectorName("Max Fall Speed")] [Tooltip("Max fall speed")] [SerializeField] private float maxYVelocity = -10;
-    [InspectorName("Falling Gravity")] [Tooltip("Defines falling acceleration")] [SerializeField] private float highGravityMod = 1.5f;
+    [Tooltip("Max time you can extend your jump")] [SerializeField] private float forcedFallTimer = 0.3f;
+    [SerializeField] private float jumpForce = 10f;
+    [Tooltip("Max fall speed")] [SerializeField] private float maxYVelocity = -10;
+    [Tooltip("Defines falling acceleration")] [SerializeField] private float highGravityMod = 1.5f;
 
-    public PlayerInputs controls = null;
-    protected Rigidbody2D rb;
-    protected Collider2D col;
-    protected bool faceRight = false;
-    protected bool jumpPressed;
-    protected int forceFall;
+    [Header("Other Data")]
+    [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
+    [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] private bool faceLeft = false;
 
-    protected bool grounded;
+    private PlayerInputs controls = null;
+    private Rigidbody2D rb;
+    private Collider2D col;
+    private bool jumpPressed;
+    private int forceFall;
 
-    protected GroundCheckScript gc;
-    protected float highGravity;
+    private GroundCheckScript gc;
+    private float highGravity;
 
 
 
@@ -54,7 +55,9 @@ public class PlayerScript : MonoBehaviour
         Fall();
     }
 
-    //assigns methods to every action in the mapping
+    /// <summary>
+    /// assigns methods to every action in the mapping
+    /// </summary>
     protected void ActionAssigner()
     {
         controls.Player.Jump.performed += ctx => Jump();
@@ -65,7 +68,9 @@ public class PlayerScript : MonoBehaviour
         //controls.Player.Menu.performed += ctx => Menu();
     }
 
-    //controlls movement of the character
+    /// <summary>
+    /// controlls movement of the character
+    /// </summary>
     protected void Move()
     {
         var movement = controls.Player.Move.ReadValue<float>();
@@ -77,7 +82,10 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    //flips the sprite when you change direction
+    /// <summary>
+    /// flips the sprite when you change direction
+    /// </summary>
+    /// <param name="movement">X axis movement controller valuee</param>
     protected void SpriteFlip(float movement)
     {
         if (movement != 0)
@@ -85,11 +93,11 @@ public class PlayerScript : MonoBehaviour
             var currentScale = transform.localScale;
             if (currentScale.x > 0)
             {
-                faceRight = true;
+                faceLeft = true;
             }
             else if (currentScale.x < 0)
             {
-                faceRight = false;
+                faceLeft = false;
             }
             currentScale.x = Mathf.Abs(currentScale.x);
             currentScale.x = Mathf.Abs(currentScale.y);
@@ -97,7 +105,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    //controlls the high gravity to reduce the feel of floatiness on jumps and falls
+    /// <summary>
+    /// controlls the high gravity to reduce the feel of floatiness on jumps and falls
+    /// </summary>
     public void Fall()
     {
         if ((rb.velocity.y < 0 || forceFall == 1) && rb.velocity.y > maxYVelocity)
@@ -106,7 +116,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    //controlls everything related to jumps
+    /// <summary>
+    /// controls everything related to jumps
+    /// </summary>
     public void Jump()
     {
         jumpPressed = true;
@@ -118,20 +130,29 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    //forces augmented gravity if "jump" is released early
+    /// <summary>
+    /// forces augmented gravity if "jump" is released early
+    /// </summary>
     public void JumpEnd()
     {
         jumpPressed = false;
         forceFall = 1;
     }
 
-    //halves movement speed to half (only keyboard)
+    /// <summary>
+    /// halves movement speed to half (only keyboard)
+    /// </summary>
+    /// <returns></returns>
     public bool Slow()
     {
         return controls.Player.Slow.ReadValue<float>()>0.5f;
     }
 
-    //forces the high gravity after X time even if you keep pressing "jump"
+    //IENUMERATORS
+
+    /// <summary>
+    /// forces the high gravity after X time even if you keep pressing "jump"
+    /// </summary>
     protected IEnumerator NotThatHigh()
     {
         yield return new WaitForSeconds(forcedFallTimer);
