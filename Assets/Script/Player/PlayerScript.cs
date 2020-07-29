@@ -55,7 +55,7 @@ public class PlayerScript : MonoBehaviour
     protected void ActionAssigner()
     {
         controls.Player.Jump.performed += ctx => Jump();
-        //controls.Player.Jump.canceled += ctx => JumpEnd();
+        controls.Player.Jump.canceled += ctx => JumpEnd();
         //controls.Player.Shoot.performed += ctx => Shoot();
         //controls.Player.Pick.performed += ctx => Pick();
         //controls.Player.Special.performed += ctx => Special();
