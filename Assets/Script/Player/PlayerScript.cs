@@ -6,21 +6,29 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] protected float movementSpeed = 4f;
+
+    [Header("Movement")]
+    [SerializeField] private float movementSpeed = 4f;
+
+    [Header("Jump/Fall")]
+    [InspectorName("Fall Timer")][Tooltip("Max time you can extend your jump")] [SerializeField] private float forcedFallTimer = 0.3f;
+    [InspectorName("Jump Force")] [SerializeField] private float jumpForce = 10f;
+    [InspectorName("Max Fall Speed")] [Tooltip("Max fall speed")] [SerializeField] private float maxYVelocity = -10;
+    [InspectorName("Falling Gravity")] [Tooltip("Defines falling acceleration")] [SerializeField] private float highGravityMod = 1.5f;
+
     public PlayerInputs controls = null;
     protected Rigidbody2D rb;
     protected Collider2D col;
     protected bool faceRight = false;
     protected bool jumpPressed;
     protected int forceFall;
-    [SerializeField] protected float forcedFallTimer = 0.3f;
+
     protected bool grounded;
-    [SerializeField] protected float jumpForce = 10f;
-    [SerializeField] protected float maxYVelocity = -10;
+
     protected GroundCheckScript gc;
     protected float highGravity;
 
-    [SerializeField] protected float highGravityMod = 1.5f;
+
 
 
     private void Awake()
@@ -60,7 +68,6 @@ public class PlayerScript : MonoBehaviour
         //controls.Player.Pick.performed += ctx => Pick();
         //controls.Player.Special.performed += ctx => Special();
         //controls.Player.Menu.performed += ctx => Menu();
-        //controls.Player.Slow.performed += ctx => Slow();
     }
 
     //controlls movement of the character
@@ -69,7 +76,8 @@ public class PlayerScript : MonoBehaviour
         var movement = controls.Player.Move.ReadValue<float>();
         if (movement >= 0.2f || movement <= -0.2f)
         {
-            transform.Translate(new Vector2(movement, 0) * Time.deltaTime * movementSpeed);
+            var slow = Slow() ? 0.5f:1.0f;
+            transform.Translate(new Vector2(movement, 0) * Time.deltaTime * slow * movementSpeed);
             SpriteFlip(movement);
         }
     }
@@ -115,10 +123,17 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    //forces augmented gravity if "jump" is released early
     public void JumpEnd()
     {
         jumpPressed = false;
         forceFall = 1;
+    }
+
+    //halves movement speed to half (only keyboard)
+    public bool Slow()
+    {
+        return controls.Player.Slow.ReadValue<float>()>0.5f;
     }
 
     //forces the high gravity after X time even if you keep pressing "jump"
