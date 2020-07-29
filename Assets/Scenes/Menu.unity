@@ -847,6 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa98397926ab4541a44f1fcc9969000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  archivo: en
 --- !u!1 &1331281028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,8 +1571,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Jugar
+      - m_Target: {fileID: 1164013068}
+        m_MethodName: pruebas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

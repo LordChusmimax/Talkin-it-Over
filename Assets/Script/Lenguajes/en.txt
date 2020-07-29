@@ -1,4 +1,4 @@
-jugar=Play
-opciones=Option
-reportar=Report
-salir=Exit
+jugar=PLAY
+opciones=OPTION
+reportar=REPORT
+salir=EXIT
