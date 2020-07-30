@@ -1,3 +1,3 @@
 public interface AimAnimator{
-    virtual void aim();
+    void Aim(bool faceLeft);
 }

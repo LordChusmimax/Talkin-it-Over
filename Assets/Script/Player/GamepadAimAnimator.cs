@@ -1,5 +1,21 @@
- public class JoypadAimAimAnimator:AimAnimator{
-        overrides void aim() {
+using Unity.Mathematics;
+using UnityEngine;
+
+public class GamepadAimAnimator:AimAnimator{
+    PlayerInputs controls;
+    private Transform rightArm;
+    private Camera camera;
+    private float deadZone;
+
+    public GamepadAimAnimator(PlayerInputs controls, Transform rightArm, Camera camera, float deadZone)
+    {
+        this.controls = controls;
+        this.rightArm = rightArm;
+        this.camera = camera;
+        this.deadZone = deadZone;
+    }
+
+    void AimAnimator.Aim(bool faceLeft) {
              var aimVec = controls.Player.Aim.ReadValue<Vector2>();
                 if (aimVec.magnitude > deadZone)
                 {

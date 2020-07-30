@@ -1,5 +1,19 @@
- public class MouseAimAnimator:AimAnimator{
-        overrides void aim() {
+using Unity.Mathematics;
+using UnityEngine;
+
+public class MouseAimAnimator:AimAnimator{
+    PlayerInputs controls;
+    private Transform rightArm;
+    private Camera camera;
+
+    public MouseAimAnimator(PlayerInputs controls, Transform rightArm, Camera camera)
+    {
+        this.controls = controls;
+        this.rightArm = rightArm;
+        this.camera = camera;
+    }
+
+        void AimAnimator.Aim(bool faceLeft) {
             var aimVec = controls.Player.MousePosition.ReadValue<Vector2>();
             aimVec = camera.ScreenToWorldPoint(aimVec);
             aimVec = aimVec - (Vector2)rightArm.position;

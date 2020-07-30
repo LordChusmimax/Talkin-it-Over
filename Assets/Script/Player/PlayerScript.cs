@@ -49,6 +49,8 @@ public class PlayerScript : MonoBehaviour
         ActionAssigner();
     }
 
+  
+
     // Update is called once per frame
     void Update()
     {
@@ -157,7 +159,7 @@ public class PlayerScript : MonoBehaviour
         if (num == -1)
         {
             controls.devices = new InputDevice[] { Keyboard.current, Mouse.current };
-            playerAnimator.keyboard = true;
+            playerAnimator.keyboard=true;
         }
         else
         {

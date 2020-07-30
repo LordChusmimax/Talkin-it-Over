@@ -15,6 +15,8 @@ public class PlayerAnimator : MonoBehaviour
     private bool faceLeft;
     private Camera camera;
     public bool keyboard;
+    private AimAnimator aimAnimator;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class PlayerAnimator : MonoBehaviour
         controls = playerController.controls;
         animator = GetComponent<Animator>();
         rb = playerController.GetComponent<Rigidbody2D>();
+        SelectAimAnimator(keyboard);
     }
 
     // Update is called once per frame
@@ -31,14 +34,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         faceLeft = playerController.faceLeft;
         XVelocityAnimator();
-        if (keyboard)
-        {
-            MouseAimAnimator();
-        }
-        else
-        {
-            AimAnimator();
-        }
+        aimAnimator.Aim(faceLeft);
     }
 
     /// <summary>
@@ -51,30 +47,15 @@ public class PlayerAnimator : MonoBehaviour
         animator.SetFloat("XVelocity", velocity);
     }
 
-    //sets the velocity value of the animator
-    private void AimAnimator()
+    private void SelectAimAnimator(bool keyboard)
     {
-        var aimVec = controls.Player.Aim.ReadValue<Vector2>();
-        if (aimVec.magnitude > deadZone)
+        if (keyboard)
         {
-            var aimAngle = math.atan2(aimVec.y, aimVec.x) * 180 / math.PI;
-            aimAngle = faceLeft ? aimAngle : aimAngle + 180;
-            rightArm.eulerAngles = new Vector3(rightArm.rotation.eulerAngles.x, rightArm.rotation.eulerAngles.y, aimAngle);
+            aimAnimator = new MouseAimAnimator(controls, rightArm, camera);
         }
         else
         {
-            var aimAngle = faceLeft ? -130 : 130;
-            rightArm.eulerAngles = new Vector3(rightArm.rotation.eulerAngles.x, rightArm.rotation.eulerAngles.y, aimAngle);
+            aimAnimator = new GamepadAimAnimator(controls, rightArm, camera, deadZone);
         }
-    }
-
-    private void MouseAimAnimator()
-    {
-        var aimVec = controls.Player.MousePosition.ReadValue<Vector2>();
-        aimVec = camera.ScreenToWorldPoint(aimVec);
-        aimVec = aimVec - (Vector2)rightArm.position;
-        var aimAngle = math.atan2(aimVec.y, aimVec.x) * 180 / math.PI;
-        aimAngle = faceLeft ? aimAngle : aimAngle + 180;
-        rightArm.eulerAngles = new Vector3(rightArm.rotation.eulerAngles.x, rightArm.rotation.eulerAngles.y, aimAngle);
     }
 }

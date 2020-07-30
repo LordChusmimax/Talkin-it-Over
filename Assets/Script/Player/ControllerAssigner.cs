@@ -15,4 +15,5 @@ public class ControllerAssigner : MonoBehaviour
             index++;
         }
     }
+
 }
