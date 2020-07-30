@@ -9,9 +9,10 @@ public class PlayerAnimator : MonoBehaviour
     private PlayerInputs controls;
     private PlayerScript playerController;
     private Rigidbody2D rb;
-    [SerializeField]private Transform rightArm;
+    [SerializeField] private Transform rightArm;
     private bool faceLeft;
     private Camera camera;
+    public bool keyboard;
 
     // Start is called before the first frame update
     void Start()
@@ -28,8 +29,14 @@ public class PlayerAnimator : MonoBehaviour
     {
         faceLeft = playerController.faceLeft;
         XVelocityAnimator();
-        //AimAnimator();
-        MouseAimAnimator();
+        if (keyboard)
+        {
+            MouseAimAnimator();
+        }
+        else
+        {
+            AimAnimator();
+        }
     }
 
     /// <summary>
@@ -49,9 +56,8 @@ public class PlayerAnimator : MonoBehaviour
         if (aimVec.magnitude > 0.2)
         {
             var aimAngle = math.atan2(aimVec.y, aimVec.x) * 180 / math.PI;
-            aimAngle = faceLeft ?aimAngle:aimAngle+180;
+            aimAngle = faceLeft ? aimAngle : aimAngle + 180;
             rightArm.eulerAngles = new Vector3(rightArm.rotation.eulerAngles.x, rightArm.rotation.eulerAngles.y, aimAngle);
-            Debug.Log(aimAngle);
         }
         else
         {

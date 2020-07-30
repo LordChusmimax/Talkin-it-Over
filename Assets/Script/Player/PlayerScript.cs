@@ -16,6 +16,9 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("Max fall speed")] [SerializeField] private float maxYVelocity = -10;
     [Tooltip("Defines falling acceleration")] [SerializeField] private float highGravityMod = 1.5f;
 
+    [Header("Player Animator")]
+    public PlayerAnimator playerAnimator;
+
     [Header("Other Data")]
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] public bool faceLeft;
@@ -127,7 +130,7 @@ public class PlayerScript : MonoBehaviour
         {
             forceFall = 0;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            StartCoroutine(NotThatHigh());
+            StartCoroutine(ExtendedJumpTimer());
         }
     }
 
@@ -149,12 +152,30 @@ public class PlayerScript : MonoBehaviour
         return controls.Player.Slow.ReadValue<float>()>0.5f;
     }
 
+    /// <summary>
+    /// It assigns a keyboard or a gamepad to the player
+    /// </summary>
+    /// <param name="num"></param>
+    public void SelectController(int num)
+    {
+        if (num == -1)
+        {
+            controls.devices = new InputDevice[] { Keyboard.current, Mouse.current };
+            playerAnimator.keyboard = true;
+        }
+        else
+        {
+            controls.devices = new InputDevice[] { Gamepad.all[num] };
+            playerAnimator.keyboard = false;
+        }
+    }
+
     //IENUMERATORS
 
     /// <summary>
     /// forces the high gravity after X time even if you keep pressing "jump"
     /// </summary>
-    private IEnumerator NotThatHigh()
+    private IEnumerator ExtendedJumpTimer()
     {
         yield return new WaitForSeconds(forcedFallTimer);
         forceFall = 1;
