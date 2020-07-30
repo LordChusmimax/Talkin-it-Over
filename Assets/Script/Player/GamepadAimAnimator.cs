@@ -1,4 +1,4 @@
-<<<<<<< HEAD:Assets/Script/Player/GamepadAimAnimator.cs
+
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -17,10 +17,6 @@ public class GamepadAimAnimator:AimAnimator{
     }
 
     void AimAnimator.Aim(bool faceLeft) {
-=======
- public class JoypadAimAnimator:AimAnimator{
-        overrides void aim() {
->>>>>>> 2a2a01d750b6f216375805106b596ef92d9c93ab:Assets/Script/Player/JoypadAimAinimator.cs
              var aimVec = controls.Player.Aim.ReadValue<Vector2>();
                 if (aimVec.magnitude > deadZone)
                 {
