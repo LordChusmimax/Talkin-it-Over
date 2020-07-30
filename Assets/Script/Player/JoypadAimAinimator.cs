@@ -1,4 +1,4 @@
- public class JoypadAimAimAnimator:AimAnimator{
+ public class JoypadAimAnimator:AimAnimator{
         overrides void aim() {
              var aimVec = controls.Player.Aim.ReadValue<Vector2>();
                 if (aimVec.magnitude > deadZone)
