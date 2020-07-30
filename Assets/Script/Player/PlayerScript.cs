@@ -13,17 +13,19 @@ public class PlayerScript : MonoBehaviour
     [Header("Jump/Fall")]
     [Tooltip("Max time you can extend your jump")] [SerializeField] private float forcedFallTimer = 0.3f;
     [SerializeField] private float jumpForce = 10f;
-    [Tooltip("Max fall speed")] [SerializeField] private float maxYVelocity = -10;
+    [Tooltip("Max fall speed")] [SerializeField] private float maxFallVelocity = -10f;
     [Tooltip("Defines falling acceleration")] [SerializeField] private float highGravityMod = 1.5f;
 
     [Header("Player Animator")]
     public PlayerAnimator playerAnimator;
 
     [Header("Other Data")]
+    [SerializeField] private float deadZone = 0.2f;
+    [SerializeField] private float slowMod = 0.5f;
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] public bool faceLeft;
 
-    public PlayerInputs controls = null;
+    [HideInInspector]public PlayerInputs controls;
     private Rigidbody2D rb;
     private Collider2D col;
     private bool jumpPressed;
@@ -78,10 +80,13 @@ public class PlayerScript : MonoBehaviour
     private void Move()
     {
         var movement = controls.Player.Move.ReadValue<float>();
-        if (movement >= 0.2f || movement <= -0.2f)
+        if (movement >= deadZone || movement <= -deadZone)
         {
-            var slow = Slow() ? 0.5f:1.0f;
-            transform.Translate(new Vector2(movement, 0) * Time.deltaTime * slow * movementSpeed);
+            if (controls.Player.Slow.ReadValue<float>() == 1f)
+            {
+                movement /= 2;
+            }
+            transform.Translate(new Vector2(movement, 0) * Time.deltaTime * movementSpeed);
             SpriteFlip(movement);
         }
     }
@@ -114,7 +119,7 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void Fall()
     {
-        if ((rb.velocity.y < 0 || forceFall == 1) && rb.velocity.y > maxYVelocity)
+        if ((rb.velocity.y < 0 || forceFall == 1) && rb.velocity.y > maxFallVelocity)
         {
             rb.velocity += Vector2.up * (highGravity) * Time.fixedDeltaTime;
         }
@@ -141,15 +146,6 @@ public class PlayerScript : MonoBehaviour
     {
         jumpPressed = false;
         forceFall = 1;
-    }
-
-    /// <summary>
-    /// halves movement speed to half (only keyboard)
-    /// </summary>
-    /// <returns></returns>
-    private bool Slow()
-    {
-        return controls.Player.Slow.ReadValue<float>()>0.5f;
     }
 
     /// <summary>

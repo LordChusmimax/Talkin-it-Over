@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+
+    [SerializeField] private float deadZone = 0.2f;
     private Animator animator;
     private PlayerInputs controls;
     private PlayerScript playerController;
@@ -53,7 +55,7 @@ public class PlayerAnimator : MonoBehaviour
     private void AimAnimator()
     {
         var aimVec = controls.Player.Aim.ReadValue<Vector2>();
-        if (aimVec.magnitude > 0.2)
+        if (aimVec.magnitude > deadZone)
         {
             var aimAngle = math.atan2(aimVec.y, aimVec.x) * 180 / math.PI;
             aimAngle = faceLeft ? aimAngle : aimAngle + 180;
