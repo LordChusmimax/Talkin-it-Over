@@ -1,4 +1,4 @@
- public class MouseAimAnimator:AimAnimator{
+ public class MouseAIMAimAnimator:AimAnimator{
         overrides void aim() {
             var aimVec = controls.Player.MousePosition.ReadValue<Vector2>();
             aimVec = camera.ScreenToWorldPoint(aimVec);
