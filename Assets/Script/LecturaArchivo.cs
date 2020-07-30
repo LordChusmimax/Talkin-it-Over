@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class PruebaLectura : MonoBehaviour
+public class LecturaArchivo : MonoBehaviour
 {
-    public string archivo;
-    private string contenidoArchivo;
+    public string archivo = "es";
+    public TraducirBoton botonScript;
     private List<string> lineas;
-    private string[] pruebaLineas;
     private string clave;
     private string contenido;
 
@@ -26,9 +26,9 @@ public class PruebaLectura : MonoBehaviour
             Field = new Dictionary<string, string>();
         }
         Field.Clear();
-        
+
         StreamReader lector = new StreamReader(ruta);
-        
+
         lineas = new List<string>();
         lineas.AddRange(lector.ReadToEnd().Split("\n"[0]));
 
@@ -41,7 +41,7 @@ public class PruebaLectura : MonoBehaviour
         }
 
         lector.Close();
+        botonScript.modificarTexto();
         Debug.Log("Traducción realizada con éxito");
     }
-
 }
