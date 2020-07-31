@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
 {
 
     [Header("Movement")]
-    [SerializeField] private float movementSpeed = 4f;
+    [SerializeField] private float movementSpeed = 4f;  //Hace que la clase sea pública de cara al inspector de Unity
 
     [Header("Jump/Fall")]
     [Tooltip("Max time you can extend your jump")] [SerializeField] private float forcedFallTimer = 0.3f;
@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] public bool faceLeft;
 
-    [HideInInspector]public PlayerInputs controls;
+    [HideInInspector]public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity
     private Rigidbody2D rb;
     private Collider2D col;
     private bool jumpPressed;

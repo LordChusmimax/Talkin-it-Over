@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour
 {
-    
+    /// <summary>
+    /// Esto es un comentario
+    /// </summary>
 
     public void Jugar()
     {
