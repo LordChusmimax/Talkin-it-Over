@@ -14,11 +14,10 @@ public class PlayerAnimator
     private Transform rightArm;
     public bool faceLeft;
     private Camera camera;
-    public bool keyboard;
     public AimAnimator aimAnimator;
 
 
-    // Start is called before the first frame update
+
     public PlayerAnimator(Camera camera, PlayerScript playerController, GameObject stickman, GameObject rightArm)
     {
         this.camera = camera;
