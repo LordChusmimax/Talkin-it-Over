@@ -38,8 +38,6 @@ public class PlayerScript : MonoBehaviour
     private float highGravity;
 
 
-
-
     private void Awake()
     {
         faceLeft = true;
