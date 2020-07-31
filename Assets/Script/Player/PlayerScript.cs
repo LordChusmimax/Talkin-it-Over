@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Constants;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("Max fall speed")] [SerializeField] private float maxFallVelocity = -10f;
     [Tooltip("Defines falling acceleration")] [SerializeField] private float highGravityMod = 1.5f;
 
-    [Header("Player Animator")]
-    public PlayerAnimator playerAnimator;
+    [Header("Animation")]
+    [SerializeField] private GameObject stickman;
+    [SerializeField] private GameObject rightArm;
+    private PlayerAnimator playerAnimator;
+    private Animator animator;
 
     [Header("Other Data")]
-    [SerializeField] private float deadZone = 0.2f;
     [SerializeField] private float slowMod = 0.5f;
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] public bool faceLeft;
@@ -41,11 +44,13 @@ public class PlayerScript : MonoBehaviour
     {
         faceLeft = true;
         highGravity = Physics2D.gravity.y * highGravityMod;
-        gc = GetComponentInChildren<GroundCheckScript>();
         controls = new PlayerInputs();
         controls.Player.Enable();
+        gc = GetComponentInChildren<GroundCheckScript>();
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+        animator = stickman.GetComponent<Animator>();
+        playerAnimator = new PlayerAnimator(Camera.main, this, stickman, rightArm);
         ActionAssigner();
     }
 
@@ -55,6 +60,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         Move();
+        AnimatorUpdates();
     }
 
     private void FixedUpdate()
@@ -82,7 +88,7 @@ public class PlayerScript : MonoBehaviour
     private void Move()
     {
         var movement = controls.Player.Move.ReadValue<float>();
-        if (movement >= deadZone || movement <= -deadZone)
+        if (movement >= DeadZone || movement <= -DeadZone)
         {
             if (controls.Player.Slow.ReadValue<float>() == 1f)
             {
@@ -159,13 +165,23 @@ public class PlayerScript : MonoBehaviour
         if (num == -1)
         {
             controls.devices = new InputDevice[] { Keyboard.current, Mouse.current };
-            playerAnimator.keyboard=true;
+            playerAnimator.SelectAimAnimator(true);
         }
         else
         {
             controls.devices = new InputDevice[] { Gamepad.all[num] };
-            playerAnimator.keyboard = false;
+            playerAnimator.SelectAimAnimator(false);
         }
+    }
+
+    /// <summary>
+    /// Diferent updates from the animator
+    /// </summary>
+    private void AnimatorUpdates()
+    {
+        playerAnimator.faceLeft = faceLeft;
+        playerAnimator.XVelocityAnimator();
+        playerAnimator.aimAnimator.Aim(faceLeft);
     }
 
     //IENUMERATORS

@@ -138,9 +138,11 @@ MonoBehaviour:
   movementSpeed: 4
   forcedFallTimer: 0.3
   jumpForce: 7
-  maxYVelocity: -10
+  maxFallVelocity: -10
   highGravityMod: 1.5
-  playerAnimator: {fileID: 8151709155023542167}
+  stickman: {fileID: 4101384136987383742}
+  rightArm: {fileID: 7778330086554957760}
+  slowMod: 0.5
   grounded: 0
   faceLeft: 0
 --- !u!95 &8705433450444540356
@@ -162,19 +164,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8151709155023542167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4101384136987383742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e7c067c312c073478fc2e8809dd7e9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightArm: {fileID: 5070118116100102684}
 --- !u!1 &8725178051225634382
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,9 +729,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6841650561902428451}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5070118116100102684 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -7444800380025660609, guid: 34764946c15757c44a9948a05494bd55,
+--- !u!1 &7778330086554957760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5404245956946512157, guid: 34764946c15757c44a9948a05494bd55,
     type: 3}
   m_PrefabInstance: {fileID: 6841650561902428451}
   m_PrefabAsset: {fileID: 0}
