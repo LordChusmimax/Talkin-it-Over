@@ -193,4 +193,9 @@ public class PlayerScript : MonoBehaviour
         forceFall = 1;
     }
 
+    public PlayerAnimator getPlayerAnimator()
+    {
+        return playerAnimator;
+    }
+
 }
