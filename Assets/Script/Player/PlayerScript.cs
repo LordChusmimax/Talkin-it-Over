@@ -23,6 +23,9 @@ public class PlayerScript : MonoBehaviour
     private PlayerAnimator playerAnimator;
     private Animator animator;
 
+    [Header("Weapon")]
+    [SerializeField] private Weapon weapon;
+
     [Header("Other Data")]
     [SerializeField] private float slowMod = 0.5f;
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
@@ -74,7 +77,7 @@ public class PlayerScript : MonoBehaviour
     {
         controls.Player.Jump.performed += ctx => Jump();
         controls.Player.Jump.canceled += ctx => JumpEnd();
-        //controls.Player.Shoot.performed += ctx => Shoot();
+        controls.Player.Shoot.performed += ctx => weapon.Shoot();
         //controls.Player.Pick.performed += ctx => Pick();
         //controls.Player.Special.performed += ctx => Special();
         //controls.Player.Menu.performed += ctx => Menu();
