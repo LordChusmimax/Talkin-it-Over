@@ -1,4 +1,6 @@
-﻿public abstract class Weapon
+﻿using UnityEngine;
+
+public abstract class Weapon:MonoBehaviour
 {
     protected float cadence;
     protected int dispersion;
