@@ -62,6 +62,7 @@ public class PlayerScript : MonoBehaviour
     {
         Move();
         AnimatorUpdates();
+        WeaponUpdate();
     }
 
     private void FixedUpdate()
@@ -183,6 +184,11 @@ public class PlayerScript : MonoBehaviour
         playerAnimator.faceLeft = faceLeft;
         playerAnimator.XVelocityAnimator();
         playerAnimator.aimAnimator.Aim(faceLeft);
+    }
+
+    private void WeaponUpdate()
+    {
+        weapon.faceLeft = faceLeft;
     }
 
     //IENUMERATORS

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class Constants
 {
+    public const int BulletVelocity = 50;
+
     /// <summary>
     /// min joystick input for activation
     /// </summary>

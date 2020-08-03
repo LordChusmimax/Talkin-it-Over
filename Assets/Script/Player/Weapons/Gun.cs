@@ -1,35 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Entities;
-using Unity.Rendering;
-using Unity.Transforms;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Gun : Weapon
 {
-    // Reference to the sprite mesh - quad.
-    [SerializeField]
-    private Mesh spriteMesh;
-    // Reference to the material with sprite texture.
-    [SerializeField]
-    private Material spriteMaterial;
 
-    private EntityManager entityManager;
-    private EntityArchetype archetype;
-
+    [SerializeField] private GameObject bulletGameObject;
+    private Transform hole;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-        archetype = entityManager.CreateArchetype(
-            typeof(Translation),
-            typeof(Rotation),
-            typeof(RenderMesh),
-            typeof(RenderBounds),
-            typeof(LocalToWorld)
-            );
+        hole = GetComponentsInChildren<Transform>()[1];
     }
 
     // Update is called once per frame
@@ -45,10 +28,17 @@ public class Gun : Weapon
 
     public override void Shoot()
     {
-        var entity = entityManager.CreateEntity(archetype);
-        entityManager.AddComponentData<Translation>(entity, new Translation()
-        { Value = transform.position }); ;
-        entityManager.SetSharedComponentData(entity, new RenderMesh { mesh = spriteMesh, material = spriteMaterial });
+        CreateBullet();
     }
+
+    private void CreateBullet()
+    {
+        var bullet = Instantiate(bulletGameObject);
+        bullet.transform.position = hole.position;
+        bullet.transform.rotation = transform.rotation;
+        bullet.GetComponent<BulletScript>().faceLeft = faceLeft;
+        bullet.GetComponent<BulletScript>().enabled=true;
+    }
+
 
 }

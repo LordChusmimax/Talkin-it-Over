@@ -8,7 +8,8 @@
         "Unity.TextMeshPro",
         "Unity.Entities",
         "Unity.Rendering.Hybrid",
-        "Unity.Transforms"
+        "Unity.Transforms",
+        "Unity.Physics"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
