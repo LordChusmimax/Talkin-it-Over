@@ -16,7 +16,6 @@ public class Gun : Weapon
 
     private EntityManager entityManager;
     private EntityArchetype archetype;
-    private Entity entity; 
 
 
 
@@ -27,12 +26,10 @@ public class Gun : Weapon
         archetype = entityManager.CreateArchetype(
             typeof(Translation),
             typeof(Rotation),
-            typeof(LocalToWorld),
-            typeof(RenderMesh)
+            typeof(RenderMesh),
+            typeof(RenderBounds),
+            typeof(LocalToWorld)
             );
-        entity = entityManager.CreateEntity(archetype);
-        entityManager.AddComponentData<Translation>(entity, new Translation() { Value = transform.position });
-        entityManager.SetSharedComponentData(entity, new RenderMesh { mesh = spriteMesh, material = spriteMaterial});
     }
 
     // Update is called once per frame
@@ -48,7 +45,10 @@ public class Gun : Weapon
 
     public override void Shoot()
     {
-        throw new System.NotImplementedException();
+        var entity = entityManager.CreateEntity(archetype);
+        entityManager.AddComponentData<Translation>(entity, new Translation()
+        { Value = transform.position }); ;
+        entityManager.SetSharedComponentData(entity, new RenderMesh { mesh = spriteMesh, material = spriteMaterial });
     }
 
 }
