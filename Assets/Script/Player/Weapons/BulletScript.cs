@@ -23,13 +23,11 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("A");
         Destroy(this.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        Debug.Log("B");
         if (collider.tag == "Scenary")
         {
             Destroy(this.gameObject);

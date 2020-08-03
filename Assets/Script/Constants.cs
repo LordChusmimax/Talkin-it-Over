@@ -9,7 +9,7 @@ public static class Constants
     /// <summary>
     /// min joystick input for activation
     /// </summary>
-    public const float DeadZone = 0.2f;
+    public const float DeadZone = 0.1f;
 
     /// <summary>
     /// language of the game
