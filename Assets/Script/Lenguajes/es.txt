@@ -1,4 +1,0 @@
-jugar=JUGAR
-opciones=OPCIONES
-reportar=REPORTAR
-salir=SALIR

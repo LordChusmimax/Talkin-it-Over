@@ -1,0 +1,10 @@
+titulo=Er Juego
+jugar=Jugar
+opciones=Opciones
+reportar=Reportar
+salir=Salir
+volumen=Volumen
+graficos=Gráficos
+pantalla=Pantalla completa
+idioma=Idioma
+atras=Atras

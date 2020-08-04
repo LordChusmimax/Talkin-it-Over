@@ -1,0 +1,10 @@
+titulo=Da Game
+opciones=Options
+reportar=Report
+jugar=Play
+salir=Exit
+volumen=Volumen
+graficos=Graphic
+pantalla=Full screen
+idioma=Language
+atras=Back
