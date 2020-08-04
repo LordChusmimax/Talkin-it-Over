@@ -46,7 +46,6 @@ public class LectorIdiomas : MonoBehaviour
             var prop = line.Split('=');
             _lang[prop[0]] = prop[1];
         }
-        Debug.Log("Se ha leido el archivo");
 
     }
 
