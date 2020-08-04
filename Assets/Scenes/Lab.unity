@@ -2949,7 +2949,7 @@ GameObject:
   - component: {fileID: 1480775119}
   - component: {fileID: 1480775118}
   m_Layer: 0
-  m_Name: CM TargetGroup1
+  m_Name: CM TargetGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
