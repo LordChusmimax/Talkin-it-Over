@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     private Animator animator;
 
     [Header("Weapon")]
-    [SerializeField] private Weapon weapon;
+    [SerializeField] public Weapon weapon;
 
     [Header("Other Data")]
     [SerializeField] private float slowMod = 0.5f;
