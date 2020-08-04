@@ -38,7 +38,6 @@ public class PlayerCollision : MonoBehaviour
             childRigidBody.bodyType = RigidbodyType2D.Dynamic;
         }
         rb.bodyType = RigidbodyType2D.Kinematic;
-        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         foreach (CapsuleCollider2D capsuleCollider in childrenColliders)
         {
             capsuleCollider.enabled = true;

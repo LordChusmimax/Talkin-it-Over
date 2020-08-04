@@ -23,7 +23,9 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(this.gameObject);
+        if (collision.collider.tag != "Player") {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collider)
