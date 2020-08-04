@@ -3,6 +3,8 @@
 public abstract class Weapon:MonoBehaviour
 {
     protected float cadence;
+    protected int dispersion;
+    protected int burst;
     protected float currentCd;
     protected float maxCd;
     
