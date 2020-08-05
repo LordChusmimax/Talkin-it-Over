@@ -23,7 +23,8 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag != "Player") {
+        if (collision.collider.tag != "Player")
+        {
             Destroy(this.gameObject);
         }
     }
@@ -35,4 +36,5 @@ public class BulletScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-}
+} 
+

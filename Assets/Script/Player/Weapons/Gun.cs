@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Gun : Weapon
+public class Gun : FireWeapon
 {
 
     [SerializeField] private GameObject bulletGameObject;

@@ -11,16 +11,4 @@ public static class Constants
     /// </summary>
     public const float DeadZone = 0.1f;
 
-    /// <summary>
-    /// language of the game
-    /// <list>
-    /// <item>
-    /// <description>0=English</description>
-    /// </item>
-    /// <item>
-    /// <description>1=Spanish</description>
-    /// </item>
-    /// </list>
-    /// </summary>
-    public static float Language = 0;
 }
