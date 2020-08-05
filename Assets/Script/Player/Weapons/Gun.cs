@@ -40,13 +40,14 @@ public class Gun : FireWeapon
     private void CreateBullet()
     {
         var bulletDispersion = (UnityEngine.Random.Range(-dispersion, dispersion));
-        Debug.Log(bulletDispersion);
         var bullet = Instantiate(bulletGameObject);
         bullet.transform.position = hole.position;
         bullet.transform.rotation = transform.rotation;
         bullet.transform.Rotate(bulletDispersion*Vector3.forward);
-        bullet.GetComponent<BulletScript>().faceLeft = faceLeft;
-        bullet.GetComponent<BulletScript>().enabled=true;
+        var bulletScript = bullet.GetComponent<BulletScript>();
+        bulletScript.faceLeft = faceLeft;
+        bulletScript.gameObject.layer = gameObject.layer;
+        bulletScript.enabled=true;
     }
 
 

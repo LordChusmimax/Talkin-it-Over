@@ -28,16 +28,18 @@ public class PlayerScript : MonoBehaviour
 
     [Header("Other Data")]
     [SerializeField] private float slowMod = 0.5f;
+    [Tooltip("Designs the player number")] public int index;
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] public bool faceLeft;
 
     [HideInInspector]public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity
-    private Rigidbody2D rb;
-    private Collider2D col;
+    private Rigidbody2D rigidBody;
+    private Collider2D collider;
     private bool jumpPressed;
     private int forceFall;
 
-    private GroundCheckScript gc;
+    private PlayerCollision playerCollision;
+    private GroundCheckScript groundCheck;
     private float highGravity;
 
 
@@ -47,9 +49,10 @@ public class PlayerScript : MonoBehaviour
         highGravity = Physics2D.gravity.y * highGravityMod;
         controls = new PlayerInputs();
         controls.Player.Enable();
-        gc = GetComponentInChildren<GroundCheckScript>();
-        col = GetComponent<Collider2D>();
-        rb = GetComponent<Rigidbody2D>();
+        playerCollision = GetComponentInChildren<PlayerCollision>();
+        groundCheck = GetComponentInChildren<GroundCheckScript>();
+        collider = GetComponent<Collider2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
         animator = stickman.GetComponent<Animator>();
         playerAnimator = new PlayerAnimator(Camera.main, this, stickman, rightArm);
         ActionAssigner();
@@ -67,7 +70,7 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        grounded = gc.isGrounded;
+        grounded = groundCheck.isGrounded;
         Fall();
     }
 
@@ -129,9 +132,9 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void Fall()
     {
-        if ((rb.velocity.y < 0 || forceFall == 1) && rb.velocity.y > maxFallVelocity)
+        if ((rigidBody.velocity.y < 0 || forceFall == 1) && rigidBody.velocity.y > maxFallVelocity)
         {
-            rb.velocity += Vector2.up * (highGravity) * Time.fixedDeltaTime;
+            rigidBody.velocity += Vector2.up * (highGravity) * Time.fixedDeltaTime;
         }
     }
 
@@ -144,7 +147,7 @@ public class PlayerScript : MonoBehaviour
         if (grounded)
         {
             forceFall = 0;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
             StartCoroutine(ExtendedJumpTimer());
         }
     }
@@ -184,6 +187,13 @@ public class PlayerScript : MonoBehaviour
         playerAnimator.faceLeft = faceLeft;
         playerAnimator.XVelocityAnimator();
         playerAnimator.aimAnimator.Aim(faceLeft);
+    }
+
+    public void SetIndex(int index)
+    {
+        this.gameObject.layer =  index+8;
+        weapon.gameObject.layer = index+8;
+        playerCollision.gameObject.layer = index+8;
     }
 
     private void WeaponUpdate()

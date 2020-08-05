@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    [HideInInspector] public int playerIndex;
+
     private Rigidbody2D[] childrenRB;
     private CapsuleCollider2D[] childrenColliders;
     private CapsuleCollider2D playerColider;
@@ -27,6 +29,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.collider.tag == "Ammunition")
         {
+            Debug.Log(collision.collider.gameObject.layer+"//"+collision.otherCollider.gameObject.layer);
             Die();
         }
     }
