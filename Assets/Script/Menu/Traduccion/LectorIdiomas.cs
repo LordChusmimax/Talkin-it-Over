@@ -49,6 +49,15 @@ public class LectorIdiomas : MonoBehaviour
 
     }
 
+
+    /// <summary>
+    /// Modifica los textos que haya en pantalla que contengan
+    /// el Script de 'SeleccionarTexto'.
+    /// </summary>
+    /// <param name="idioma">
+    /// 0 - Español
+    /// 1 - Ingles
+    /// </param>
     public void aplicarTexto(int idioma)
     {
         
