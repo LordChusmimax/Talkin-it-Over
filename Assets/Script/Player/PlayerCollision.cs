@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,18 +7,18 @@ public class PlayerCollision : MonoBehaviour
 {
     [HideInInspector] public int playerIndex;
 
-    private Rigidbody2D[] childrenRB;
-    private CapsuleCollider2D[] childrenColliders;
+
     private CapsuleCollider2D playerColider;
     private PlayerScript playerScript;
     private Weapon weapon;
     private Rigidbody2D rb;
     private Animator animator;
 
+    [HideInInspector] public CinemachineTargetGroup cmTargerGroup;
+    [HideInInspector] public GameObject head;
+
     void Start()
     {
-        childrenRB = GetComponentsInChildren<Rigidbody2D>();
-        childrenColliders = GetComponentsInChildren<CapsuleCollider2D>();
         playerScript = GetComponent<PlayerScript>();
         animator = GetComponentInChildren<Animator>();
         weapon = playerScript.weapon;
@@ -29,26 +30,16 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.collider.tag == "Ammunition")
         {
-            Debug.Log(collision.collider.gameObject.layer+"//"+collision.otherCollider.gameObject.layer);
-            Die();
+            playerScript.Die(true);
         }
     }
 
-    private void Die()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        foreach (Rigidbody2D childRigidBody in childrenRB)
+        if (collision.tag == "Scenary" && !playerScript.dead)
         {
-            childRigidBody.bodyType = RigidbodyType2D.Dynamic;
+            playerScript.Die(false);
         }
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        foreach (CapsuleCollider2D capsuleCollider in childrenColliders)
-        {
-            capsuleCollider.enabled = true;
-        }
-        playerColider.enabled = false;
-        playerScript.enabled = false;
-        animator.enabled = false;
-        Destroy(weapon.gameObject);
     }
 
 }

@@ -236,8 +236,12 @@ MonoBehaviour:
   highGravityMod: 1.5
   stickman: {fileID: 4101384136987383742}
   rightArm: {fileID: 7778330086554957760}
+  head: {fileID: 532163555944152697}
   weapon: {fileID: 7539862275222151744}
+  dead: 0
+  cameraResetTime: 2
   slowMod: 0.5
+  index: 0
   grounded: 0
   faceLeft: 0
 --- !u!114 &1902675514582758675
@@ -252,6 +256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27db6a113c132a64a978e94c6a94f6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
+  cmTargerGroup: {fileID: 0}
+  head: {fileID: 0}
 --- !u!50 &4730079954318058800
 Rigidbody2D:
   serializedVersion: 4
@@ -866,9 +873,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8941219597778728654}
-  - component: {fileID: 7319011266715317594}
   - component: {fileID: 7443860857934105380}
   - component: {fileID: 7925128440267691761}
+  - component: {fileID: 1229565729325326879}
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
@@ -890,27 +897,6 @@ Transform:
   m_Father: {fileID: 2582569526925759678}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &7319011266715317594
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8725178051225634382}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &7443860857934105380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -950,6 +936,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+--- !u!50 &1229565729325326879
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725178051225634382}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &6841650561902428451
 PrefabInstance:
   m_ObjectHideFlags: 0

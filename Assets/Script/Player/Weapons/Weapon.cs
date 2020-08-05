@@ -2,9 +2,9 @@
 
 public abstract class Weapon:MonoBehaviour
 {
-    protected float cadence;
+    [SerializeField] protected float Cadence;
+
     protected float currentCd;
-    protected float maxCd;
     
     [HideInInspector]public bool faceLeft;
 

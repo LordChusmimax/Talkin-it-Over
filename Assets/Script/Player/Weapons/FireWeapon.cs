@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class FireWeapon : Weapon
 {
-    protected int dispersion;
-    protected int burst;
+    [SerializeField] protected int dispersion;
+    [SerializeField] protected int burst;
+    [SerializeField] protected float range;
 }

@@ -12,7 +12,7 @@ public class PlayerIdentifier : MonoBehaviour
         players = GetComponentsInChildren<PlayerScript>();
         foreach (PlayerScript player in players)
         {
-            player.SetIndex(i++);
+            player.SetLayer(i++);
         }
     }
 

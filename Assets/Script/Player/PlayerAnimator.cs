@@ -39,6 +39,10 @@ public class PlayerAnimator
         animator.SetFloat("XVelocity", velocity);
     }
 
+    /// <summary>
+    /// Assigns the proper AimAnimator to the PlayerAnimator based on the device asigned to the player
+    /// </summary>
+    /// <param name="keyboard"></param>
     public void SelectAimAnimator(bool keyboard)
     {
         if (keyboard)

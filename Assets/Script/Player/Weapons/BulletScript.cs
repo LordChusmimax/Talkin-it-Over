@@ -6,7 +6,8 @@ using static Constants;
 
 public class BulletScript : MonoBehaviour
 {
-    public bool faceLeft;
+    [HideInInspector] public bool faceLeft;
+    [HideInInspector] public float range;
 
     void Start()
     {
@@ -19,6 +20,14 @@ public class BulletScript : MonoBehaviour
             transform.localScale *= new Vector2(-1, 1);
         }
         bulletRB.velocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * BulletVelocity;
+        StartCoroutine(RangeEnforcer());
+    }
+
+    private IEnumerator RangeEnforcer()
+    {
+        var time = range / BulletVelocity;
+        yield return new WaitForSeconds(time);
+        Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

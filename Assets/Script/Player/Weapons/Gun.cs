@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gun : FireWeapon
 {
-
+    [Header("Gun Values")]
     [SerializeField] private GameObject bulletGameObject;
     private Transform hole;
 
@@ -12,8 +12,6 @@ public class Gun : FireWeapon
     // Start is called before the first frame update
     void Start()
     {
-        maxCd = 0.5f;
-        dispersion = 5;
         hole = GetComponentsInChildren<Transform>()[1];
     }
 
@@ -32,7 +30,7 @@ public class Gun : FireWeapon
     {
         if (currentCd <= 0)
         {
-            currentCd = maxCd;
+            currentCd = Cadence;
             CreateBullet();
         }
     }
@@ -45,6 +43,7 @@ public class Gun : FireWeapon
         bullet.transform.rotation = transform.rotation;
         bullet.transform.Rotate(bulletDispersion*Vector3.forward);
         var bulletScript = bullet.GetComponent<BulletScript>();
+        bulletScript.range = range;
         bulletScript.faceLeft = faceLeft;
         bulletScript.gameObject.layer = gameObject.layer;
         bulletScript.enabled=true;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,6 @@ using static Constants;
 
 public class PlayerScript : MonoBehaviour
 {
-
     [Header("Movement")]
     [SerializeField] private float movementSpeed = 4f;  //Hace que la clase sea pública de cara al inspector de Unity
 
@@ -17,9 +17,14 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("Max fall speed")] [SerializeField] private float maxFallVelocity = -10f;
     [Tooltip("Defines falling acceleration")] [SerializeField] private float highGravityMod = 1.5f;
 
+    [Header("Physics")]
+    private Rigidbody2D rigidBody;
+    private Collider2D colliderPlayer;
+
     [Header("Animation")]
     [SerializeField] private GameObject stickman;
     [SerializeField] private GameObject rightArm;
+    [SerializeField] private GameObject head;
     private PlayerAnimator playerAnimator;
     private Animator animator;
 
@@ -27,31 +32,38 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public Weapon weapon;
 
     [Header("Other Data")]
+    public bool dead = false;
+    [SerializeField] private float cameraResetTime;
     [SerializeField] private float slowMod = 0.5f;
     [Tooltip("Designs the player number")] public int index;
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] public bool faceLeft;
 
-    [HideInInspector]public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity
-    private Rigidbody2D rigidBody;
-    private Collider2D collider;
-    private bool jumpPressed;
+    [HideInInspector]public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity   
     private int forceFall;
-
-    private PlayerCollision playerCollision;
-    private GroundCheckScript groundCheck;
     private float highGravity;
 
+    private CinemachineTargetGroup cmTargerGroup;
+    private PlayerCollision playerCollision;
+    private GroundCheckScript groundCheck;
+    private Rigidbody2D[] childrenRB;
+    private CapsuleCollider2D[] childrenColliders;
 
     private void Awake()
     {
         faceLeft = true;
+        childrenRB = GetComponentsInChildren<Rigidbody2D>();
+        childrenColliders = GetComponentsInChildren<CapsuleCollider2D>();
+        cmTargerGroup = transform.parent.GetComponentInChildren<CinemachineTargetGroup>();
+        cmTargerGroup.AddMember(head.transform,1,1);
         highGravity = Physics2D.gravity.y * highGravityMod;
         controls = new PlayerInputs();
         controls.Player.Enable();
         playerCollision = GetComponentInChildren<PlayerCollision>();
+        playerCollision.cmTargerGroup = cmTargerGroup;
+        playerCollision.head = head;
         groundCheck = GetComponentInChildren<GroundCheckScript>();
-        collider = GetComponent<Collider2D>();
+        colliderPlayer = GetComponent<Collider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         animator = stickman.GetComponent<Animator>();
         playerAnimator = new PlayerAnimator(Camera.main, this, stickman, rightArm);
@@ -143,7 +155,6 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        jumpPressed = true;
         if (grounded)
         {
             forceFall = 0;
@@ -157,7 +168,6 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void JumpEnd()
     {
-        jumpPressed = false;
         forceFall = 1;
     }
 
@@ -189,17 +199,68 @@ public class PlayerScript : MonoBehaviour
         playerAnimator.aimAnimator.Aim(faceLeft);
     }
 
-    public void SetIndex(int index)
+    /// <summary>
+    /// assigns Layer to the player and the weapon
+    /// </summary>
+    /// <param name="index">number of the player(starts by 0)</param>
+    public void SetLayer(int index)
     {
         this.gameObject.layer =  index+8;
         weapon.gameObject.layer = index+8;
-        playerCollision.gameObject.layer = index+8;
     }
 
+    /// <summary>
+    /// updates weapon variables
+    /// </summary>
     private void WeaponUpdate()
     {
         weapon.faceLeft = faceLeft;
     }
+
+    /// <summary>
+    /// kills the player
+    /// </summary>
+    /// <param name="dramaticCamera">true if you don't want the camera to directly forget about the dead player</param>
+    public void Die(bool dramaticCamera)
+    {
+        dead = true;
+        ActivateRalldog();
+        enabled = false;
+        Destroy(weapon.gameObject);
+        if (dramaticCamera)
+        {
+            StartCoroutine(CameraAfterDeath());
+        }
+        else
+        {
+            cmTargerGroup.RemoveMember(head.transform);
+        }
+    }
+
+    private void ActivateRalldog()
+    {
+        foreach (Rigidbody2D childRigidBody in childrenRB)
+        {
+            childRigidBody.bodyType = RigidbodyType2D.Dynamic;
+        }
+        rigidBody.bodyType = RigidbodyType2D.Kinematic;
+        childrenRB[1].bodyType = RigidbodyType2D.Kinematic;
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
+        foreach (CapsuleCollider2D capsuleCollider in childrenColliders)
+        {
+            capsuleCollider.enabled = true;
+        }
+        colliderPlayer.enabled = false;
+        animator.enabled = false;
+    }
+    //Getters and Setters
+
+    public PlayerAnimator getPlayerAnimator()
+    {
+        return playerAnimator;
+    }
+
+
 
     //IENUMERATORS
 
@@ -212,9 +273,10 @@ public class PlayerScript : MonoBehaviour
         forceFall = 1;
     }
 
-    public PlayerAnimator getPlayerAnimator()
+    public IEnumerator CameraAfterDeath()
     {
-        return playerAnimator;
+        yield return new WaitForSeconds(cameraResetTime);
+        cmTargerGroup.RemoveMember(head.transform);
     }
 
 }
