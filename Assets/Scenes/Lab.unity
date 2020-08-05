@@ -730,12 +730,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1761390497}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &170502647 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 571969693509019382, guid: b80d8a437b7f67744a5b6d953ff90496,
-    type: 3}
-  m_PrefabInstance: {fileID: 111796831}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &186373697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1169,7 +1163,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370945076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5031328, y: 1.8500247, z: -11}
+  m_LocalPosition: {x: 0.5085, y: 1.516, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 299590841}
@@ -2977,10 +2971,10 @@ MonoBehaviour:
   m_RotationMode: 1
   m_UpdateMethod: 2
   m_Targets:
-  - target: {fileID: 1659271314}
+  - target: {fileID: 91206363}
     weight: 1
     radius: 1
-  - target: {fileID: 170502647}
+  - target: {fileID: 1776905917}
     weight: 1
     radius: 1
 --- !u!4 &1480775119
@@ -2990,8 +2984,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480775117}
-  m_LocalRotation: {x: 0, y: 0, z: 0.70188874, w: 0.7122866}
-  m_LocalPosition: {x: 0.50313294, y: 1.8500246, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5085, y: 1.516, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3070,7 +3064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512511448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5031328, y: 1.8500247, z: -11}
+  m_LocalPosition: {x: 0.5085, y: 1.516, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 572411790}
@@ -3670,12 +3664,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad129d1f665965b468cce7ff6b362b6a, type: 3}
---- !u!4 &1659271314 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 571969693509019382, guid: b80d8a437b7f67744a5b6d953ff90496,
-    type: 3}
-  m_PrefabInstance: {fileID: 3384984324949400117}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1671652191 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2653197239448582360, guid: ad129d1f665965b468cce7ff6b362b6a,
