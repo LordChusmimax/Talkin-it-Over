@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static Constants;
 
 public class PlayerScript : MonoBehaviour
@@ -39,7 +40,7 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] public bool faceLeft;
 
-    [HideInInspector]public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity   
+    [HideInInspector] public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity   
     private int forceFall;
     private float highGravity;
 
@@ -48,36 +49,65 @@ public class PlayerScript : MonoBehaviour
     private GroundCheckScript groundCheck;
     private Rigidbody2D[] childrenRB;
     private CapsuleCollider2D[] childrenColliders;
+    private bool paused;
+
+    private bool jumpPressed;
+    private bool shootPressed;
+    private bool menuPressed;
+    private bool pickPressed;
+    private bool specialPressed;
+
+    private bool jumpWasPressed;
+    private bool shootWasPressed;
+    private bool menuWasPressed;
+    private bool pickWasPressed;
+    private bool specialWasPressed;
 
     private void Awake()
     {
+        paused = false;
         faceLeft = true;
         childrenRB = GetComponentsInChildren<Rigidbody2D>();
         childrenColliders = GetComponentsInChildren<CapsuleCollider2D>();
         cmTargerGroup = transform.parent.GetComponentInChildren<CinemachineTargetGroup>();
-        cmTargerGroup.AddMember(head.transform,1,1);
+        cmTargerGroup.AddMember(head.transform, 1, 1);
         highGravity = Physics2D.gravity.y * highGravityMod;
         controls = new PlayerInputs();
+
         controls.Player.Enable();
         playerCollision = GetComponentInChildren<PlayerCollision>();
         playerCollision.cmTargerGroup = cmTargerGroup;
         playerCollision.head = head;
+        playerAnimator = new PlayerAnimator(Camera.main, this, stickman, rightArm);
+    }
+
+    private void Start()
+    {
         groundCheck = GetComponentInChildren<GroundCheckScript>();
         colliderPlayer = GetComponent<Collider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         animator = stickman.GetComponent<Animator>();
-        playerAnimator = new PlayerAnimator(Camera.main, this, stickman, rightArm);
-        ActionAssigner();
+        OtherEvents();
+        ButtonInitialStatus();
     }
 
-  
+
 
     // Update is called once per frame
     void Update()
     {
-        Move();
-        AnimatorUpdates();
-        WeaponUpdate();
+        ButtonStatusUpdate();
+        Menu();
+        if (!paused)
+        {
+            Shoot();
+            Move();
+            Jump();
+            JumpEnd();
+            AnimatorUpdates();
+            WeaponUpdate();
+        }
+        ButtonStatusLastUpdate();
     }
 
     private void FixedUpdate()
@@ -86,17 +116,97 @@ public class PlayerScript : MonoBehaviour
         Fall();
     }
 
+    private void ButtonInitialStatus()
+    {
+        bool jumpPressed = false;
+        bool shootPressed = false;
+        bool menuPressed = false;
+        bool pickPressed = false;
+        bool specialPressed = false;
+    }
+
+    private void ButtonStatusUpdate()
+    {
+        if (controls.Player.Jump.ReadValue<float>() == 1)
+        {
+            jumpPressed = true;
+        }
+        else
+        {
+            jumpPressed = false;
+        }
+        if (controls.Player.Shoot.ReadValue<float>() == 1)
+        {
+            shootPressed = true;
+        }
+        else
+        {
+            shootPressed = false;
+        }
+        if (controls.Player.Menu.ReadValue<float>() == 1)
+        {
+            menuPressed = true;
+        }
+        else
+        {
+            menuPressed = false;
+        }
+        if (controls.Player.Pick.ReadValue<float>() == 1)
+        {
+            pickPressed = true;
+        }
+        else
+        {
+            pickPressed = false;
+        }
+        if (controls.Player.Special.ReadValue<float>() == 1)
+        {
+            specialPressed = true;
+        }
+        else
+        {
+            specialPressed = false;
+        }
+    }
+
+    private void ButtonStatusLastUpdate()
+    {
+        jumpWasPressed = jumpPressed;
+        shootWasPressed = shootPressed;
+        menuWasPressed = menuPressed;
+        pickWasPressed = pickPressed;
+        specialWasPressed = specialPressed;
+    }
+
     /// <summary>
     /// assigns methods to every action in the mapping
     /// </summary>
-    private void ActionAssigner()
+
+
+    private void OtherEvents()
     {
-        controls.Player.Jump.performed += ctx => Jump();
-        controls.Player.Jump.canceled += ctx => JumpEnd();
-        controls.Player.Shoot.performed += ctx => weapon.Shoot();
-        //controls.Player.Pick.performed += ctx => Pick();
-        //controls.Player.Special.performed += ctx => Special();
-        //controls.Player.Menu.performed += ctx => Menu();
+        GameEvents.current.pausePressed += OnPause;
+    }
+
+    private void OnPause(bool paused)
+    {
+        this.paused = paused;
+        if (paused)
+        {
+            animator.enabled = false;
+        }
+        else if (!dead)
+        {
+            animator.enabled = true;
+        }
+    }
+
+    private void Menu()
+    {
+        if (menuPressed && !menuWasPressed)
+        {
+            GameEvents.current.PressPause();
+        }
     }
 
     /// <summary>
@@ -113,6 +223,17 @@ public class PlayerScript : MonoBehaviour
             }
             transform.Translate(new Vector2(movement, 0) * Time.deltaTime * movementSpeed);
             SpriteFlip(movement);
+        }
+    }
+
+    private void Shoot()
+    {
+        if (!paused && !dead)
+        {
+            if (shootPressed && !shootWasPressed)
+            {
+                weapon.Shoot();
+            }
         }
     }
 
@@ -155,7 +276,7 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        if (grounded)
+        if (grounded && jumpPressed && !jumpWasPressed)
         {
             forceFall = 0;
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
@@ -168,7 +289,10 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void JumpEnd()
     {
-        forceFall = 1;
+        if (!jumpPressed && jumpWasPressed)
+        {
+            forceFall = 1;
+        }
     }
 
     /// <summary>
@@ -205,8 +329,8 @@ public class PlayerScript : MonoBehaviour
     /// <param name="index">number of the player(starts by 0)</param>
     public void SetLayer(int index)
     {
-        this.gameObject.layer =  index+8;
-        weapon.gameObject.layer = index+8;
+        this.gameObject.layer = index + 8;
+        weapon.gameObject.layer = index + 8;
     }
 
     /// <summary>
@@ -253,6 +377,7 @@ public class PlayerScript : MonoBehaviour
         colliderPlayer.enabled = false;
         animator.enabled = false;
     }
+
     //Getters and Setters
 
     public PlayerAnimator getPlayerAnimator()
