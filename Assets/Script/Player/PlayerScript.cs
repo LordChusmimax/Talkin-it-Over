@@ -63,6 +63,10 @@ public class PlayerScript : MonoBehaviour
     private bool pickWasPressed;
     private bool specialWasPressed;
 
+    public Animator Animator { get => animator; set => animator = value; }
+    public GameObject RightArm { get => rightArm; set => rightArm = value; }
+    public Rigidbody2D RigidBody { get => rigidBody; set => rigidBody = value; }
+
     private void Awake()
     {
         paused = false;
@@ -315,9 +319,9 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void AnimatorUpdates()
     {
-        playerAnimator.faceLeft = faceLeft;
+        playerAnimator.FaceLeft = faceLeft;
         playerAnimator.XVelocityAnimator();
-        playerAnimator.aimAnimator.Aim(faceLeft);
+        playerAnimator.AimAnimator.Aim(faceLeft);
     }
 
     /// <summary>

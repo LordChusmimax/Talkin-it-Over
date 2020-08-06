@@ -61,8 +61,11 @@ namespace Tests
             yield return null;
             playerScript.SelectController(-1);
             Assert.AreEqual(playerScript.controls.devices, new InputDevice[] { Keyboard.current, Mouse.current });
-            playerScript.SelectController(0);
-            Assert.AreEqual(playerScript.controls.devices, new InputDevice[] { Gamepad.all[0] });
+            if (Gamepad.all.Count != 0)
+            {
+                playerScript.SelectController(0);
+                Assert.AreEqual(playerScript.controls.devices, new InputDevice[] { Gamepad.all[0] });
+            }
             yield return null;
         }
 

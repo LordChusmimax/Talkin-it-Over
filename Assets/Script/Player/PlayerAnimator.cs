@@ -12,19 +12,26 @@ public class PlayerAnimator
     private PlayerScript playerController;
     private Rigidbody2D rb;
     private Transform rightArm;
-    public bool faceLeft;
+    private bool faceLeft;
     private Camera camera;
-    public AimAnimator aimAnimator;
+    private AimAnimator aimAnimator;
 
+    public Animator Animator { get => animator; set => animator = value; }
+    public PlayerInputs Controls { get => controls; set => controls = value; }
+    public PlayerScript PlayerController { get => playerController; set => playerController = value; }
+    public Rigidbody2D Rb { get => rb; set => rb = value; }
+    public Transform RightArm { get => rightArm; set => rightArm = value; }
+    public bool FaceLeft { get => faceLeft; set => faceLeft = value; }
+    public Camera Camera { get => camera; set => camera = value; }
+    public AimAnimator AimAnimator { get => aimAnimator; set => aimAnimator = value; }
 
-
-    public PlayerAnimator(Camera camera, PlayerScript playerController, GameObject stickman, GameObject rightArm)
+    public PlayerAnimator(Camera camera, PlayerScript playerScript, GameObject stickman, GameObject rightArm)
     {
         this.camera = camera;
-        this.playerController = playerController;
-        controls = playerController.controls;
+        this.playerController = playerScript;
+        controls = playerScript.controls;
         animator = stickman.GetComponent<Animator>();
-        rb = playerController.GetComponent<Rigidbody2D>();
+        rb = playerScript.RigidBody;
         this.rightArm = rightArm.transform;
     }
 
