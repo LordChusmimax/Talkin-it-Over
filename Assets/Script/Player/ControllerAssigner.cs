@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class ControllerAssigner : MonoBehaviour
 {
-    PlayerScript[] players;
+    public static ControllerAssigner current;
+    private PlayerScript[] players;
     [SerializeField] int index = -1;
     void Start()
     {
+        current = this;
         players = GetComponentsInChildren<PlayerScript>();
         foreach (PlayerScript player in players)
         {

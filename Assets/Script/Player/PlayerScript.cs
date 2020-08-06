@@ -94,11 +94,11 @@ public class PlayerScript : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         ButtonStatusUpdate();
         Menu();
-        if (!paused)
+        if (!paused && !dead)
         {
             Shoot();
             Move();
@@ -228,12 +228,9 @@ public class PlayerScript : MonoBehaviour
 
     private void Shoot()
     {
-        if (!paused && !dead)
+        if (shootPressed && !shootWasPressed)
         {
-            if (shootPressed && !shootWasPressed)
-            {
-                weapon.Shoot();
-            }
+            weapon.Shoot();
         }
     }
 
@@ -241,7 +238,7 @@ public class PlayerScript : MonoBehaviour
     /// flips the sprite when you change direction
     /// </summary>
     /// <param name="movement">X axis movement controller valuee</param>
-    protected void SpriteFlip(float movement)
+    private void SpriteFlip(float movement)
     {
         if (movement != 0)
         {
@@ -349,7 +346,6 @@ public class PlayerScript : MonoBehaviour
     {
         dead = true;
         ActivateRalldog();
-        enabled = false;
         Destroy(weapon.gameObject);
         if (dramaticCamera)
         {
@@ -378,15 +374,6 @@ public class PlayerScript : MonoBehaviour
         animator.enabled = false;
     }
 
-    //Getters and Setters
-
-    public PlayerAnimator getPlayerAnimator()
-    {
-        return playerAnimator;
-    }
-
-
-
     //IENUMERATORS
 
     /// <summary>
@@ -398,7 +385,7 @@ public class PlayerScript : MonoBehaviour
         forceFall = 1;
     }
 
-    public IEnumerator CameraAfterDeath()
+    private IEnumerator CameraAfterDeath()
     {
         yield return new WaitForSeconds(cameraResetTime);
         cmTargerGroup.RemoveMember(head.transform);

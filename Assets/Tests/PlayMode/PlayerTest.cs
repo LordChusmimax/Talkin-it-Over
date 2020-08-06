@@ -1,30 +1,84 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Unity;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 namespace Tests
 {
     public class PlayerTest
     {
-        // A Test behaves as an ordinary method
-        //[Test]
-        public void PlayerTestSimplePasses()
-        {
-            // Use the Assert class to test conditions
-        }
+        GameObject player;
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
+        [Category("Lab Player")]
         [UnityTest]
         public IEnumerator PlayerTestCreated()
         {
-            var player = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/StickHolder.prefab", typeof(GameObject));
+            SceneManager.LoadScene("LabTest");
+            yield return null;
+            var players = ControllerAssigner.current.gameObject;
+            player = players.GetComponentInChildren<PlayerScript>().gameObject;
             Assert.IsNotNull(player);
             yield return null;
         }
+        [UnityTest]
+        public IEnumerator PlayerScriptExistsTest()
+        {
+            SceneManager.LoadScene("LabTest");
+            yield return null;
+            var players = ControllerAssigner.current.gameObject;
+            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            var playerScript = player.GetComponent<PlayerScript>();
+            Assert.IsNotNull(playerScript);
+            yield return null;
+        }
 
+        [UnityTest]
+        public IEnumerator PlayerScriptTestController()
+        {
+            SceneManager.LoadScene("LabTest");
+            yield return null;
+            var players = ControllerAssigner.current.gameObject;
+            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            var playerScript = player.GetComponent<PlayerScript>();
+            Assert.IsNotNull(playerScript.controls.devices);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerScriptTestSelectController()
+        {
+            SceneManager.LoadScene("LabTest");
+            yield return null;
+            var players = ControllerAssigner.current.gameObject;
+            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            var playerScript = player.GetComponent<PlayerScript>();
+            yield return null;
+            playerScript.SelectController(-1);
+            Assert.AreEqual(playerScript.controls.devices, new InputDevice[] { Keyboard.current, Mouse.current });
+            playerScript.SelectController(0);
+            Assert.AreEqual(playerScript.controls.devices, new InputDevice[] { Gamepad.all[0] });
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator PlayerScriptDieTest()
+        {
+            SceneManager.LoadScene("LabTest");
+            yield return null;
+            var players = ControllerAssigner.current.gameObject;
+            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            var playerScript = player.GetComponent<PlayerScript>();
+            yield return null;
+            Assert.IsFalse(playerScript.dead);
+            playerScript.Die(false);
+            Assert.IsTrue(playerScript.dead);
+            yield return null;
+        }
     }
 }
