@@ -6037,6 +6037,11 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 0.5249772
       objectReference: {fileID: 0}
+    - target: {fileID: 7751071851692914697, guid: b80d8a437b7f67744a5b6d953ff90496,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.24
+      objectReference: {fileID: 0}
     - target: {fileID: 8993181680885060043, guid: b80d8a437b7f67744a5b6d953ff90496,
         type: 3}
       propertyPath: m_ConnectedAnchor.y

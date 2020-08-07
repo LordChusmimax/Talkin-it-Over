@@ -11,10 +11,10 @@ public class GameEvents : MonoBehaviour
     private void Awake()
     {
         current = this;
-        pausePressed = null;
+        PausePressed = null;
     }
 
-    public event Action<bool> pausePressed;
+    public event Action<bool> PausePressed;
     public void PressPause()
     {
         paused = !paused;
@@ -26,7 +26,7 @@ public class GameEvents : MonoBehaviour
         {
             Time.timeScale = 1;
         }
-        pausePressed(paused);
+        PausePressed(paused);
     }
 
 }

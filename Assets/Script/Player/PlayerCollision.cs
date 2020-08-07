@@ -21,7 +21,7 @@ public class PlayerCollision : MonoBehaviour
     {
         playerScript = GetComponent<PlayerScript>();
         animator = GetComponentInChildren<Animator>();
-        weapon = playerScript.weapon;
+        weapon = playerScript.Weapon;
         rb = GetComponent<Rigidbody2D>();
         playerColider = GetComponent<CapsuleCollider2D>();
     }

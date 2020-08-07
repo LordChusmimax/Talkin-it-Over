@@ -3,17 +3,23 @@
 public abstract class Weapon:MonoBehaviour
 {
     [SerializeField] protected float Cadence;
-
-    protected float currentCd;
-    
+    protected float currentCd;   
     [HideInInspector]public bool faceLeft;
+    protected Quaternion rotationHandling;
+    protected Vector3 positionHandling;
+    protected Vector3 scaleHandling;
 
     protected virtual void Update()
     {
         HandleCd();
     }
 
-    public abstract void onPick();
+    public virtual void onPick()
+    {
+        transform.localPosition = positionHandling;
+        transform.localRotation = rotationHandling;
+        transform.localScale = scaleHandling;
+    }
 
     public abstract void Shoot();
 

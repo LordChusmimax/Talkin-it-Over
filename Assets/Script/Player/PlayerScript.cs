@@ -25,12 +25,13 @@ public class PlayerScript : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private GameObject stickman;
     [SerializeField] private GameObject rightArm;
+    [SerializeField] private GameObject weaponPlacement;
     [SerializeField] private GameObject head;
     private PlayerAnimator playerAnimator;
     private Animator animator;
 
     [Header("Weapon")]
-    [SerializeField] public Weapon weapon;
+    [SerializeField] private Weapon weapon;
 
     [Header("Other Data")]
     private bool dead = false;
@@ -67,6 +68,7 @@ public class PlayerScript : MonoBehaviour
     public GameObject RightArm { get => rightArm; set => rightArm = value; }
     public Rigidbody2D RigidBody { get => rigidBody; set => rigidBody = value; }
     public bool Dead { get => dead; set => dead = value; }
+    public Weapon Weapon { get => weapon; set => weapon = value; }
 
     private void Awake()
     {
@@ -78,7 +80,7 @@ public class PlayerScript : MonoBehaviour
         cmTargerGroup.AddMember(head.transform, 1, 1);
         highGravity = Physics2D.gravity.y * highGravityMod;
         controls = new PlayerInputs();
-
+        weapon = GetComponentInChildren<Weapon>();
         controls.Player.Enable();
         playerCollision = GetComponentInChildren<PlayerCollision>();
         playerCollision.cmTargerGroup = cmTargerGroup;
@@ -106,6 +108,7 @@ public class PlayerScript : MonoBehaviour
         if (!paused && !dead)
         {
             Shoot();
+            PickUp();
             Move();
             Jump();
             JumpEnd();
@@ -186,11 +189,9 @@ public class PlayerScript : MonoBehaviour
     /// <summary>
     /// assigns methods to every action in the mapping
     /// </summary>
-
-
     private void OtherEvents()
     {
-        GameEvents.current.pausePressed += OnPause;
+        GameEvents.current.PausePressed += OnPause;
     }
 
     private void OnPause(bool paused)
@@ -229,6 +230,32 @@ public class PlayerScript : MonoBehaviour
             transform.Translate(new Vector2(movement, 0) * Time.deltaTime * movementSpeed);
             SpriteFlip(movement);
         }
+    }
+
+    private void PickUp()
+    {
+        if (pickPressed && !pickWasPressed)
+        {
+            if (weapon.GetType() == typeof(Shotgun))
+            {
+                Destroy(weaponPlacement.GetComponentsInChildren<Transform>()[1].gameObject);
+                PrepareWeapon(GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/Gun")));
+            }
+            else
+            {
+                Destroy(weaponPlacement.GetComponentsInChildren<Transform>()[1].gameObject);
+                PrepareWeapon(GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/Shotgun")));
+            }
+        }
+    }
+
+    private void PrepareWeapon(GameObject weaponObject)
+    {
+        Destroy(weaponPlacement.GetComponentsInChildren<Transform>()[1].gameObject);
+        weaponObject.transform.parent = weaponPlacement.transform;
+        weaponObject.layer = gameObject.layer;
+        weapon = weaponObject.GetComponent<Weapon>();
+        weapon.onPick();
     }
 
     private void Shoot()

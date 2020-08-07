@@ -17,7 +17,7 @@ public class PauseMenuScript : MonoBehaviour
 
     private void OtherEvents()
     {
-        GameEvents.current.pausePressed += OnPause;
+        GameEvents.current.PausePressed += OnPause;
     }
 
     private void OnPause(bool paused)

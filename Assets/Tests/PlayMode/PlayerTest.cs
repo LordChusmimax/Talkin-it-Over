@@ -13,8 +13,6 @@ namespace Tests
 {
     public class PlayerTest
     {
-        GameObject player;
-
         [Category("Lab Player")]
         [UnityTest]
         public IEnumerator PlayerTestCreated()
@@ -22,7 +20,7 @@ namespace Tests
             SceneManager.LoadScene("LabTest");
             yield return null;
             var players = ControllerAssigner.current.gameObject;
-            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            GameObject player = players.GetComponentInChildren<PlayerScript>().gameObject;
             Assert.IsNotNull(player);
             yield return null;
         }
@@ -32,7 +30,7 @@ namespace Tests
             SceneManager.LoadScene("LabTest");
             yield return null;
             var players = ControllerAssigner.current.gameObject;
-            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            GameObject player = players.GetComponentInChildren<PlayerScript>().gameObject;
             var playerScript = player.GetComponent<PlayerScript>();
             Assert.IsNotNull(playerScript);
             yield return null;
@@ -44,7 +42,7 @@ namespace Tests
             SceneManager.LoadScene("LabTest");
             yield return null;
             var players = ControllerAssigner.current.gameObject;
-            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            GameObject player = players.GetComponentInChildren<PlayerScript>().gameObject;
             var playerScript = player.GetComponent<PlayerScript>();
             Assert.IsNotNull(playerScript.controls.devices);
             yield return null;
@@ -56,7 +54,7 @@ namespace Tests
             SceneManager.LoadScene("LabTest");
             yield return null;
             var players = ControllerAssigner.current.gameObject;
-            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            GameObject player = players.GetComponentInChildren<PlayerScript>().gameObject;
             var playerScript = player.GetComponent<PlayerScript>();
             yield return null;
             playerScript.SelectController(-1);
@@ -75,7 +73,7 @@ namespace Tests
             SceneManager.LoadScene("LabTest");
             yield return null;
             var players = ControllerAssigner.current.gameObject;
-            player = players.GetComponentInChildren<PlayerScript>().gameObject;
+            GameObject player = players.GetComponentInChildren<PlayerScript>().gameObject;
             var playerScript = player.GetComponent<PlayerScript>();
             yield return null;
             Assert.IsFalse(playerScript.Dead);

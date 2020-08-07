@@ -41,6 +41,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UnderWeapon
+    uniqueID: 4286021929
+    locked: 0
+  - name: Weapon
+    uniqueID: 1296122673
+    locked: 0
+  - name: OverWeapon
+    uniqueID: 1588051249
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

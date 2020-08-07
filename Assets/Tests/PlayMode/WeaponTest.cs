@@ -24,9 +24,9 @@ namespace Tests
             GameObject player = players.GetComponentInChildren<PlayerScript>().gameObject;
             var playerScript = player.GetComponent<PlayerScript>();
             var gun = (GameObject)Resources.Load("Prefabs\\Gun");
-            playerScript.weapon = GameObject.Instantiate(gun).GetComponent<Gun>();
+            playerScript.Weapon = GameObject.Instantiate(gun).GetComponent<Gun>();
             yield return null;
-            Assert.NotNull(playerScript.weapon);
+            Assert.NotNull(playerScript.Weapon);
             yield return null;
         }
 
@@ -40,7 +40,7 @@ namespace Tests
             var playerScript = players.GetComponentInChildren<PlayerScript>();
             var bullets = GameObject.FindObjectsOfType<BulletScript>();
             Assert.IsEmpty(bullets);
-            playerScript.weapon.Shoot();
+            playerScript.Weapon.Shoot();
             yield return null;
             bullets = GameObject.FindObjectsOfType<BulletScript>();
             Assert.IsNotEmpty(bullets);

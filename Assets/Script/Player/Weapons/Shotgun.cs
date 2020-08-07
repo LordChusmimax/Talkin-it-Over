@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class Gun : FireWeapon
+public class Shotgun : FireWeapon
 {
-    [Header("Gun Values")]
+    [Header("ShotGun Values")]
     [SerializeField] private GameObject bulletGameObject;
     private Transform hole;
 
@@ -24,7 +24,7 @@ public class Gun : FireWeapon
 
     public override void onPick()
     {
-        positionHandling = new Vector3(-1.33000004f, 0, 0);
+        positionHandling = new Vector3(-2.24000001f, 0.0700000003f, 0);
         rotationHandling = new Quaternion(0, 0, 0, 0);
         scaleHandling = new Vector3(0.5f, 0.5f, 1);
         base.onPick();
@@ -35,7 +35,10 @@ public class Gun : FireWeapon
         if (currentCd <= 0)
         {
             currentCd = Cadence;
-            CreateBullet();
+            for (int i = 0; i < 6; i++)
+            {
+                CreateBullet();
+            }
         }
     }
 
@@ -45,12 +48,12 @@ public class Gun : FireWeapon
         var bullet = Instantiate(bulletGameObject);
         bullet.transform.position = hole.position;
         bullet.transform.rotation = transform.rotation;
-        bullet.transform.Rotate(bulletDispersion*Vector3.forward);
+        bullet.transform.Rotate(bulletDispersion * Vector3.forward);
         var bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.range = range;
         bulletScript.faceLeft = faceLeft;
         bulletScript.gameObject.layer = gameObject.layer;
-        bulletScript.enabled=true;
+        bulletScript.enabled = true;
     }
 
 
