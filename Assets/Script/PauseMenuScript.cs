@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static PauseMenuScript current;
+    
     void Start()
     {
+        current = this;
         gameObject.SetActive(false);
         OtherEvents();
     }
@@ -23,9 +25,12 @@ public class PauseMenuScript : MonoBehaviour
         gameObject.SetActive(paused);
     }
 
-    public void Continue()
+    public void Resume()
     {
-        GameEvents.current.PressPause();
+        if (RoundValues.paused)
+        {
+            GameEvents.current.PressPause();
+        }
     }
 
     public void Leave()
