@@ -78,9 +78,9 @@ namespace Tests
             player = players.GetComponentInChildren<PlayerScript>().gameObject;
             var playerScript = player.GetComponent<PlayerScript>();
             yield return null;
-            Assert.IsFalse(playerScript.dead);
+            Assert.IsFalse(playerScript.Dead);
             playerScript.Die(false);
-            Assert.IsTrue(playerScript.dead);
+            Assert.IsTrue(playerScript.Dead);
             yield return null;
         }
     }

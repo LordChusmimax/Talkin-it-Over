@@ -36,7 +36,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Scenary" && !playerScript.dead)
+        if (collision.tag == "Scenary" && !playerScript.Dead)
         {
             playerScript.Die(false);
         }

@@ -33,7 +33,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public Weapon weapon;
 
     [Header("Other Data")]
-    public bool dead = false;
+    private bool dead = false;
     [SerializeField] private float cameraResetTime;
     [SerializeField] private float slowMod = 0.5f;
     [Tooltip("Designs the player number")] public int index;
@@ -66,6 +66,7 @@ public class PlayerScript : MonoBehaviour
     public Animator Animator { get => animator; set => animator = value; }
     public GameObject RightArm { get => rightArm; set => rightArm = value; }
     public Rigidbody2D RigidBody { get => rigidBody; set => rigidBody = value; }
+    public bool Dead { get => dead; set => dead = value; }
 
     private void Awake()
     {
