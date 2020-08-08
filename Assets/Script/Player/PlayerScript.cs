@@ -63,6 +63,8 @@ public class PlayerScript : MonoBehaviour
     private bool menuWasPressed;
     private bool pickWasPressed;
     private bool specialWasPressed;
+    private AltarInteractionerScript altarInteractioner;
+    private Collider2D altarInteractionerCollider;
 
     public Animator Animator { get => animator; set => animator = value; }
     public GameObject RightArm { get => rightArm; set => rightArm = value; }
@@ -86,6 +88,9 @@ public class PlayerScript : MonoBehaviour
         playerCollision.cmTargerGroup = cmTargerGroup;
         playerCollision.head = head;
         playerAnimator = new PlayerAnimator(Camera.main, this, stickman, rightArm);
+        altarInteractioner = GetComponentInChildren<AltarInteractionerScript>();
+        altarInteractioner.PlayerScript = this;
+        altarInteractionerCollider = altarInteractioner.GetComponentInChildren<Collider2D>();
     }
 
     private void Start()
@@ -108,7 +113,7 @@ public class PlayerScript : MonoBehaviour
         if (!paused && !dead)
         {
             Shoot();
-            PickUp();
+            PickUpActivation();
             Move();
             Jump();
             JumpEnd();
@@ -232,26 +237,19 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void PickUp()
+    private void PickUpActivation()
     {
         if (pickPressed && !pickWasPressed)
         {
-            if (weapon.GetType() == typeof(Shotgun))
-            {
-                Destroy(weaponPlacement.GetComponentsInChildren<Transform>()[1].gameObject);
-                PrepareWeapon(GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/Gun")));
-            }
-            else
-            {
-                Destroy(weaponPlacement.GetComponentsInChildren<Transform>()[1].gameObject);
-                PrepareWeapon(GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Weapons/Shotgun")));
-            }
+            altarInteractionerCollider.enabled=true;
+            StartCoroutine(DeactivateNextFrame(altarInteractionerCollider));
         }
     }
 
-    private void PrepareWeapon(GameObject weaponObject)
+    public void PickUp(GameObject weaponObject)
     {
         Destroy(weaponPlacement.GetComponentsInChildren<Transform>()[1].gameObject);
+        weaponObject = Instantiate(weaponObject);
         weaponObject.transform.parent = weaponPlacement.transform;
         weaponObject.layer = gameObject.layer;
         weapon = weaponObject.GetComponent<Weapon>();
@@ -421,6 +419,12 @@ public class PlayerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(cameraResetTime);
         cmTargerGroup.RemoveMember(head.transform);
+    }
+
+    private IEnumerator DeactivateNextFrame(Collider2D collider)
+    {
+        yield return null;
+        collider.enabled = false;
     }
 
 }
