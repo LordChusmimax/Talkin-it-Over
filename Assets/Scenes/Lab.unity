@@ -1167,7 +1167,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1837389285}
         m_TargetAssemblyTypeName: PauseMenuScript, Scripts
-        m_MethodName: Continue
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
