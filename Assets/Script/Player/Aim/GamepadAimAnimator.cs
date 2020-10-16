@@ -24,10 +24,5 @@ public class GamepadAimAnimator:AimAnimator{
                     aimAngle = faceLeft ? aimAngle : aimAngle + 180;
                     rightArm.eulerAngles = new Vector3(rightArm.rotation.eulerAngles.x, rightArm.rotation.eulerAngles.y, aimAngle);
                 }
-                else
-                {
-                    var aimAngle = faceLeft ? -130 : 130;
-                    rightArm.eulerAngles = new Vector3(rightArm.rotation.eulerAngles.x, rightArm.rotation.eulerAngles.y, aimAngle);
-                }
         }
     }

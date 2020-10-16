@@ -25,12 +25,12 @@ public class PlayerAnimator
     public Camera Camera { get => camera; set => camera = value; }
     public AimAnimator AimAnimator { get => aimAnimator; set => aimAnimator = value; }
 
-    public PlayerAnimator(Camera camera, PlayerScript playerScript, GameObject stickman, GameObject rightArm)
+    public PlayerAnimator(Camera camera, PlayerScript playerScript, GameObject rightArm)
     {
         this.camera = camera;
         this.playerController = playerScript;
         controls = playerScript.controls;
-        animator = stickman.GetComponent<Animator>();
+        animator = playerScript.GetComponent<Animator>();
         rb = playerScript.RigidBody;
         this.rightArm = rightArm.transform;
     }

@@ -26,7 +26,7 @@ namespace Tests
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.AddComponent<Animator>();
             GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            PlayerAnimator playerAnimator = new PlayerAnimator(Camera.main, playerScript, cube, cube2);
+            PlayerAnimator playerAnimator = new PlayerAnimator(Camera.main, playerScript, cube);
             Assert.IsNotNull(playerAnimator);
             Assert.AreEqual(playerAnimator.Animator,cube.GetComponent<Animator>());
             Assert.AreEqual(playerAnimator.Camera,Camera.main);
@@ -46,7 +46,7 @@ namespace Tests
             GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.AddComponent<Animator>();
             GameObject cube2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            PlayerAnimator playerAnimator = new PlayerAnimator(Camera.main, playerScript, cube, cube2);
+            PlayerAnimator playerAnimator = new PlayerAnimator(Camera.main, playerScript, cube);
             playerAnimator.SelectAimAnimator(true);
             Assert.IsTrue(playerAnimator.AimAnimator.GetType()==typeof(MouseAimAnimator));
             Assert.IsFalse(playerAnimator.AimAnimator.GetType() == typeof(GamepadAimAnimator));

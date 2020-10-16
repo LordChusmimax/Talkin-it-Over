@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 90ba506b39287bd4e979a19185be9d11
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9027332951661248822
+    second: robot1_0
+  - first:
+      213: 9219121773231385991
+    second: robot1_1
+  - first:
+      213: -1073027846243770194
+    second: robot1_2
+  - first:
+      213: -3297383244280649551
+    second: robot1_3
+  - first:
+      213: 8017883993466301247
+    second: robot1_4
+  - first:
+      213: 3163584987211343579
+    second: robot1_5
+  - first:
+      213: -6455913806022478803
+    second: robot1_6
+  - first:
+      213: -18612209799626287
+    second: robot1_7
+  - first:
+      213: 1036880418959665620
+    second: robot1_8
+  - first:
+      213: -2922509134136174873
+    second: robot1_9
+  - first:
+      213: -389602224626730437
+    second: robot1_10
+  - first:
+      213: -6879291216670154168
+    second: robot1_11
+  - first:
+      213: -6722008804973539480
+    second: robot1_12
+  - first:
+      213: -482547339836392288
+    second: robot1_13
+  - first:
+      213: 5506227562561347865
+    second: robot1_14
+  - first:
+      213: -2784919985423686866
+    second: robot1_15
+  - first:
+      213: 1274007998803399589
+    second: robot1_16
+  - first:
+      213: 5138526146413082820
+    second: robot1_17
+  - first:
+      213: 4774351745933742928
+    second: robot1_18
+  - first:
+      213: 3584109110514027022
+    second: robot1_19
+  - first:
+      213: 7691099889120859394
+    second: robot1_20
+  - first:
+      213: -5881832247628567506
+    second: robot1_21
+  - first:
+      213: 7235935132528695756
+    second: robot1_22
+  - first:
+      213: 3713102357842599632
+    second: robot1_23
+  - first:
+      213: 1122685164794967619
+    second: robot1_24
+  - first:
+      213: 7007302317794865372
+    second: robot1_25
+  - first:
+      213: -8288901682777749720
+    second: robot1_26
+  - first:
+      213: 6177862314647886138
+    second: robot1_27
+  - first:
+      213: 7158760580987875615
+    second: robot1_28
+  - first:
+      213: -1675238730033973265
+    second: robot1_29
+  - first:
+      213: 993361369965039574
+    second: robot1_30
+  - first:
+      213: 4766110864918042051
+    second: robot1_31
+  - first:
+      213: 1544980693220390200
+    second: robot1_32
+  - first:
+      213: 3071620383031072494
+    second: robot1_33
+  - first:
+      213: 5769726537005623587
+    second: robot1_34
+  - first:
+      213: 5509234064383209521
+    second: robot1_35
+  - first:
+      213: -8896237299012463780
+    second: robot1_36
+  - first:
+      213: -834195352099118298
+    second: robot1_37
+  - first:
+      213: -7610244696006195779
+    second: robot1_38
+  - first:
+      213: 3943776649066909180
+    second: robot1_39
+  - first:
+      213: -986759446012243824
+    second: robot1_40
+  - first:
+      213: -6091697709030556477
+    second: robot1_41
+  - first:
+      213: 8651481932669231417
+    second: robot1_42
+  - first:
+      213: 1025758456619386855
+    second: robot1_43
+  - first:
+      213: -6458949257362571481
+    second: robot1_44
+  - first:
+      213: 1402156287568635777
+    second: robot1_45
+  - first:
+      213: 4436672860145807689
+    second: robot1_46
+  - first:
+      213: 328932786179863946
+    second: robot1_47
+  - first:
+      213: 8498678212613714031
+    second: robot1_48
+  - first:
+      213: 2240568725524086395
+    second: robot1_49
+  - first:
+      213: -1618816683616237545
+    second: robot1_50
+  - first:
+      213: 5626980002856413795
+    second: robot1_51
+  - first:
+      213: -2644388801693770192
+    second: robot1_52
+  - first:
+      213: -3760197006487977706
+    second: robot1_53
+  - first:
+      213: -3352036744919127992
+    second: robot1_54
+  - first:
+      213: 7751962768411146315
+    second: robot1_55
+  - first:
+      213: -451196154511475763
+    second: robot1_56
+  - first:
+      213: -5493590174799613568
+    second: robot1_57
+  - first:
+      213: 4429560120645360110
+    second: robot1_58
+  - first:
+      213: -5800213990353184276
+    second: robot1_59
+  - first:
+      213: 3746744857876946810
+    second: robot1_60
+  - first:
+      213: -6472613597018204313
+    second: robot1_61
+  - first:
+      213: -9073019299166315855
+    second: robot1_62
+  - first:
+      213: 7154851121902965154
+    second: robot1_63
+  - first:
+      213: 6243054948333654980
+    second: robot1_64
+  - first:
+      213: 7532637067145343306
+    second: robot1_65
+  - first:
+      213: 4449672169707434238
+    second: robot1_66
+  - first:
+      213: 4097634322483189620
+    second: robot1_67
+  - first:
+      213: -8810468866421470055
+    second: robot1_68
+  - first:
+      213: -5348287205319776998
+    second: robot1_69
+  - first:
+      213: 7152406358089381182
+    second: robot1_70
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 64
+    resizeAlgorithm: 1
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 64
+    resizeAlgorithm: 1
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: robot1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace7d03628878b280800000000000000
+      internalID: -9027332951661248822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robot1_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 30
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78da6826866e0ff70800000000000000
+      internalID: 9219121773231385991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robot1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea0a986ebd6db11f0800000000000000
+      internalID: -1073027846243770194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robot1_3
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 0
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8a35cd8675d32d0800000000000000
+      internalID: -3297383244280649551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

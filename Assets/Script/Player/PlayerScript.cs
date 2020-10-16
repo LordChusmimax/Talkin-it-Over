@@ -23,7 +23,6 @@ public class PlayerScript : MonoBehaviour
     private Collider2D colliderPlayer;
 
     [Header("Animation")]
-    [SerializeField] private GameObject stickman;
     [SerializeField] private GameObject rightArm;
     [SerializeField] private GameObject weaponPlacement;
     [SerializeField] private GameObject head;
@@ -87,7 +86,7 @@ public class PlayerScript : MonoBehaviour
         playerCollision = GetComponentInChildren<PlayerCollision>();
         playerCollision.cmTargerGroup = cmTargerGroup;
         playerCollision.head = head;
-        playerAnimator = new PlayerAnimator(Camera.main, this, stickman, rightArm);
+        playerAnimator = new PlayerAnimator(Camera.main, this, rightArm);
         altarInteractioner = GetComponentInChildren<AltarInteractionerScript>();
         altarInteractioner.PlayerScript = this;
         altarInteractionerCollider = altarInteractioner.GetComponentInChildren<Collider2D>();
@@ -98,7 +97,7 @@ public class PlayerScript : MonoBehaviour
         groundCheck = GetComponentInChildren<GroundCheckScript>();
         colliderPlayer = GetComponent<Collider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
-        animator = stickman.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         OtherEvents();
         ButtonInitialStatus();
     }
@@ -107,7 +106,7 @@ public class PlayerScript : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {
+    {       
         ButtonStatusUpdate();
         Menu();
         if (!paused && !dead)
@@ -120,7 +119,11 @@ public class PlayerScript : MonoBehaviour
             AnimatorUpdates();
             WeaponUpdate();
         }
-        ButtonStatusLastUpdate();
+    }
+
+    private void LateUpdate()
+    {
+        ButtonStatusLateUpdate();
     }
 
     private void FixedUpdate()
@@ -182,7 +185,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void ButtonStatusLastUpdate()
+    private void ButtonStatusLateUpdate()
     {
         jumpWasPressed = jumpPressed;
         shootWasPressed = shootPressed;
@@ -283,7 +286,7 @@ public class PlayerScript : MonoBehaviour
             }
             currentScale.x = Mathf.Abs(currentScale.x);
             currentScale.x = Mathf.Abs(currentScale.y);
-            transform.localScale = new Vector2(-Mathf.Sign(movement), 1) * currentScale;
+            transform.localScale = new Vector2(Mathf.Sign(movement), 1) * currentScale;
         }
     }
 

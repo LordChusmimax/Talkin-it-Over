@@ -13,7 +13,6 @@ public class Shotgun : FireWeapon
     void Start()
     {
         hole = GetComponentsInChildren<Transform>()[1];
-
     }
 
     // Update is called once per frame

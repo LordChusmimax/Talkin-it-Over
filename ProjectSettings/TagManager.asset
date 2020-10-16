@@ -42,14 +42,23 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: UnderWeapon
-    uniqueID: 4286021929
+  - name: back leg
+    uniqueID: 135724481
     locked: 0
-  - name: Weapon
+  - name: back hand
+    uniqueID: 1588051249
+    locked: 0
+  - name: torso
     uniqueID: 1296122673
     locked: 0
-  - name: OverWeapon
-    uniqueID: 1588051249
+  - name: front leg
+    uniqueID: 4122957983
+    locked: 0
+  - name: weapon
+    uniqueID: 2144737525
+    locked: 0
+  - name: front hand
+    uniqueID: 4286021929
     locked: 0
   - name: Default
     uniqueID: 0
