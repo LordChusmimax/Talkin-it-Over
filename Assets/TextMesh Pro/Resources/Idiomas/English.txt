@@ -8,3 +8,5 @@ graficos=Graphic
 pantalla=Full screen
 idioma=Language
 atras=Back
+pausa=Pause
+continuar=Continue
