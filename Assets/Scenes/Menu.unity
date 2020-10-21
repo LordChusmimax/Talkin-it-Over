@@ -1528,7 +1528,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1990254682}
         m_TargetAssemblyTypeName: CargarTexto, Scripts
-        m_MethodName: aplicar
+        m_MethodName: cambiarIdioma
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

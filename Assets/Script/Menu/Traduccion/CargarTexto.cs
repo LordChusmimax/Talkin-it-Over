@@ -13,8 +13,14 @@ public class CargarTexto : MonoBehaviour
     /// 0 - Español
     /// 1 - Ingles
     ///  </param>
-    public void aplicar(int idioma)
+    public void cambiarIdioma(int idioma)
     {
-        FindObjectOfType<LectorIdiomas>().aplicarTexto(idioma);
+        FindObjectOfType<LectorIdiomas>().leerArchivo(idioma);
     }
+
+    public void aplicar()
+    {
+        FindObjectOfType<LectorIdiomas>().cargarIdioma();
+    }
+
 }

@@ -58,7 +58,7 @@ public class LectorIdiomas : MonoBehaviour
     /// 0 - Español
     /// 1 - Ingles
     /// </param>
-    public void aplicarTexto(int idioma)
+    public void leerArchivo(int idioma)
     {
         
         switch (idioma)
@@ -90,7 +90,18 @@ public class LectorIdiomas : MonoBehaviour
             componenteTexto.text = _lang[texto.id];
 
         }
-        
+    }
+
+    public void cargarIdioma()
+    {
+        var objetos = Resources.FindObjectsOfTypeAll<SeleccionarTexto>();
+
+        foreach (var texto in objetos)
+        {
+            var componenteTexto = texto.GetComponent<TextMeshProUGUI>();
+            componenteTexto.text = _lang[texto.id];
+
+        }
     }
 
 }
