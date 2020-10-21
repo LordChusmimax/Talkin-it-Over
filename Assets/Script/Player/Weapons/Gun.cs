@@ -17,16 +17,16 @@ public class Gun : FireWeapon
     }
 
     // Update is called once per frame
-    protected override void Update()
+    public override void Update()
     {
         base.Update();
     }
 
     public override void onPick()
     {
-        positionHandling = new Vector3(-1.33000004f, 0, 0);
+        positionHandling = new Vector3(0f, 0, 0);
         rotationHandling = new Quaternion(0, 0, 0, 0);
-        scaleHandling = new Vector3(0.5f, 0.5f, 1);
+        scaleHandling = new Vector3(1f, 1f, 1);
         base.onPick();
     }
 
@@ -34,7 +34,7 @@ public class Gun : FireWeapon
     {
         if (currentCd <= 0)
         {
-            currentCd = Cadence;
+            currentCd = cadence;
             CreateBullet();
         }
     }

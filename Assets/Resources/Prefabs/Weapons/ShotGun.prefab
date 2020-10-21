@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb29de7e12877eb40b65cc72c79bee61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cadence: 1.5
+  cadence: 1.5
+  aim: 1
   faceLeft: 0
   dispersion: 20
   burst: 1

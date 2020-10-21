@@ -2,14 +2,17 @@
 
 public abstract class Weapon:MonoBehaviour
 {
-    [SerializeField] protected float Cadence;
+    [SerializeField] protected float cadence;
+    [SerializeField] private bool aim;
     protected float currentCd;   
     [HideInInspector]public bool faceLeft;
     protected Quaternion rotationHandling;
     protected Vector3 positionHandling;
     protected Vector3 scaleHandling;
 
-    protected virtual void Update()
+    public bool Aim { get => aim; set => aim = value; }
+
+    public virtual void Update()
     {
         HandleCd();
     }
@@ -29,5 +32,10 @@ public abstract class Weapon:MonoBehaviour
         {
             currentCd -= Time.deltaTime;
         }
+    }
+
+    public virtual void SetLayer(int layer)
+    {
+        gameObject.layer = layer;
     }
 }

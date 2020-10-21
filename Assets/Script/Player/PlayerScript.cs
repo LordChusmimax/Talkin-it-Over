@@ -44,11 +44,17 @@ public class PlayerScript : MonoBehaviour
     private int forceFall;
     private float highGravity;
 
+    private float stunTime = 0;
+    private bool stunResistant = false;
+
     private CinemachineTargetGroup cmTargerGroup;
     private PlayerCollision playerCollision;
     private GroundCheckScript groundCheck;
     private Rigidbody2D[] childrenRB;
     private CapsuleCollider2D[] childrenColliders;
+    private CapsuleCollider2D colliderTorso;
+    private HingeJoint2D[] childrenHinges;
+    private Limb[] limbs;
     private bool paused;
 
     private bool jumpPressed;
@@ -70,6 +76,7 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody2D RigidBody { get => rigidBody; set => rigidBody = value; }
     public bool Dead { get => dead; set => dead = value; }
     public Weapon Weapon { get => weapon; set => weapon = value; }
+    public bool StunResistant { get => stunResistant; set => stunResistant = value; }
 
     private void Awake()
     {
@@ -77,6 +84,9 @@ public class PlayerScript : MonoBehaviour
         faceLeft = true;
         childrenRB = GetComponentsInChildren<Rigidbody2D>();
         childrenColliders = GetComponentsInChildren<CapsuleCollider2D>();
+        colliderTorso = childrenColliders[1];
+        childrenHinges = GetComponentsInChildren<HingeJoint2D>();
+        limbs = GetComponentsInChildren<Limb>();
         cmTargerGroup = transform.parent.GetComponentInChildren<CinemachineTargetGroup>();
         cmTargerGroup.AddMember(head.transform, 1, 1);
         highGravity = Physics2D.gravity.y * highGravityMod;
@@ -106,10 +116,14 @@ public class PlayerScript : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {       
+    {
+        if (stunTime > 0)
+        {
+            HandleStun();
+        }
         ButtonStatusUpdate();
         Menu();
-        if (!paused && !dead)
+        if (!paused && !dead && stunTime<=0)
         {
             Shoot();
             PickUpActivation();
@@ -244,8 +258,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (pickPressed && !pickWasPressed)
         {
-            altarInteractionerCollider.enabled=true;
-            StartCoroutine(DeactivateNextFrame(altarInteractionerCollider));
+            altarInteractionerCollider.enabled = true;
+            StartCoroutine(DeactivateNextFixedUpdate(altarInteractionerCollider));
         }
     }
 
@@ -254,8 +268,8 @@ public class PlayerScript : MonoBehaviour
         Destroy(weaponPlacement.GetComponentsInChildren<Transform>()[1].gameObject);
         weaponObject = Instantiate(weaponObject);
         weaponObject.transform.parent = weaponPlacement.transform;
-        weaponObject.layer = gameObject.layer;
         weapon = weaponObject.GetComponent<Weapon>();
+        weapon.SetLayer(gameObject.layer);
         weapon.onPick();
     }
 
@@ -350,7 +364,14 @@ public class PlayerScript : MonoBehaviour
     {
         playerAnimator.FaceLeft = faceLeft;
         playerAnimator.XVelocityAnimator();
-        playerAnimator.AimAnimator.Aim(faceLeft);
+        if (weapon.Aim)
+        {
+            playerAnimator.AimAnimator.Aim(faceLeft);
+        }
+        else
+        {
+            rightArm.transform.rotation = Quaternion.Euler(Vector3.zero);
+        }
     }
 
     /// <summary>
@@ -360,7 +381,7 @@ public class PlayerScript : MonoBehaviour
     public void SetLayer(int index)
     {
         this.gameObject.layer = index + 8;
-        weapon.gameObject.layer = index + 8;
+        weapon.SetLayer(index + 8);
     }
 
     /// <summary>
@@ -378,8 +399,8 @@ public class PlayerScript : MonoBehaviour
     public void Die(bool dramaticCamera)
     {
         dead = true;
-        ActivateRalldog();
-        Destroy(weapon.gameObject);
+        ActivateRagdoll();
+        //Destroy(weapon.gameObject);
         if (dramaticCamera)
         {
             StartCoroutine(CameraAfterDeath());
@@ -390,21 +411,55 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void ActivateRalldog()
+    /// <summary>
+    /// Stuns the player for an amount of time
+    /// </summary>
+    /// <param name="time">stun duration</param>
+    public void Stun(float time)
     {
-        foreach (Rigidbody2D childRigidBody in childrenRB)
+        if (stunTime <= 0)
         {
-            childRigidBody.bodyType = RigidbodyType2D.Dynamic;
+            stunTime += time;
+            ActivateRagdoll();
+            StartCoroutine(DeactivateRalldogIEnumerator(time-0.5f));
         }
-        rigidBody.bodyType = RigidbodyType2D.Kinematic;
-        childrenRB[1].bodyType = RigidbodyType2D.Kinematic;
-        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
-        foreach (CapsuleCollider2D capsuleCollider in childrenColliders)
+    }
+
+    private void ActivateRagdoll()
+    {
+        bool letLoose;
+        foreach (Limb limb in limbs)
         {
-            capsuleCollider.enabled = true;
+            letLoose = UnityEngine.Random.Range(0, 10) <= (dead ? 1 : -1);
+            limb.EnableRagdoll(letLoose);
         }
+        rigidBody.freezeRotation = false;
         colliderPlayer.enabled = false;
+        colliderTorso.enabled = true;
         animator.enabled = false;
+    }
+
+    private void DeactivateRagdoll()
+    {
+        colliderPlayer.enabled = true;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        foreach (Limb limb in limbs)
+        {
+            limb.DisableRagdoll();
+        }
+        colliderPlayer.enabled = true;
+        colliderTorso.enabled = true;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+        animator.enabled = true;
+        animator.SetTrigger("Recover");
+        rigidBody.freezeRotation = true;
+    }
+
+    private void HandleStun()
+    {
+        stunTime -= Time.deltaTime;
+        Debug.Log(stunTime);
     }
 
     //IENUMERATORS
@@ -424,10 +479,19 @@ public class PlayerScript : MonoBehaviour
         cmTargerGroup.RemoveMember(head.transform);
     }
 
-    private IEnumerator DeactivateNextFrame(Collider2D collider)
+    private IEnumerator DeactivateNextFixedUpdate(Collider2D collider)
     {
-        yield return null;
+        yield return new WaitForFixedUpdate();
         collider.enabled = false;
+    }
+
+    private IEnumerator DeactivateRalldogIEnumerator(float time)
+    {
+        yield return new WaitForSeconds(time);
+        DeactivateRagdoll();
+        stunResistant = true;
+        yield return new WaitForSeconds(0.2f);
+        stunResistant = false;
     }
 
 }

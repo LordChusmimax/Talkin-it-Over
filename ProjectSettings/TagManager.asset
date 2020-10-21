@@ -8,6 +8,8 @@ TagManager:
   - Scenary
   - Ammunition
   - Altar
+  - NonLethal
+  - Lethal
   layers:
   - Default
   - TransparentFX
@@ -42,6 +44,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background0
+    uniqueID: 1388460807
+    locked: 0
+  - name: background1
+    uniqueID: 1968960871
+    locked: 0
+  - name: background2
+    uniqueID: 3006223555
+    locked: 0
   - name: back leg
     uniqueID: 135724481
     locked: 0
