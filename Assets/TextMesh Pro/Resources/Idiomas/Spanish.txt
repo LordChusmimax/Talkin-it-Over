@@ -1,4 +1,4 @@
-titulo=Er Juego
+titulo=Talkin' it over
 jugar=Jugar
 opciones=Opciones
 reportar=Reportar
