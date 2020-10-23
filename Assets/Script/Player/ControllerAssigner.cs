@@ -8,20 +8,25 @@ public class ControllerAssigner : MonoBehaviour
 {
     public static ControllerAssigner current;
     private PlayerScript[] players;
-    public GameObject prefab;
+    public GameObject prefabPlayer;
     [SerializeField] int index = -1;
     void Start()
     {
         current = this;
-        players = GetComponentsInChildren<PlayerScript>();
+        /*players = GetComponentsInChildren<PlayerScript>();
         foreach (PlayerScript player in players)
         {
             player.SelectController(index);
             index++;
-        }
+        }*/
 
-        PlayerScript newPlayer = Instantiate(prefab, transform).GetComponent<PlayerScript>();
-        newPlayer.SelectController(0);
+        int num = PlayerContainer.getNumController;
+
+        for (int i = 0; i < num; i++)
+        {
+            PlayerScript player = Instantiate(prefabPlayer, transform).GetComponent<PlayerScript>();
+            player.SelectController(PlayerContainer.getController(i));
+        }
     }
 
 }

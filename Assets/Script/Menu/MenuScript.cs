@@ -15,9 +15,13 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("Lab");
     }
 
+    public void Lab()
+    {
+        SceneManager.LoadScene("Lab");
+    }
+
     public void Salir()
     {
-
         Debug.Log("Salir");
         Application.Quit();
     }

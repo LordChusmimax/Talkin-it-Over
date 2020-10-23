@@ -1,16 +1,14 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerSelector : MonoBehaviour
 {
-
-    public GameObject playerPrefab;
-    public GameObject playerRespawer;
-
     private Keyboard teclado;
     private Gamepad[] mandos = new Gamepad[4];
     private int numMandos = 0;
+    private int numAsignados = 0;
     private PlayerInputs input;
 
 
@@ -18,8 +16,7 @@ public class PlayerSelector : MonoBehaviour
     {
         input = new PlayerInputs();
 
-        input.Player.Jump.performed += ctxAsignar => asignarJugador(ctxAsignar);
-        input.Player.Pick.performed += ctxGenerar => generarJugadores();
+        input.Player.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
 
         input.Enable();
     }
@@ -36,6 +33,7 @@ public class PlayerSelector : MonoBehaviour
         if (mando == null)
         {
             asignarTeclado();
+            numAsignados++;
         }
         else
         {
@@ -55,11 +53,13 @@ public class PlayerSelector : MonoBehaviour
                 if (!finded)
                 {
                     Debug.Log("INFO: Se ha asignado un mando");
-                    ScriptModifyPanel panel = GetComponentInChildren<ScriptModifyPanel>();
-                    panel.ayadirJugador();
+                    transform.GetChild(numAsignados).GetComponent<Image>().color = Color.red;
+
+                    PlayerContainer.ayadirControler(GetGamepadArrayPosition(ctx.control.device.deviceId));
 
                     mandos[numMandos] = mando;
                     numMandos++;
+                    numAsignados++;
                 }
                 else
                 {
@@ -70,11 +70,13 @@ public class PlayerSelector : MonoBehaviour
             else
             {
                 Debug.Log("INFO: Se ha asignado un mando");
-                ScriptModifyPanel panel = GetComponentInChildren<ScriptModifyPanel>();
-                panel.ayadirJugador();
+                transform.GetChild(numAsignados).GetComponent<Image>().color = Color.red;
+
+                PlayerContainer.ayadirControler(GetGamepadArrayPosition(ctx.control.device.deviceId));
 
                 mandos[numMandos] = mando;
                 numMandos++;
+                numAsignados++;
             }
         }
 
@@ -86,8 +88,8 @@ public class PlayerSelector : MonoBehaviour
         {
             Debug.Log("INFO: Se ha añadido el teclado");
 
-            ScriptModifyPanel panel = GetComponentInChildren<ScriptModifyPanel>();
-            panel.ayadirJugador();
+            transform.GetChild(numMandos).GetComponent<Image>().color = Color.red;
+            PlayerContainer.ayadirControler(-1);
 
             teclado = Keyboard.current;
         }
@@ -95,6 +97,7 @@ public class PlayerSelector : MonoBehaviour
 
     public void generarJugadores()
     {
+        /*
         //¿Hay algún controls asignado?
         if (numMandos > 0 || teclado != null)
         {
@@ -129,7 +132,7 @@ public class PlayerSelector : MonoBehaviour
                 numCoor++;
             }
 
-        }
+        }*/
     }
 
     private Gamepad GetGamepad(int id)
@@ -148,5 +151,23 @@ public class PlayerSelector : MonoBehaviour
         }
 
         return getMando;
+    }
+
+    private int GetGamepadArrayPosition(int id)
+    {
+        var mandos = Gamepad.all;
+        int getMandoPosition = -1;
+
+        for (int i = 0; i < mandos.Count; i++)
+        {
+            int idMando = mandos[i].deviceId;
+
+            if (id.Equals(idMando))
+            {
+                getMandoPosition = i;
+            }
+        }
+
+        return getMandoPosition;
     }
 }

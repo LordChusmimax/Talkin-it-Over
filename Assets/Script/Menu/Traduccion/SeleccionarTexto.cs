@@ -7,7 +7,4 @@ using TMPro;
 public class SeleccionarTexto : MonoBehaviour
 {
     public string id;
-
-    
-
 }
