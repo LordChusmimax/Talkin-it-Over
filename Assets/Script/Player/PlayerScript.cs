@@ -26,6 +26,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject rightArm;
     [SerializeField] private GameObject weaponPlacement;
     [SerializeField] private GameObject head;
+    [SerializeField] private GameObject Player;
     private PlayerAnimator playerAnimator;
     private Animator animator;
 
@@ -40,7 +41,7 @@ public class PlayerScript : MonoBehaviour
     [Tooltip("True if player is on the floor, false elsewhise")] [SerializeField] private bool grounded;
     [Tooltip("True if player is facing left, false elsewhise")] [SerializeField] public bool faceLeft;
 
-    [HideInInspector] public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity   
+    [HideInInspector] public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity 
     private int forceFall;
     private float highGravity;
 
@@ -278,6 +279,7 @@ public class PlayerScript : MonoBehaviour
         if (shootPressed && !shootWasPressed)
         {
             weapon.Shoot();
+            
         }
     }
 
