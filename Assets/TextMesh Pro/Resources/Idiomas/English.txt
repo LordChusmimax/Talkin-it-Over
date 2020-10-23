@@ -1,4 +1,4 @@
-titulo=Da Game
+titulo=Talkin' it over
 opciones=Options
 reportar=Report
 jugar=Play
