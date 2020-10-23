@@ -23,7 +23,7 @@ TagManager:
   - Player2
   - Player3
   - Player4
-  - 
+  - BackGround
   - 
   - 
   - 
@@ -44,6 +44,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: ActualBackground
+    uniqueID: 4272633273
+    locked: 0
   - name: background0
     uniqueID: 1388460807
     locked: 0

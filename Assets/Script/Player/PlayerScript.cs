@@ -44,7 +44,7 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector] public PlayerInputs controls;  //Hace que la clase no sea pública de cara al inspector de Unity 
     private int forceFall;
     private float highGravity;
-
+    private SpriteRenderer spriteRenderer;
     private float stunTime = 0;
     private bool stunResistant = false;
 
@@ -91,6 +91,8 @@ public class PlayerScript : MonoBehaviour
         cmTargerGroup = transform.parent.GetComponentInChildren<CinemachineTargetGroup>();
         cmTargerGroup.AddMember(head.transform, 1, 1);
         highGravity = Physics2D.gravity.y * highGravityMod;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         controls = new PlayerInputs();
         weapon = GetComponentInChildren<Weapon>();
         controls.Player.Enable();
@@ -400,6 +402,8 @@ public class PlayerScript : MonoBehaviour
     /// <param name="dramaticCamera">true if you don't want the camera to directly forget about the dead player</param>
     public void Die(bool dramaticCamera)
     {
+        animator.SetTrigger("Die");
+        animator.Update(0);
         dead = true;
         ActivateRagdoll();
         //Destroy(weapon.gameObject);
