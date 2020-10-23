@@ -7,7 +7,7 @@ public class Punch : MeleWeapon
     private Animator animator;
     private PunchHurtBox hurtBoxScript;
 
-    public void Start()
+    public void Awake()
     {
         animator = GetComponent<Animator>();
         hurtBox = GetComponentsInChildren<Collider2D>()[1];
