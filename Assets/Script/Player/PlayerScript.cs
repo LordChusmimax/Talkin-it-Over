@@ -326,6 +326,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (grounded && jumpPressed && !jumpWasPressed)
         {
+            animator.SetTrigger("Jump");
             forceFall = 0;
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
             StartCoroutine(ExtendedJumpTimer());
@@ -465,7 +466,6 @@ public class PlayerScript : MonoBehaviour
     private void HandleStun()
     {
         stunTime -= Time.deltaTime;
-        Debug.Log(stunTime);
     }
 
     //IENUMERATORS

@@ -6,19 +6,21 @@ public class GroundCheckScript : MonoBehaviour
 {
     public bool isGrounded = false;
     private Rigidbody2D rb;
-    private GameObject player;
+    private Animator playerAnimator;
 
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody2D>();
-        player = transform.parent.gameObject;
+        playerAnimator = transform.parent.GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
+            playerAnimator.SetBool("Air",false);  
             isGrounded = true;
+            
         }
     }
 
@@ -26,6 +28,7 @@ public class GroundCheckScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            playerAnimator.SetBool("Air", true);
             isGrounded = false;
         }
     }

@@ -12,7 +12,7 @@ public class MenuScript : MonoBehaviour
 
     public void Jugar()
     {
-        SceneManager.LoadScene("Lab");
+        SceneManager.LoadScene("Stage1");
     }
 
     public void Lab()

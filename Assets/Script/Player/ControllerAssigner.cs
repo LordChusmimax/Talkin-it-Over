@@ -7,9 +7,9 @@ using UnityEngine.InputSystem;
 public class ControllerAssigner : MonoBehaviour
 {
     public static ControllerAssigner current;
-    private PlayerScript[] players;
+    protected PlayerScript[] players;
     public GameObject prefabPlayer;
-    [SerializeField] int index = -1;
+    [SerializeField]protected int index = -1;
     void Start()
     {
         current = this;
