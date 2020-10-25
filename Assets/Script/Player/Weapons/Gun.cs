@@ -6,6 +6,7 @@ public class Gun : FireWeapon
 {
     [Header("Gun Values")]
     [SerializeField] private GameObject bulletGameObject;
+    private Animator animator;
     private Transform hole;
 
 
@@ -13,7 +14,7 @@ public class Gun : FireWeapon
     void Start()
     {
         hole = GetComponentsInChildren<Transform>()[1];
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,6 +35,7 @@ public class Gun : FireWeapon
     {
         if (currentCd <= 0)
         {
+            animator.SetTrigger("Shoot");
             currentCd = cadence;
             CreateBullet();
         }

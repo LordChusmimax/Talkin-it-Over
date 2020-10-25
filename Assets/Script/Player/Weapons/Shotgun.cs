@@ -7,12 +7,14 @@ public class Shotgun : FireWeapon
     [Header("ShotGun Values")]
     [SerializeField] private GameObject bulletGameObject;
     private Transform hole;
+    private Animator animator;
 
 
     // Start is called before the first frame update
     void Start()
     {
         hole = GetComponentsInChildren<Transform>()[1];
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class Shotgun : FireWeapon
     {
         if (currentCd <= 0)
         {
+            animator.SetTrigger("Shoot");
             currentCd = cadence;
             for (int i = 0; i < 6; i++)
             {

@@ -347,6 +347,7 @@ MonoBehaviour:
   rightArm: {fileID: 8989012452300701719}
   weaponPlacement: {fileID: 2096266735186804331}
   head: {fileID: 2096266734890658610}
+  Player: {fileID: 0}
   weapon: {fileID: 0}
   cameraResetTime: 2
   slowMod: 0.5
@@ -1089,6 +1090,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Punch
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429905135175611339, guid: a2428a52dd75a9d4e865c99e44904848,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9200339427251668230, guid: a2428a52dd75a9d4e865c99e44904848,
         type: 3}
