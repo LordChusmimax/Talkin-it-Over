@@ -99,9 +99,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Generar"",
+                    ""name"": ""Desasignar"",
                     ""type"": ""Button"",
-                    ""id"": ""41b9ebac-a001-46e5-868a-5d05df3977c4"",
+                    ""id"": ""2a027b78-a40d-4e4a-88a7-2c8541595639"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -341,23 +341,23 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9ba46869-afeb-4e92-89d2-43e885203fe2"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""id"": ""feb5cb7f-97c0-4402-a1c6-aa58959801a8"",
+                    ""path"": ""<Keyboard>/backspace"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Generar"",
+                    ""action"": ""Desasignar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a0b13f8c-1ae8-479b-97c1-29ec1b07d37e"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""896e2ec5-909b-41e3-a52a-25ddacc357ce"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Generar"",
+                    ""action"": ""Desasignar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -406,7 +406,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
         m_Player_Asignar = m_Player.FindAction("Asignar", throwIfNotFound: true);
-        m_Player_Generar = m_Player.FindAction("Generar", throwIfNotFound: true);
+        m_Player_Desasignar = m_Player.FindAction("Desasignar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -466,7 +466,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_MousePosition;
     private readonly InputAction m_Player_Asignar;
-    private readonly InputAction m_Player_Generar;
+    private readonly InputAction m_Player_Desasignar;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -481,7 +481,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         public InputAction @Asignar => m_Wrapper.m_Player_Asignar;
-        public InputAction @Generar => m_Wrapper.m_Player_Generar;
+        public InputAction @Desasignar => m_Wrapper.m_Player_Desasignar;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -521,9 +521,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Asignar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAsignar;
                 @Asignar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAsignar;
                 @Asignar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAsignar;
-                @Generar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerar;
-                @Generar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerar;
-                @Generar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGenerar;
+                @Desasignar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
+                @Desasignar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
+                @Desasignar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -558,9 +558,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Asignar.started += instance.OnAsignar;
                 @Asignar.performed += instance.OnAsignar;
                 @Asignar.canceled += instance.OnAsignar;
-                @Generar.started += instance.OnGenerar;
-                @Generar.performed += instance.OnGenerar;
-                @Generar.canceled += instance.OnGenerar;
+                @Desasignar.started += instance.OnDesasignar;
+                @Desasignar.performed += instance.OnDesasignar;
+                @Desasignar.canceled += instance.OnDesasignar;
             }
         }
     }
@@ -604,6 +604,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
         void OnAsignar(InputAction.CallbackContext context);
-        void OnGenerar(InputAction.CallbackContext context);
+        void OnDesasignar(InputAction.CallbackContext context);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class PlayerSelector : MonoBehaviour
     private Keyboard teclado;
     private Gamepad[] mandos = new Gamepad[4];
     private int numMandos = 0;
-    private int numAsignados = 0;
+    private int numControllersAsigned = 0;
     private PlayerInputs input;
 
 
@@ -17,6 +18,7 @@ public class PlayerSelector : MonoBehaviour
         input = new PlayerInputs();
 
         input.Player.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
+        input.Player.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
 
         input.Enable();
     }
@@ -24,16 +26,18 @@ public class PlayerSelector : MonoBehaviour
     private void OnDisable()
     {
         input.Disable();
+        input = null;
     }
 
     private void asignarJugador(InputAction.CallbackContext ctx)
     {
-        Gamepad mando = GetGamepad(ctx.control.device.deviceId);
+        int id = ctx.control.device.deviceId;
+        Gamepad mando = GetGamepad(id);
 
         if (mando == null)
         {
             asignarTeclado();
-            numAsignados++;
+            numControllersAsigned++;
         }
         else
         {
@@ -53,13 +57,13 @@ public class PlayerSelector : MonoBehaviour
                 if (!finded)
                 {
                     Debug.Log("INFO: Se ha asignado un mando");
-                    transform.GetChild(numAsignados).GetComponent<Image>().color = Color.red;
+                    transform.GetChild(numControllersAsigned).GetComponent<Image>().color = Color.red;
 
-                    PlayerContainer.ayadirControler(GetGamepadArrayPosition(ctx.control.device.deviceId));
+                    PlayerContainer.ayadirControler(GetGamepadArrayPosition(id));
 
                     mandos[numMandos] = mando;
                     numMandos++;
-                    numAsignados++;
+                    numControllersAsigned++;
                 }
                 else
                 {
@@ -70,13 +74,13 @@ public class PlayerSelector : MonoBehaviour
             else
             {
                 Debug.Log("INFO: Se ha asignado un mando");
-                transform.GetChild(numAsignados).GetComponent<Image>().color = Color.red;
+                transform.GetChild(numControllersAsigned).GetComponent<Image>().color = Color.red;
 
-                PlayerContainer.ayadirControler(GetGamepadArrayPosition(ctx.control.device.deviceId));
+                PlayerContainer.ayadirControler(GetGamepadArrayPosition(id));
 
                 mandos[numMandos] = mando;
                 numMandos++;
-                numAsignados++;
+                numControllersAsigned++;
             }
         }
 
@@ -94,45 +98,60 @@ public class PlayerSelector : MonoBehaviour
             teclado = Keyboard.current;
         }
     }
-
-    public void generarJugadores()
+    
+    private void desasignarJugador(InputAction.CallbackContext ctx)
     {
-        /*
-        //¿Hay algún controls asignado?
-        if (numMandos > 0 || teclado != null)
+        //¿Hay algún controlador ya asignado?
+        if (numMandos > 0)
         {
-            //ScriptModifyPanel panel = GetComponentInChildren<ScriptModifyPanel>();
-            //panel.gameObject.SetActive(false);
+            int id = ctx.control.device.deviceId;
+            Gamepad gamepadPressed = GetGamepad(id);
 
-            this.gameObject.SetActive(false);
-            int[] coor = {0, -2, 2 ,-4};
-            int numCoor = 0;
-            
-            if (teclado != null)
+            //¿Es un teclado?
+            if (gamepadPressed == null)
             {
-                GameObject player = Instantiate(playerPrefab, playerRespawer.transform);
-                player.transform.SetParent(playerRespawer.transform);
+                numControllersAsigned--;
+                transform.GetChild(numControllersAsigned).GetComponent<Image>().color = Color.green;
+                
+                PlayerContainer.eliminarControler(-1);
+                teclado = null;
 
-                PlayerScript scriptJugador = playerPrefab.GetComponent<PlayerScript>();
-                scriptJugador.SelectController(-1);
+                Debug.Log("INFO: Se ha eliminado el controlador del teclado");
+            }
+            else
+            {
+                for (int i = 0; i < numMandos; i++)
+                {
+                    //¿Es el mando que has pulsado?
+                    if (gamepadPressed.Equals(mandos[i]))
+                    {
+                        numMandos--;
+                        numControllersAsigned--;
+                        transform.GetChild(numControllersAsigned).GetComponent<Image>().color = Color.green;
 
-                playerRespawer.transform.Translate(new Vector2(coor[numCoor], 0));
-                numCoor++;
+                        int numIndex = Array.IndexOf(mandos, gamepadPressed);
+                        //mandos = mandos.Where((val, idx) => idx != numIndex).ToArray();
+                        mandos = mandos.Except(new Gamepad[] { gamepadPressed }).ToArray();
+
+                        int aux = GetGamepadArrayPosition(id);
+                        PlayerContainer.eliminarControler(aux);
+
+                        Debug.Log("INFO: Se ha eliminado el controlador del mando");
+
+                        int[] lista = PlayerContainer.getArray();
+
+                        for (int j = 0; j < lista.Length; j++)
+                        {
+                            Debug.Log("Elemento: " + j + " - Valor: " + lista[j]);
+                        }
+
+                        Debug.Log(PlayerContainer.getNumController());
+
+                    }
+                }
             }
 
-            for (int i = 0; i < numMandos; i++)
-            {
-                GameObject player = Instantiate(playerPrefab, playerRespawer.transform);
-                player.transform.SetParent(playerRespawer.transform);
-
-                PlayerScript scriptJugador = playerPrefab.GetComponent<PlayerScript>();
-                scriptJugador.SelectController(i);
-
-                playerRespawer.transform.Translate(new Vector2(coor[numCoor], 0));
-                numCoor++;
-            }
-
-        }*/
+        }
     }
 
     private Gamepad GetGamepad(int id)

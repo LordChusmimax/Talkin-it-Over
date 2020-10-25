@@ -86,9 +86,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Generar",
+                    "name": "Desasignar",
                     "type": "Button",
-                    "id": "41b9ebac-a001-46e5-868a-5d05df3977c4",
+                    "id": "2a027b78-a40d-4e4a-88a7-2c8541595639",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -328,23 +328,23 @@
                 },
                 {
                     "name": "",
-                    "id": "9ba46869-afeb-4e92-89d2-43e885203fe2",
-                    "path": "<Keyboard>/enter",
+                    "id": "feb5cb7f-97c0-4402-a1c6-aa58959801a8",
+                    "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Generar",
+                    "action": "Desasignar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a0b13f8c-1ae8-479b-97c1-29ec1b07d37e",
-                    "path": "<Gamepad>/buttonWest",
+                    "id": "896e2ec5-909b-41e3-a52a-25ddacc357ce",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Generar",
+                    "action": "Desasignar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

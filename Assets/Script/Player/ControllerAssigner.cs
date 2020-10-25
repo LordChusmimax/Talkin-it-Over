@@ -13,14 +13,8 @@ public class ControllerAssigner : MonoBehaviour
     void Start()
     {
         current = this;
-        /*players = GetComponentsInChildren<PlayerScript>();
-        foreach (PlayerScript player in players)
-        {
-            player.SelectController(index);
-            index++;
-        }*/
 
-        int num = PlayerContainer.getNumController;
+        int num = PlayerContainer.getNumController();
 
         for (int i = 0; i < num; i++)
         {
