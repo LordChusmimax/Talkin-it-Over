@@ -17,21 +17,9 @@ public class PlayerContainer
         controllers.Clear();
     }
 
-    public static int getController(int aux)
-    {
-        Dictionary<int, int>.KeyCollection keys = controllers.Keys;
-
-        return 0;
-    }
-
     public static Dictionary<int, int> getList()
     {
         return controllers;
-    }
-
-    public static int getNumController()
-    {
-        return controllers.Count;
     }
 
 }

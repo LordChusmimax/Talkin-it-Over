@@ -92,6 +92,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Empezar",
+                    "type": "Button",
+                    "id": "7625f852-8fcc-4df2-ab76-56ef14a527e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -345,6 +353,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Desasignar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f43c4f3-3078-4d7c-90f4-a12c3269e796",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Empezar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "799431ef-adad-4dd0-9807-efb5cb1856ed",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Empezar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

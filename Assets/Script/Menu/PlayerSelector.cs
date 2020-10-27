@@ -157,7 +157,7 @@ public class PlayerSelector : MonoBehaviour
                             Debug.Log("Elemento: " + j + " - Valor: " + lista[j]);
                         }*/
 
-                        Debug.Log(PlayerContainer.getNumController());
+                        //Debug.Log(PlayerContainer.getNumController());
 
                     }
                 }

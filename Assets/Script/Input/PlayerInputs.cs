@@ -105,6 +105,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Empezar"",
+                    ""type"": ""Button"",
+                    ""id"": ""7625f852-8fcc-4df2-ab76-56ef14a527e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -360,6 +368,28 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Desasignar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f43c4f3-3078-4d7c-90f4-a12c3269e796"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Empezar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""799431ef-adad-4dd0-9807-efb5cb1856ed"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Empezar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -407,6 +437,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
         m_Player_Asignar = m_Player.FindAction("Asignar", throwIfNotFound: true);
         m_Player_Desasignar = m_Player.FindAction("Desasignar", throwIfNotFound: true);
+        m_Player_Empezar = m_Player.FindAction("Empezar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -467,6 +498,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MousePosition;
     private readonly InputAction m_Player_Asignar;
     private readonly InputAction m_Player_Desasignar;
+    private readonly InputAction m_Player_Empezar;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -482,6 +514,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
         public InputAction @Asignar => m_Wrapper.m_Player_Asignar;
         public InputAction @Desasignar => m_Wrapper.m_Player_Desasignar;
+        public InputAction @Empezar => m_Wrapper.m_Player_Empezar;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -524,6 +557,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Desasignar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
                 @Desasignar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
                 @Desasignar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
+                @Empezar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
+                @Empezar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
+                @Empezar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -561,6 +597,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Desasignar.started += instance.OnDesasignar;
                 @Desasignar.performed += instance.OnDesasignar;
                 @Desasignar.canceled += instance.OnDesasignar;
+                @Empezar.started += instance.OnEmpezar;
+                @Empezar.performed += instance.OnEmpezar;
+                @Empezar.canceled += instance.OnEmpezar;
             }
         }
     }
@@ -605,5 +644,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnMousePosition(InputAction.CallbackContext context);
         void OnAsignar(InputAction.CallbackContext context);
         void OnDesasignar(InputAction.CallbackContext context);
+        void OnEmpezar(InputAction.CallbackContext context);
     }
 }
