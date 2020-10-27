@@ -9,6 +9,7 @@ public class PlayersSelector : MonoBehaviour
     private Dictionary<int, int> controles = new Dictionary<int, int>();
     private PlayerInputs input;
     private int panelPosition = 0;
+    [SerializeField] private MenuScript menu;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class PlayersSelector : MonoBehaviour
 
         input.Player.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
         input.Player.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
+        input.Player.Empezar.performed += ctxEmpezar => empezarJuego();
 
         input.Enable();
     }
@@ -82,6 +84,11 @@ public class PlayersSelector : MonoBehaviour
         {
             Debug.Log("ERROR: Este controlador no se encuentra actualmente añadido");
         }
+    }
+
+    private void empezarJuego()
+    {
+        menu.Jugar();
     }
 
     private int GetGamepadArrayPosition(int id)
