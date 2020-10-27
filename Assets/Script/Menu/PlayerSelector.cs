@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -8,19 +8,20 @@ public class PlayerSelector : MonoBehaviour
 {
     private Keyboard teclado;
     private Gamepad[] mandos = new Gamepad[4];
+    private Dictionary<int, InputDevice> mandoss = new Dictionary<int, InputDevice>();
     private int numMandos = 0;
     private int numControllersAsigned = 0;
     private PlayerInputs input;
-
 
     private void Awake()
     {
         input = new PlayerInputs();
 
-        input.Player.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
+        input.Player.Asignar.performed += ctxAsignar => prueba(ctxAsignar);
         input.Player.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
 
         input.Enable();
+        
     }
 
     private void OnDisable()
@@ -59,7 +60,7 @@ public class PlayerSelector : MonoBehaviour
                     Debug.Log("INFO: Se ha asignado un mando");
                     transform.GetChild(numControllersAsigned).GetComponent<Image>().color = Color.red;
 
-                    PlayerContainer.ayadirControler(GetGamepadArrayPosition(id));
+                    //PlayerContainer.ayadirControler(GetGamepadArrayPosition(id));
 
                     mandos[numMandos] = mando;
                     numMandos++;
@@ -76,12 +77,23 @@ public class PlayerSelector : MonoBehaviour
                 Debug.Log("INFO: Se ha asignado un mando");
                 transform.GetChild(numControllersAsigned).GetComponent<Image>().color = Color.red;
 
-                PlayerContainer.ayadirControler(GetGamepadArrayPosition(id));
+                //PlayerContainer.ayadirControler(GetGamepadArrayPosition(id));
 
                 mandos[numMandos] = mando;
                 numMandos++;
                 numControllersAsigned++;
             }
+        }
+
+    }
+
+    private void prueba(InputAction.CallbackContext ctx)
+    {
+        mandoss.Add(-1, ctx.control.device);
+
+        foreach (KeyValuePair<int, InputDevice> control in mandoss)
+        {
+            Debug.Log(control.Value.device.deviceId);
         }
 
     }
@@ -93,7 +105,7 @@ public class PlayerSelector : MonoBehaviour
             Debug.Log("INFO: Se ha añadido el teclado");
 
             transform.GetChild(numMandos).GetComponent<Image>().color = Color.red;
-            PlayerContainer.ayadirControler(-1);
+            //PlayerContainer.ayadirControler(-1);
 
             teclado = Keyboard.current;
         }
@@ -113,7 +125,7 @@ public class PlayerSelector : MonoBehaviour
                 numControllersAsigned--;
                 transform.GetChild(numControllersAsigned).GetComponent<Image>().color = Color.green;
                 
-                PlayerContainer.eliminarControler(-1);
+                //PlayerContainer.eliminarControler(-1);
                 teclado = null;
 
                 Debug.Log("INFO: Se ha eliminado el controlador del teclado");
@@ -131,19 +143,19 @@ public class PlayerSelector : MonoBehaviour
 
                         int numIndex = Array.IndexOf(mandos, gamepadPressed);
                         //mandos = mandos.Where((val, idx) => idx != numIndex).ToArray();
-                        mandos = mandos.Except(new Gamepad[] { gamepadPressed }).ToArray();
+                        //mandos = mandos.Except(new Gamepad[] { gamepadPressed }).ToArray();
 
                         int aux = GetGamepadArrayPosition(id);
-                        PlayerContainer.eliminarControler(aux);
+                        //PlayerContainer.eliminarControler(aux);
 
                         Debug.Log("INFO: Se ha eliminado el controlador del mando");
 
-                        int[] lista = PlayerContainer.getArray();
+                        //int[] lista = PlayerContainer.getArray();
 
-                        for (int j = 0; j < lista.Length; j++)
+                        /*for (int j = 0; j < lista.Length; j++)
                         {
                             Debug.Log("Elemento: " + j + " - Valor: " + lista[j]);
-                        }
+                        }*/
 
                         Debug.Log(PlayerContainer.getNumController());
 

@@ -1,47 +1,37 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 
 public class PlayerContainer
 {
 
-    private static int[] controllers = new int[4];
-    private static int numController = 0;
+    private static int[] ccccc = new int[4];
+    private static Dictionary<int, int> controllers = new Dictionary<int, int>();
 
-    public static void ayadirControler(int aux)
+    public static void ayadirControler(int aux, int skin)
     {
-        controllers[numController] = aux;
-        //controllers = controllers.Append(aux);
-        numController++;    
-    }
-
-    public static void eliminarControler(int aux)
-    {
-        int numIndex = Array.IndexOf(controllers, aux);
-        //controller = controller.Where((val, idx) => idx != numIndex).ToArray();
-        controllers = controllers.Except(new int[] { aux }).ToArray();
-
-        numController--;
+        controllers.Add(aux, skin);
     }
 
     public static void limpiarArray()
     {
-        numController = 0;
+        controllers.Clear();
     }
 
     public static int getController(int aux)
     {
-        return controllers[aux];
+        Dictionary<int, int>.KeyCollection keys = controllers.Keys;
+
+        return 0;
     }
 
-    public static int[] getArray()
+    public static Dictionary<int, int> getList()
     {
         return controllers;
     }
 
     public static int getNumController()
     {
-        return numController;
+        return controllers.Count;
     }
 
 }
