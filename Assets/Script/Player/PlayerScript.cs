@@ -387,6 +387,10 @@ public class PlayerScript : MonoBehaviour
     {
         this.gameObject.layer = index + 8;
         weapon.SetLayer(index + 8);
+        foreach (Limb limb in limbs)
+        {
+            limb.gameObject.layer = gameObject.layer;
+        }
     }
 
     /// <summary>
