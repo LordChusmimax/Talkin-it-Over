@@ -10,7 +10,8 @@ public class PlayersSelector : MonoBehaviour
     private Queue<int> skins = new Queue<int>();
     private Stack<int> paneles = new Stack<int>();
     private PlayerInputs input;
-    [SerializeField] private MenuScript menu;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private MenuScript menuScript;
 
     private void Awake()
     {
@@ -33,7 +34,12 @@ public class PlayersSelector : MonoBehaviour
 
         input.Enable();
     }
-    
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
     private void OnDisable()
     {
 
@@ -118,7 +124,12 @@ public class PlayersSelector : MonoBehaviour
         }
         else
         {
-            Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
+            //Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
+
+            //menu.SetActive(true);
+            //menuScript.cerrarSelector();
+
+            //this.gameObject.SetActive(false);
         }
     }
 
@@ -199,7 +210,7 @@ public class PlayersSelector : MonoBehaviour
 
     private void empezarJuego()
     {
-        menu.Jugar();
+        menuScript.Jugar();
     }
 
     private int GetGamepadArrayPosition(int id)
