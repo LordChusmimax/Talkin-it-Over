@@ -113,6 +113,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CambiarSkin"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5e0cd76-b58c-4d8f-896e-c652e149e0a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -390,6 +398,72 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Empezar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""DirectionKeyboard"",
+                    ""id"": ""e1799e3b-ff56-4f60-b780-967d70088c84"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8a92546b-ee1d-4115-aad4-13aa87ef3f33"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""34098096-df55-453b-ad2d-c18e50edc928"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""DirectionGamepad"",
+                    ""id"": ""964c1ec6-4244-4862-8a79-6c789f89e902"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""e4b79bc7-8469-40e9-9075-c6cd15968300"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ef4e0de2-b252-432b-b8ff-d7fc021ccfd0"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -438,6 +512,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_Player_Asignar = m_Player.FindAction("Asignar", throwIfNotFound: true);
         m_Player_Desasignar = m_Player.FindAction("Desasignar", throwIfNotFound: true);
         m_Player_Empezar = m_Player.FindAction("Empezar", throwIfNotFound: true);
+        m_Player_CambiarSkin = m_Player.FindAction("CambiarSkin", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -499,6 +574,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Asignar;
     private readonly InputAction m_Player_Desasignar;
     private readonly InputAction m_Player_Empezar;
+    private readonly InputAction m_Player_CambiarSkin;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -515,6 +591,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Asignar => m_Wrapper.m_Player_Asignar;
         public InputAction @Desasignar => m_Wrapper.m_Player_Desasignar;
         public InputAction @Empezar => m_Wrapper.m_Player_Empezar;
+        public InputAction @CambiarSkin => m_Wrapper.m_Player_CambiarSkin;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -560,6 +637,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Empezar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
                 @Empezar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
                 @Empezar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
+                @CambiarSkin.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
+                @CambiarSkin.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
+                @CambiarSkin.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -600,6 +680,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Empezar.started += instance.OnEmpezar;
                 @Empezar.performed += instance.OnEmpezar;
                 @Empezar.canceled += instance.OnEmpezar;
+                @CambiarSkin.started += instance.OnCambiarSkin;
+                @CambiarSkin.performed += instance.OnCambiarSkin;
+                @CambiarSkin.canceled += instance.OnCambiarSkin;
             }
         }
     }
@@ -645,5 +728,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnAsignar(InputAction.CallbackContext context);
         void OnDesasignar(InputAction.CallbackContext context);
         void OnEmpezar(InputAction.CallbackContext context);
+        void OnCambiarSkin(InputAction.CallbackContext context);
     }
 }
