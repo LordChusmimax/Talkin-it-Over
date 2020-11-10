@@ -9,6 +9,7 @@ public class MenuScript : MonoBehaviour
     public GameObject optionsFirstButton;
     public GameObject optionsCloseButton;
 
+    #region Métodos para iniciar el juego o el Lab
     /// <summary>
     /// Método llamado desde el selector de jugadores
     /// </summary>
@@ -24,10 +25,9 @@ public class MenuScript : MonoBehaviour
     {
         SceneManager.LoadScene("Lab");
     }
+    #endregion
 
-    /// <summary>
-    /// Métodos con los que modificamos el botón seleccionado al cambiar de panel
-    /// </summary>
+    #region Métodos para mantener el focus del mando
     public void abrirOpciones()
     {
         //Limpiar el elemento actualmente seleccionado
@@ -52,7 +52,11 @@ public class MenuScript : MonoBehaviour
         //Asignar un nuevo elemento del nuevo panel
         EventSystem.current.SetSelectedGameObject(menuFirstButton);
     }
+    #endregion
 
+    /// <summary>
+    /// Método para cerrar el juego (desactivado dentro de Unity)
+    /// </summary>
     public void Salir()
     {
         Debug.Log("Salir");
