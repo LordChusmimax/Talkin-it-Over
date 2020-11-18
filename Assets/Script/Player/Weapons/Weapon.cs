@@ -9,8 +9,11 @@ public abstract class Weapon:MonoBehaviour
     protected Quaternion rotationHandling;
     protected Vector3 positionHandling;
     protected Vector3 scaleHandling;
+    protected AudioSource attackSound;
 
     public bool Aim { get => aim; set => aim = value; }
+
+
 
     public virtual void Update()
     {

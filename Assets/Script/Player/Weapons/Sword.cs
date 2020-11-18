@@ -21,6 +21,7 @@ public class Sword : MeleWeapon
         hurtBox = GetComponentsInChildren<Collider2D>()[1];
         hurtBoxScript = GetComponentInChildren<SwordHurtBox>();
         hurtBoxScript.Faceleft = faceLeft;
+        attackSound = GetComponent<AudioSource>();
     }
 
     public override void Update()
@@ -38,6 +39,7 @@ public class Sword : MeleWeapon
 
     protected override void HitStart()
     {
+        attackSound.Play();
         animator.SetBool("PreHit", false);
         animator.SetBool("HitStart", true);
         hurtBox.enabled = true;

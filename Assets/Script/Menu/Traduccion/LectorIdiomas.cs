@@ -11,11 +11,26 @@ public class LectorIdiomas : MonoBehaviour
     //Analizamos en que idioma se encuentra el sistema del usuario
     private SystemLanguage _systemLanguage;
 
+    private static LectorIdiomas current;
+
+    private void Start()
+    {
+
+    }
+
     private void Awake()
     {
+        if (current != null)
+        {
+            GameObject.Destroy(gameObject);
+        }
+        else
+        {
+            current = this;
+            DontDestroyOnLoad(gameObject);
+        }
         DontDestroyOnLoad(gameObject);
         leerPropiedades();
-        
     }
 
 

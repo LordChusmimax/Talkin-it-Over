@@ -7,7 +7,8 @@ public class ManageSound : MonoBehaviour
 {
 
     private AudioSource song;
-    public AudioClip[] songList;
+    public AudioClip[] songListMenu;
+    public AudioClip[] songListBattle;
     private bool songStarted = false;
     private static ManageSound current;
     [SerializeField] private float musicVolume = 0.25f;
@@ -17,7 +18,7 @@ public class ManageSound : MonoBehaviour
     {
         if (current != null)
         {
-            GameObject.Destroy(this);
+            GameObject.Destroy(this.gameObject);
         }
         else
         {
@@ -52,10 +53,16 @@ public class ManageSound : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Lab")
+        if (scene.name == "Lab" || scene.name.StartsWith("Stage"))
         {
             EndSong();
-            song.clip = songList[1];
+            int songNumber = Random.Range(1, songListBattle.Length);
+            song.clip = songListBattle[songNumber];
+            StartSong();
+        }
+        else if (scene.name == "Menu")
+        {   
+            song.clip = songListMenu[0];
             StartSong();
         }
     }

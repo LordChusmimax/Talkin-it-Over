@@ -15,6 +15,7 @@ public class Shotgun : FireWeapon
     {
         hole = GetComponentsInChildren<Transform>()[1];
         animator = GetComponent<Animator>();
+        attackSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +36,7 @@ public class Shotgun : FireWeapon
     {
         if (currentCd <= 0)
         {
+            attackSound.Play();
             animator.SetTrigger("Shoot");
             currentCd = cadence;
             for (int i = 0; i < 6; i++)

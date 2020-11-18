@@ -13,6 +13,7 @@ public class Punch : MeleWeapon
         hurtBox = GetComponentsInChildren<Collider2D>()[1];
         hurtBoxScript = GetComponentInChildren<PunchHurtBox>();
         hurtBoxScript.Faceleft = faceLeft;
+        attackSound = GetComponent<AudioSource>();
     }
 
     public override void Update()
@@ -29,6 +30,7 @@ public class Punch : MeleWeapon
 
     protected override void HitStart()
     {
+        attackSound.Play();
         animator.SetBool("PreHit", false);
         animator.SetBool("HitStart", true);
         hurtBox.enabled = true;
