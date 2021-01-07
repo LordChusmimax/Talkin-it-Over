@@ -44,13 +44,13 @@ public class PlayersSelector : MonoBehaviour
     {
 
         input.Disable();
-        foreach (KeyValuePair<int, int> control in controles)
-        {
-            PlayerContainer.ayadirControler(control.Key, 0);
-        }
 
     }
 
+    /// <summary>
+    /// Método para asignar un nuevo mando
+    /// </summary>
+    /// <param name="ctx">Variable generada al pulsar un botón del mando para identificarlo</param>
     private void asignarJugador(InputAction.CallbackContext ctx)
     {
         int id = ctx.control.device.deviceId;
@@ -100,6 +100,10 @@ public class PlayersSelector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Método para desasignar un mando ya asignado
+    /// </summary>
+    /// <param name="ctx">Variable generada al pulsar un botón del mando para identificarlo</param>
     private void desasignarJugador(InputAction.CallbackContext ctx)
     {
         int key = GetGamepadArrayPosition(ctx.control.device.deviceId);
@@ -124,12 +128,12 @@ public class PlayersSelector : MonoBehaviour
         }
         else
         {
-            //Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
+            Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
 
-            //menu.SetActive(true);
-            //menuScript.cerrarSelector();
+            menu.SetActive(true);
+            menuScript.cerrarSelector();
 
-            //this.gameObject.SetActive(false);
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -208,8 +212,13 @@ public class PlayersSelector : MonoBehaviour
         return aux;
     }
 
-    private void empezarJuego()
+    public void empezarJuego()
     {
+        foreach (KeyValuePair<int, int> control in controles)
+        {
+            Debug.Log(">>>INFO: Se ha asignado un controlador");
+            PlayerContainer.ayadirControler(control.Key, 0);
+        }
         menuScript.Jugar();
     }
 
