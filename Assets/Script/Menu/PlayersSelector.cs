@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,7 @@ public class PlayersSelector : MonoBehaviour
     private Queue<int> skins = new Queue<int>();
     private Stack<int> paneles = new Stack<int>();
     private PlayerInputs input;
+    private Coroutine corrutina;
     [SerializeField] private GameObject menu;
     [SerializeField] private MenuScript menuScript;
 
@@ -19,6 +21,7 @@ public class PlayersSelector : MonoBehaviour
 
         input.Player.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
         input.Player.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
+        input.Player.Desasignar.canceled += ctxSoltarBoton => soltarBoton();
         input.Player.CambiarSkin.performed += ctxCambiar => cambiarSkin(ctxCambiar);
         input.Player.Empezar.performed += ctxEmpezar => empezarJuego();
 
@@ -34,7 +37,7 @@ public class PlayersSelector : MonoBehaviour
 
         input.Enable();
     }
-
+    
     private void OnEnable()
     {
         input.Enable();
@@ -128,13 +131,27 @@ public class PlayersSelector : MonoBehaviour
         }
         else
         {
-            Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
-
-            menu.SetActive(true);
-            menuScript.cerrarSelector();
-
-            this.gameObject.SetActive(false);
+            corrutina = StartCoroutine(cerrarSelector());
         }
+    }
+
+    public void empezarJuego()
+    {
+        foreach (KeyValuePair<int, int> control in controles)
+        {
+            Debug.Log(">>>INFO: Se ha asignado un controlador");
+            PlayerContainer.ayadirControler(control.Key, 0);
+        }
+        menuScript.Jugar();
+    }
+
+    private void soltarBoton()
+    {
+        if (corrutina != null)
+        {
+            StopCoroutine(corrutina);
+        }
+        
     }
 
     private void cambiarSkin(InputAction.CallbackContext ctx)
@@ -211,17 +228,7 @@ public class PlayersSelector : MonoBehaviour
 
         return aux;
     }
-
-    public void empezarJuego()
-    {
-        foreach (KeyValuePair<int, int> control in controles)
-        {
-            Debug.Log(">>>INFO: Se ha asignado un controlador");
-            PlayerContainer.ayadirControler(control.Key, 0);
-        }
-        menuScript.Jugar();
-    }
-
+    
     private int GetGamepadArrayPosition(int id)
     {
         var mandos = Gamepad.all;
@@ -258,4 +265,28 @@ public class PlayersSelector : MonoBehaviour
         return getMando;
     }
 
+    IEnumerator cerrarSelector()
+    {
+        int aux = 0;
+        while (true)
+        {
+            
+
+            if (aux >= 3)
+            {
+                Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
+
+                menu.SetActive(true);
+                menuScript.cerrarSelector();
+
+                this.gameObject.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(1);
+
+            aux++;
+            Debug.Log("Tiempo pulsado: " + aux);
+        }
+        
+    }
 }
