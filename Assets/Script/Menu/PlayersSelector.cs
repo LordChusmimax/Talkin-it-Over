@@ -17,6 +17,7 @@ public class PlayersSelector : MonoBehaviour
 
     private void Awake()
     {
+        //Inicialización del Input
         input = new PlayerInputs();
 
         input.Player.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
@@ -25,16 +26,19 @@ public class PlayersSelector : MonoBehaviour
         input.Player.CambiarSkin.performed += ctxCambiar => cambiarSkin(ctxCambiar);
         input.Player.Empezar.performed += ctxEmpezar => empezarJuego();
 
+        //Inicialización del array de los paneles
         paneles.Push(3);
         paneles.Push(2);
         paneles.Push(1);
         paneles.Push(0);
 
+        //Inicialización del array de las Skins
         skins.Enqueue(0);
         skins.Enqueue(1);
         skins.Enqueue(2);
         skins.Enqueue(3);
 
+        //Activar input
         input.Enable();
     }
     
@@ -45,10 +49,7 @@ public class PlayersSelector : MonoBehaviour
 
     private void OnDisable()
     {
-
         input.Disable();
-        //StopAllCoroutines();
-
     }
 
     /// <summary>
@@ -140,7 +141,7 @@ public class PlayersSelector : MonoBehaviour
     {
         foreach (KeyValuePair<int, int> control in controles)
         {
-            Debug.Log(">>>INFO: Se ha asignado un controlador");
+            //Debug.Log(">>>INFO: Se ha asignado un controlador");
             PlayerContainer.ayadirControler(control.Key, 0);
         }
         menuScript.Jugar();
@@ -275,12 +276,8 @@ public class PlayersSelector : MonoBehaviour
         while (true)
         {
 
-            Debug.Log("Estou en el bucle");
-
             if (aux >= 3)
             {
-                Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
-
                 menu.SetActive(true);
                 menuScript.cerrarSelector();
 
@@ -290,7 +287,7 @@ public class PlayersSelector : MonoBehaviour
             yield return new WaitForSeconds(1);
 
             aux++;
-            Debug.Log("Tiempo pulsado: " + aux);
+            Debug.Log("Tiempo pulsado: " + aux + " de 3 segundos");
         }
         
     }
