@@ -11,6 +11,7 @@ public class SettingScript : MonoBehaviour
     public Toggle tglScreen;
     public Dropdown drpIdioma;
 
+
     private void Start()
     {
         loadSettings();
@@ -80,6 +81,7 @@ public class SettingScript : MonoBehaviour
         sliders[0].value = musicVolumen;
         sliders[1].value = efectVolumen;
         drpIdioma.value = idioma;
+        ReaderLanguage.loadDiccionary(idioma);
 
         Debug.Log("INFO: Se ha cargado los datos correctamente");
     }

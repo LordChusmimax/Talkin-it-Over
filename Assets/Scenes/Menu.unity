@@ -2180,6 +2180,7 @@ GameObject:
   - component: {fileID: 976627523}
   - component: {fileID: 976627522}
   - component: {fileID: 976627521}
+  - component: {fileID: 976627524}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -2264,9 +2265,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1990254682}
-        m_TargetAssemblyTypeName: CargarTexto, Scripts
-        m_MethodName: cambiarIdioma
+      - m_Target: {fileID: 976627524}
+        m_TargetAssemblyTypeName: UpdateLanguage, Scripts
+        m_MethodName: modificarIdioma
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2315,6 +2316,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976627519}
   m_CullTransparentMesh: 0
+--- !u!114 &976627524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976627519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f6784736fe992448ee5d1a60b88ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1028584409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,6 +2835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1277595294}
   - component: {fileID: 1277595293}
+  - component: {fileID: 1277595295}
   m_Layer: 0
   m_Name: LectorIdioma
   m_TagString: Untagged
@@ -2853,8 +2867,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1277595295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277595292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8c66670b9d82b4e995bae6d03e2df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1279552678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4574,6 +4600,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: atras
+--- !u!1 &1556208289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556208291}
+  - component: {fileID: 1556208290}
+  m_Layer: 0
+  m_Name: SettingsObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1556208290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556208289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f6784736fe992448ee5d1a60b88ecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1556208291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556208289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 490.07312, y: 306.22784, z: -2303.7007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660446689
 GameObject:
   m_ObjectHideFlags: 0
@@ -5817,7 +5886,6 @@ GameObject:
   - component: {fileID: 1990254678}
   - component: {fileID: 1990254677}
   - component: {fileID: 1990254681}
-  - component: {fileID: 1990254682}
   - component: {fileID: 1990254683}
   m_Layer: 5
   m_Name: Canvas
@@ -5900,7 +5968,7 @@ RectTransform:
   - {fileID: 1164013065}
   - {fileID: 1660446690}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5925,18 +5993,6 @@ MonoBehaviour:
   - {fileID: 1028584411}
   tglScreen: {fileID: 12519991}
   drpIdioma: {fileID: 976627521}
---- !u!114 &1990254682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990254676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b8c66670b9d82b4e995bae6d03e2df4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1990254683
 MonoBehaviour:
   m_ObjectHideFlags: 0

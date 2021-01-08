@@ -6,17 +6,12 @@ using TMPro;
 public class LectorIdiomas : MonoBehaviour
 {
     //Creamos el diccionario donde se almacenará los datos
-    private readonly Dictionary<string, string> _lang = new Dictionary<string, string>();
+    private readonly Dictionary<string, string> diccionario = new Dictionary<string, string>();
 
     //Analizamos en que idioma se encuentra el sistema del usuario
     private SystemLanguage _systemLanguage;
 
     private static LectorIdiomas current;
-
-    private void Start()
-    {
-
-    }
 
     private void Awake()
     {
@@ -59,7 +54,7 @@ public class LectorIdiomas : MonoBehaviour
         {
             //Separas cada línea de texto en 2 partes separadas por el signo '=' y als asignas al diccionario
             var prop = line.Split('=');
-            _lang[prop[0]] = prop[1];
+            diccionario[prop[0]] = prop[1];
         }
 
     }
@@ -87,13 +82,13 @@ public class LectorIdiomas : MonoBehaviour
                 break;
         }
 
-        _lang.Clear();
+        diccionario.Clear();
         var file = Resources.Load<TextAsset>("Idiomas/" + _systemLanguage.ToString());
         
         foreach (var line in file.text.Split('\n'))
         {
             var prop = line.Split('=');
-            _lang[prop[0]] = prop[1];
+            diccionario[prop[0]] = prop[1];
         }
 
 
@@ -102,7 +97,7 @@ public class LectorIdiomas : MonoBehaviour
         foreach (var texto in objetos)
         {
             var componenteTexto = texto.GetComponent<TextMeshProUGUI>();
-            componenteTexto.text = _lang[texto.id];
+            componenteTexto.text = diccionario[texto.id];
 
         }
     }
@@ -114,7 +109,7 @@ public class LectorIdiomas : MonoBehaviour
         foreach (var texto in objetos)
         {
             var componenteTexto = texto.GetComponent<TextMeshProUGUI>();
-            componenteTexto.text = _lang[texto.id];
+            componenteTexto.text = diccionario[texto.id];
 
         }
     }

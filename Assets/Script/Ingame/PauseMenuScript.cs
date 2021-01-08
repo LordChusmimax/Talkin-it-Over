@@ -36,6 +36,7 @@ public class PauseMenuScript : MonoBehaviour
     public void Leave()
     {
         PlayerContainer.limpiarArray();
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 }

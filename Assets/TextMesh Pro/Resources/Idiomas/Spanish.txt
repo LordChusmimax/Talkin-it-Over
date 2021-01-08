@@ -15,4 +15,4 @@ jugador1=Jugador 1
 jugador2=Jugador 2
 jugador3=Jugador 3
 jugador4=Jugador 4
-emepzar=Empezar
+empezar=Empezar

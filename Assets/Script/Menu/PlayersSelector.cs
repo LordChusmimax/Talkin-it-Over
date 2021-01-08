@@ -47,6 +47,7 @@ public class PlayersSelector : MonoBehaviour
     {
 
         input.Disable();
+        //StopAllCoroutines();
 
     }
 
@@ -149,6 +150,7 @@ public class PlayersSelector : MonoBehaviour
     {
         if (corrutina != null)
         {
+            Debug.Log(">>>INFO: Se ha detenido la corrutina: " + corrutina);
             StopCoroutine(corrutina);
         }
         
@@ -267,10 +269,13 @@ public class PlayersSelector : MonoBehaviour
 
     IEnumerator cerrarSelector()
     {
+        Debug.Log(">>>INFO: Se ha iniciado la corrutina correctamente");
+
         int aux = 0;
         while (true)
         {
-            
+
+            Debug.Log("Estou en el bucle");
 
             if (aux >= 3)
             {
