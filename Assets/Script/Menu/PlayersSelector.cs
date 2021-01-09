@@ -12,6 +12,7 @@ public class PlayersSelector : MonoBehaviour
     private Stack<int> paneles = new Stack<int>();
     private PlayerInputs input;
     private Coroutine corrutina;
+    [SerializeField] private int tiempoEspera = 3;
     [SerializeField] private GameObject menu;
     [SerializeField] private MenuScript menuScript;
 
@@ -276,7 +277,7 @@ public class PlayersSelector : MonoBehaviour
         while (true)
         {
 
-            if (aux >= 3)
+            if (aux >= tiempoEspera)
             {
                 menu.SetActive(true);
                 menuScript.cerrarSelector();
@@ -287,7 +288,7 @@ public class PlayersSelector : MonoBehaviour
             yield return new WaitForSeconds(1);
 
             aux++;
-            Debug.Log("Tiempo pulsado: " + aux + " de 3 segundos");
+            Debug.Log("Tiempo pulsado: " + aux + " de " + tiempoEspera + " segundos");
         }
         
     }

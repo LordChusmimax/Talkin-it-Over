@@ -1,6 +1,6 @@
 titulo=Talkin' it over
 opciones=Options
-reportar=Report
+ayuda=Help
 jugar=Play
 salir=Exit
 musica=Music
