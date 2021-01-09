@@ -8,6 +8,8 @@ public class MenuScript : MonoBehaviour
     public GameObject menuFirstButton;
     public GameObject optionsFirstButton;
     public GameObject optionsCloseButton;
+    public GameObject helpFirstButton;
+    public GameObject helpCloseButton;
 
     #region Métodos para iniciar el juego o el Lab
     /// <summary>
@@ -43,6 +45,22 @@ public class MenuScript : MonoBehaviour
 
         //Asignar un nuevo elemento del nuevo panel
         EventSystem.current.SetSelectedGameObject(optionsCloseButton);
+    }
+    public void abrirAyuda()
+    {
+        //Limpiar el elemento actualmente seleccionado
+        EventSystem.current.SetSelectedGameObject(null);
+
+        //Asignar un nuevo elemento del nuevo panel
+        EventSystem.current.SetSelectedGameObject(helpFirstButton);
+    }
+    public void cerrarAyuda()
+    {
+        //Limpiar el elemento actualmente seleccionado
+        EventSystem.current.SetSelectedGameObject(null);
+
+        //Asignar un nuevo elemento del nuevo panel
+        EventSystem.current.SetSelectedGameObject(helpCloseButton);
     }
     public void cerrarSelector()
     {
