@@ -134,7 +134,7 @@ MonoBehaviour:
   faceLeft: 0
   dispersion: 5
   burst: 0
-  range: 7
+  range: 70
   bulletGameObject: {fileID: 3077296128562402621, guid: a5ee60a12584fa4438fa0b97eea922d4,
     type: 3}
 --- !u!95 &6610804198709101826
@@ -165,7 +165,8 @@ AudioSource:
   m_GameObject: {fileID: 1438928521081680261}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1057442100012150168, guid: 916a377d46a296c4a86090c44e0ccd81,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: ba7c2c834c6bae747b46ed00de7b7b46, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

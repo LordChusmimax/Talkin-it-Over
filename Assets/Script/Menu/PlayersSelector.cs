@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,31 +11,38 @@ public class PlayersSelector : MonoBehaviour
     private Queue<int> skins = new Queue<int>();
     private Stack<int> paneles = new Stack<int>();
     private PlayerInputs input;
+    private Coroutine corrutina;
+    [SerializeField] private int tiempoEspera = 3;
     [SerializeField] private GameObject menu;
     [SerializeField] private MenuScript menuScript;
 
     private void Awake()
     {
+        //Inicialización del Input
         input = new PlayerInputs();
 
         input.Player.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
         input.Player.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
+        input.Player.Desasignar.canceled += ctxSoltarBoton => soltarBoton();
         input.Player.CambiarSkin.performed += ctxCambiar => cambiarSkin(ctxCambiar);
         input.Player.Empezar.performed += ctxEmpezar => empezarJuego();
 
+        //Inicialización del array de los paneles
         paneles.Push(3);
         paneles.Push(2);
         paneles.Push(1);
         paneles.Push(0);
 
+        //Inicialización del array de las Skins
         skins.Enqueue(0);
         skins.Enqueue(1);
         skins.Enqueue(2);
         skins.Enqueue(3);
 
+        //Activar input
         input.Enable();
     }
-
+    
     private void OnEnable()
     {
         input.Enable();
@@ -42,15 +50,13 @@ public class PlayersSelector : MonoBehaviour
 
     private void OnDisable()
     {
-
         input.Disable();
-        foreach (KeyValuePair<int, int> control in controles)
-        {
-            PlayerContainer.ayadirControler(control.Key, 0);
-        }
-
     }
 
+    /// <summary>
+    /// Método para asignar un nuevo mando
+    /// </summary>
+    /// <param name="ctx">Variable generada al pulsar un botón del mando para identificarlo</param>
     private void asignarJugador(InputAction.CallbackContext ctx)
     {
         int id = ctx.control.device.deviceId;
@@ -100,6 +106,10 @@ public class PlayersSelector : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Método para desasignar un mando ya asignado
+    /// </summary>
+    /// <param name="ctx">Variable generada al pulsar un botón del mando para identificarlo</param>
     private void desasignarJugador(InputAction.CallbackContext ctx)
     {
         int key = GetGamepadArrayPosition(ctx.control.device.deviceId);
@@ -124,13 +134,28 @@ public class PlayersSelector : MonoBehaviour
         }
         else
         {
-            //Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
-
-            //menu.SetActive(true);
-            //menuScript.cerrarSelector();
-
-            //this.gameObject.SetActive(false);
+            corrutina = StartCoroutine(cerrarSelector());
         }
+    }
+
+    public void empezarJuego()
+    {
+        foreach (KeyValuePair<int, int> control in controles)
+        {
+            //Debug.Log(">>>INFO: Se ha asignado un controlador");
+            PlayerContainer.ayadirControler(control.Key, 0);
+        }
+        menuScript.Jugar();
+    }
+
+    private void soltarBoton()
+    {
+        if (corrutina != null)
+        {
+            Debug.Log(">>>INFO: Se ha detenido la corrutina: " + corrutina);
+            StopCoroutine(corrutina);
+        }
+        
     }
 
     private void cambiarSkin(InputAction.CallbackContext ctx)
@@ -207,12 +232,7 @@ public class PlayersSelector : MonoBehaviour
 
         return aux;
     }
-
-    private void empezarJuego()
-    {
-        menuScript.Jugar();
-    }
-
+    
     private int GetGamepadArrayPosition(int id)
     {
         var mandos = Gamepad.all;
@@ -249,4 +269,27 @@ public class PlayersSelector : MonoBehaviour
         return getMando;
     }
 
+    IEnumerator cerrarSelector()
+    {
+        Debug.Log(">>>INFO: Se ha iniciado la corrutina correctamente");
+
+        int aux = 0;
+        while (true)
+        {
+
+            if (aux >= tiempoEspera)
+            {
+                menu.SetActive(true);
+                menuScript.cerrarSelector();
+
+                this.gameObject.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(1);
+
+            aux++;
+            Debug.Log("Tiempo pulsado: " + aux + " de " + tiempoEspera + " segundos");
+        }
+        
+    }
 }

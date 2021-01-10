@@ -32,10 +32,12 @@ public class PlayerCollision : MonoBehaviour
         {
             playerScript.Die(true);
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.tag == "NonLethal" && !playerScript.Dead)
         {
             playerScript.Stun(3);

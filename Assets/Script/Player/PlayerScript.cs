@@ -27,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject weaponPlacement;
     [SerializeField] private GameObject head;
     [SerializeField] private GameObject Player;
+    [SerializeField] private bool headExcepcion;
     private PlayerAnimator playerAnimator;
     private Animator animator;
 
@@ -274,6 +275,7 @@ public class PlayerScript : MonoBehaviour
         weapon = weaponObject.GetComponent<Weapon>();
         weapon.SetLayer(gameObject.layer);
         weapon.onPick();
+        headExcepcion = false;
     }
 
     private void Shoot()
@@ -439,10 +441,17 @@ public class PlayerScript : MonoBehaviour
     private void ActivateRagdoll()
     {
         bool letLoose;
+
         foreach (Limb limb in limbs)
         {
+            if (limb.gameObject.name.Equals("front hand") && headExcepcion)
+            {
+                continue;
+            }
+
             letLoose = UnityEngine.Random.Range(0, 10) <= (dead ? 1 : -1);
             limb.EnableRagdoll(letLoose);
+
         }
         rigidBody.freezeRotation = false;
         colliderPlayer.enabled = false;
