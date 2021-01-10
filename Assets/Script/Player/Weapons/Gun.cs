@@ -50,6 +50,7 @@ public class Gun : FireWeapon
         bullet.transform.position = hole.position;
         bullet.transform.rotation = transform.rotation;
         bullet.transform.Rotate(bulletDispersion*Vector3.forward);
+
         var bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.range = range;
         bulletScript.faceLeft = faceLeft;
