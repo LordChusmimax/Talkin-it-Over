@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class SettingScript : MonoBehaviour
 {
@@ -74,14 +75,24 @@ public class SettingScript : MonoBehaviour
         setPantallaCompleta(fullScreen);
         tglScreen.isOn = fullScreen;
 
-        //Debug.Log(fullScreen);
-
         audioMixer.SetFloat("musicVolumen", musicVolumen);
         audioMixer.SetFloat("efectVolumen", efectVolumen);
         sliders[0].value = musicVolumen;
         sliders[1].value = efectVolumen;
         drpIdioma.value = idioma;
         ReaderLanguage.loadDiccionary(idioma);
+
+        Dictionary<string, string> prueba = ReaderLanguage.getDictionary();
+
+        Debug.Log("Diccionario obtenido");
+        string aux = "";
+
+        foreach (var linea in prueba)
+        {
+            aux += linea.Key + "\n";
+        }
+
+        Debug.Log(aux);
 
         Debug.Log("INFO: Se ha cargado los datos correctamente");
     }
