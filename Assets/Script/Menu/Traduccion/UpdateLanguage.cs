@@ -3,9 +3,9 @@ using TMPro;
 
 public class UpdateLanguage : MonoBehaviour
 {
-    
     public void modificarIdioma(int idioma)
     {
+        ReaderLanguage.clearDiccionary();
         ReaderLanguage.loadDiccionary(idioma);
 
         var objetos = Resources.FindObjectsOfTypeAll<SeleccionarTexto>();
@@ -13,8 +13,7 @@ public class UpdateLanguage : MonoBehaviour
         foreach (var texto in objetos)
         {
             var componenteTexto = texto.GetComponent<TextMeshProUGUI>();
-            componenteTexto.text = ReaderLanguage.getWordByKey(texto.id);
-
+            componenteTexto.SetText(ReaderLanguage.getTextByKey(texto.id).ToString());
         }
 
     }

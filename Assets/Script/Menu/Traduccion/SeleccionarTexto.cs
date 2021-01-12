@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class SeleccionarTexto : MonoBehaviour
 {
     public string id;
-
+    private TextMeshProUGUI componenteTexto;
+    
     private void OnEnable()
     {
         modificarTexto();
@@ -13,10 +13,11 @@ public class SeleccionarTexto : MonoBehaviour
 
     public void modificarTexto()
     {
+        
         if (ReaderLanguage.getDictionaryLenght() > 0)
         {
-            var componenteTexto = gameObject.GetComponent<TextMeshProUGUI>();
-            componenteTexto.text = ReaderLanguage.getWordByKey(id);
+            componenteTexto = gameObject.GetComponent<TextMeshProUGUI>();
+            componenteTexto.SetText(ReaderLanguage.getTextByKey(id));
         }
     }
 
