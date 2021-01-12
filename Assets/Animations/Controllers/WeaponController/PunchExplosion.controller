@@ -74,7 +74,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fdb00adb9c2fec641a062f13e282cd22, type: 2}
+  m_Motion: {fileID: 7400000, guid: eebc63c4bce2a60409132409a8594251, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -101,7 +101,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b0b7518dfb6f3204a8b462b8c2b8cffa, type: 2}
+  m_Motion: {fileID: 7400000, guid: 889b4787854e1eb4dadc5831c432ea76, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -113,7 +113,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Punch
+  m_Name: PunchExplosion
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: PreHit
@@ -185,7 +185,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PunchIdle1
+  m_Name: PunchExplosionIdle1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -199,7 +199,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bc802f9b5ca621340b3f57e313b6fdc3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7a5bf62006aa63f46839148ea9fde41a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
