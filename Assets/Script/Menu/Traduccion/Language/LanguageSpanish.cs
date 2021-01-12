@@ -27,13 +27,16 @@ public class LanguageSpanish
         "disparar=Disparar\n" +
         "moverse=Moverse\n" +
         "saltar=Saltar\n" +
+        "acercade=Acerca de...\n" +
+        "desarrolladores=Jesús Pinto Sáez / José Luis Gómez Miño\n" +
+        "trassierra=IES Trassierra\n" +
         "apuntar=Apuntar\n" +   //Menú selector personaje
         "jugador1=Jugador 1\n" +
         "jugador2=Jugador 2\n" +
         "jugador3=Jugador 3\n" +
         "jugador4=Jugador 4\n" +
-        "empezar=Empezar\n" +   //Dentro de partida
-        "pausa=Pausa\n" +
+        "empezar=Listos.... Pulsad 'Start' o 'Enter'\n" +   
+        "pausa=Pausa\n" +       //Dentro de partida
         "continuar=Continuar\n" +
         "salir=Salir";
 }

@@ -84,16 +84,6 @@ public class SettingScript : MonoBehaviour
 
         Dictionary<string, string> prueba = ReaderLanguage.getDictionary();
 
-        Debug.Log("Diccionario obtenido");
-        string aux = "";
-
-        foreach (var linea in prueba)
-        {
-            aux += linea.Key + "\n";
-        }
-
-        Debug.Log(aux);
-
         Debug.Log("INFO: Se ha cargado los datos correctamente");
     }
 

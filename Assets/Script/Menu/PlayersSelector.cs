@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayersSelector : MonoBehaviour
 {
+    public GameObject txtEmpezar;
     private Dictionary<int, int> controles = new Dictionary<int, int>();
     private Queue<int> skins = new Queue<int>();
     private Stack<int> paneles = new Stack<int>();
@@ -104,6 +106,22 @@ public class PlayersSelector : MonoBehaviour
                 Debug.Log("ERROR: Ya está asignado el mando");
             }
         }
+
+        actualizarBoton();
+
+    }
+
+    private void actualizarBoton()
+    {
+        if (paneles.Count < 3)
+        {
+            txtEmpezar.active = true;
+        }
+        else
+        {
+            txtEmpezar.active = false;
+        }
+        
     }
 
     /// <summary>
@@ -136,16 +154,22 @@ public class PlayersSelector : MonoBehaviour
         {
             corrutina = StartCoroutine(cerrarSelector());
         }
+
+        actualizarBoton();
     }
 
     public void empezarJuego()
     {
-        foreach (KeyValuePair<int, int> control in controles)
+        if (txtEmpezar.active)
         {
-            //Debug.Log(">>>INFO: Se ha asignado un controlador");
-            PlayerContainer.ayadirControler(control.Key, 0);
+            foreach (KeyValuePair<int, int> control in controles)
+            {
+                //Debug.Log(">>>INFO: Se ha asignado un controlador");
+                PlayerContainer.ayadirControler(control.Key, 0);
+            }
+            menuScript.Jugar();
         }
-        menuScript.Jugar();
+        
     }
 
     private void soltarBoton()
