@@ -160,12 +160,16 @@ public class PlayersSelector : MonoBehaviour
 
     public void empezarJuego()
     {
-        foreach (KeyValuePair<int, int> control in controles)
+        if (txtEmpezar.active)
         {
-            //Debug.Log(">>>INFO: Se ha asignado un controlador");
-            PlayerContainer.ayadirControler(control.Key, 0);
+            foreach (KeyValuePair<int, int> control in controles)
+            {
+                //Debug.Log(">>>INFO: Se ha asignado un controlador");
+                PlayerContainer.ayadirControler(control.Key, 0);
+            }
+            menuScript.Jugar();
         }
-        menuScript.Jugar();
+        
     }
 
     private void soltarBoton()
