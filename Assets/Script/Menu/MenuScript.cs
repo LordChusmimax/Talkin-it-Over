@@ -17,7 +17,7 @@ public class MenuScript : MonoBehaviour
     /// </summary>
     public void Jugar()
     {
-        int escena = Random.Range(2, 4);
+        int escena = Random.Range(1, 4);
         SceneManager.LoadScene("Stage" + escena);
     }
 

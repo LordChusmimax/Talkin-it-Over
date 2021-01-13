@@ -18,9 +18,12 @@ public class GroundCheckScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            playerAnimator.SetBool("Air",false);  
-            isGrounded = true;
-            
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetBool("Air", false);
+                isGrounded = true;
+            }
+
         }
     }
 
