@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Lab/LabTest.unity
     guid: 656089d05c8607243aadd1484a69772e
   - enabled: 1
-    path: Assets/Scenes/Stage1.unity
+    path: Assets/Scenes/Stages/Stage1.unity
     guid: d03c54f07a5a69b439b4a18ce3641ae1
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9305018d33a3f094da91751e631d55af,

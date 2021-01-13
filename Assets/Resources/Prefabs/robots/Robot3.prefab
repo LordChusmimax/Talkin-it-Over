@@ -286,8 +286,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10891616, y: -0.8963001}
-  m_Size: {x: 18.1727, y: 27.875383}
+  m_Offset: {x: -0.5514699, y: -0.8963001}
+  m_Size: {x: 14.632305, y: 27.875383}
   m_Direction: 0
 --- !u!70 &950835742175238688
 CapsuleCollider2D:
@@ -338,9 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51e48dd21f857743967ecaf041579c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  movementSpeed: 5
   forcedFallTimer: 0.3
-  jumpForce: 7
+  jumpForce: 8
   maxFallVelocity: -10
   highGravityMod: 1.5
   rightArm: {fileID: 8989012452300701719}
