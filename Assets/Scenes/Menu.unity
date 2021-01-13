@@ -2673,10 +2673,10 @@ RectTransform:
   m_Father: {fileID: 1279552679}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.00024414062, y: 25}
-  m_SizeDelta: {x: -0.00045776367, y: -49.999527}
+  m_SizeDelta: {x: 200, y: 152.00047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &620662710
 MonoBehaviour:
@@ -2691,7 +2691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3032,7 +3032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &726312896
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3188,7 +3188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &761909787
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3355,10 +3355,10 @@ RectTransform:
   m_Father: {fileID: 1433663349}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0002746582, y: 25}
-  m_SizeDelta: {x: -0.00045776367, y: -49.999542}
+  m_SizeDelta: {x: 200, y: 148.00046}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &781617920
 MonoBehaviour:
@@ -3373,7 +3373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5897,7 +5897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1279552679
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6330,10 +6330,10 @@ RectTransform:
   m_Father: {fileID: 761909787}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.002105713, y: 25}
-  m_SizeDelta: {x: -0.004272461, y: -49.999725}
+  m_SizeDelta: {x: 200, y: 148.00027}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1376894838
 MonoBehaviour:
@@ -6348,7 +6348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6998,7 +6998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1433663349
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7909,10 +7909,10 @@ RectTransform:
   m_Father: {fileID: 726312896}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0002746582, y: 25}
-  m_SizeDelta: {x: -0.00045776367, y: -49.999527}
+  m_SizeDelta: {x: 200, y: 152.00047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1538736592
 MonoBehaviour:
@@ -7927,15 +7927,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8621,6 +8621,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtEmpezar: {fileID: 1386222941}
+  skins:
+  - {fileID: 21300000, guid: 187a39e82bdb3fe409e787f6f567456f, type: 3}
+  - {fileID: 21300000, guid: 0d7c5fbcdb915a74e923e913191e8dec, type: 3}
+  - {fileID: 21300000, guid: 077e84cb30ddd644e9bafa6b9dd202e9, type: 3}
+  - {fileID: 21300000, guid: 01bed1e8e222d1b488249b4d3f189aca, type: 3}
   tiempoEspera: 2
   menu: {fileID: 1164013064}
   menuScript: {fileID: 1990254683}

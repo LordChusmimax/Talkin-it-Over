@@ -9,8 +9,12 @@ using UnityEngine.EventSystems;
 public class PlayersSelector : MonoBehaviour
 {
     public GameObject txtEmpezar;
-    private Dictionary<int, int> controles = new Dictionary<int, int>();
-    private Queue<int> skins = new Queue<int>();
+    public Sprite[] skins;
+    private int skinUsadas = 0;
+    private bool listos = false;
+    private Dictionary<int, int> mandoYPanel = new Dictionary<int, int>();
+    private Dictionary<int, int> mandoYSkin = new Dictionary<int, int>();
+    private Queue<int> skinsDisponibles = new Queue<int>();
     private Stack<int> paneles = new Stack<int>();
     private PlayerInputs input;
     private Coroutine corrutina;
@@ -36,10 +40,10 @@ public class PlayersSelector : MonoBehaviour
         paneles.Push(0);
 
         //Inicialización del array de las Skins
-        skins.Enqueue(0);
-        skins.Enqueue(1);
-        skins.Enqueue(2);
-        skins.Enqueue(3);
+        skinsDisponibles.Enqueue(0);
+        skinsDisponibles.Enqueue(1);
+        skinsDisponibles.Enqueue(2);
+        skinsDisponibles.Enqueue(3);
 
         //Activar input
         input.Enable();
@@ -70,13 +74,16 @@ public class PlayersSelector : MonoBehaviour
             try
             {
                 int numPanel = paneles.Peek();
-                controles.Add(-1, numPanel);
+                mandoYPanel.Add(-1, numPanel);
 
                 Transform miPanel = transform.GetChild(numPanel);
-                miPanel.GetComponent<Image>().color = Color.red;
-                miPanel.GetChild(1).GetComponent<Image>().color = getColorInInt(skins.Peek());
+                GameObject aux = miPanel.gameObject;
+                aux.SetActive(true);
 
-                skins.Dequeue();
+                //miPanel.GetChild(1).GetComponent<Image>().color = getColorInInt(skinsDisponibles.Peek());
+                miPanel.GetChild(1).GetComponent<Image>().sprite = getSpriteInInt(skinsDisponibles.Peek());
+
+                skinsDisponibles.Dequeue();
                 paneles.Pop();
                 Debug.Log("INFO: Se ha asignado el teclado correctamente");
             }
@@ -90,13 +97,17 @@ public class PlayersSelector : MonoBehaviour
             try
             {
                 int numPanel = paneles.Peek();
-                controles.Add(GetGamepadArrayPosition(id), numPanel);
+                mandoYPanel.Add(GetGamepadArrayPosition(id), numPanel);
 
                 Transform miPanel = transform.GetChild(numPanel);
-                miPanel.GetComponent<Image>().color = Color.red;
-                miPanel.GetChild(1).GetComponent<Image>().color = getColorInInt(skins.Peek());
 
-                skins.Dequeue();
+                GameObject aux = miPanel.gameObject;
+                aux.SetActive(true);
+
+                //miPanel.GetChild(1).GetComponent<Image>().color = getColorByInt(skinsDisponibles.Peek());
+                miPanel.GetChild(1).GetComponent<Image>().sprite = getSpriteInInt(skinsDisponibles.Peek());
+
+                skinsDisponibles.Dequeue();
                 paneles.Pop();
 
                 Debug.Log("INFO: Se ha asignado el mando correctamente");
@@ -107,23 +118,10 @@ public class PlayersSelector : MonoBehaviour
             }
         }
 
-        actualizarBoton();
+        acualizarAviso();
 
     }
-
-    private void actualizarBoton()
-    {
-        if (paneles.Count < 3)
-        {
-            txtEmpezar.active = true;
-        }
-        else
-        {
-            txtEmpezar.active = false;
-        }
-        
-    }
-
+    
     /// <summary>
     /// Método para desasignar un mando ya asignado
     /// </summary>
@@ -132,20 +130,23 @@ public class PlayersSelector : MonoBehaviour
     {
         int key = GetGamepadArrayPosition(ctx.control.device.deviceId);
         
-        if (controles.ContainsKey(key))
+        if (mandoYPanel.ContainsKey(key))
         {
-            foreach (KeyValuePair<int, int> control in controles)
+            foreach (KeyValuePair<int, int> control in mandoYPanel)
             {
                 if (control.Key.Equals(key))
                 {
                     Transform miPanel = transform.GetChild(control.Value);
-                    miPanel.GetComponent<Image>().color = Color.green;
-                    skins.Enqueue(getIntInColor(miPanel.GetChild(1).GetComponent<Image>().color));
 
-                    miPanel.GetChild(1).GetComponent<Image>().color = Color.green;
+                    GameObject aux = miPanel.gameObject;
+                    aux.SetActive(false);
+
+                    skinsDisponibles.Enqueue(getIntBySprite(miPanel.GetChild(1).GetComponent<Image>().sprite));
+
+                    //miPanel.GetChild(1).GetComponent<Image>().color = Color.green;
 
                     paneles.Push(control.Value);
-                    controles.Remove(key);
+                    mandoYPanel.Remove(key);
                     break;
                 }
             }
@@ -155,21 +156,67 @@ public class PlayersSelector : MonoBehaviour
             corrutina = StartCoroutine(cerrarSelector());
         }
 
-        actualizarBoton();
+        acualizarAviso();
+    }
+
+    private void cambiarSkin(InputAction.CallbackContext ctx)
+    {
+        int key = GetGamepadArrayPosition(ctx.control.device.deviceId);
+
+        if (mandoYPanel.ContainsKey(key))
+        {
+            foreach (KeyValuePair<int, int> control in mandoYPanel)
+            {
+
+                if (control.Key.Equals(key))
+                {
+
+                    Transform miPanel = transform.GetChild(control.Value);
+
+                    int aux = getIntBySprite(miPanel.GetChild(1).GetComponent<Image>().sprite);
+                    miPanel.GetChild(1).GetComponent<Image>().sprite = getSpriteInInt(skinsDisponibles.Dequeue());
+                    skinsDisponibles.Enqueue(aux);
+                }
+
+            }
+        }
+        else
+        {
+            Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
+        }
     }
 
     public void empezarJuego()
     {
-        if (txtEmpezar.active)
+        if (listos)
         {
-            foreach (KeyValuePair<int, int> control in controles)
+            int miSkin = -1;
+
+            foreach (KeyValuePair<int, int> control in mandoYPanel)
             {
-                //Debug.Log(">>>INFO: Se ha asignado un controlador");
-                PlayerContainer.ayadirControler(control.Key, 0);
+                
+                miSkin = getIntBySprite(transform.GetChild(control.Value).GetChild(1).GetComponent<Image>().sprite);
+
+                PlayerContainer.ayadirControler(control.Key, miSkin);
             }
             menuScript.Jugar();
         }
         
+    }
+
+    private void acualizarAviso()
+    {
+        if (paneles.Count < 3)
+        {
+            txtEmpezar.SetActive(true);
+            listos = true;
+        }
+        else
+        {
+            txtEmpezar.SetActive(false);
+            listos = false;
+        }
+
     }
 
     private void soltarBoton()
@@ -182,34 +229,7 @@ public class PlayersSelector : MonoBehaviour
         
     }
 
-    private void cambiarSkin(InputAction.CallbackContext ctx)
-    {
-        int key = GetGamepadArrayPosition(ctx.control.device.deviceId);
-
-        if (controles.ContainsKey(key))
-        {
-            foreach (KeyValuePair<int, int> control in controles)
-            {
-
-                if (control.Key.Equals(key))
-                {
-
-                    Transform miPanel = transform.GetChild(control.Value);
-
-                    int aux = getIntInColor(miPanel.GetChild(1).GetComponent<Image>().color);
-                    miPanel.GetChild(1).GetComponent<Image>().color = getColorInInt(skins.Dequeue());
-                    skins.Enqueue(aux);
-                }
-
-            }
-        }
-        else
-        {
-            Debug.Log("ERROR: Este controlador no se encuentra actualmente asignado");
-        }
-    }
-
-    private Color getColorInInt(int numSkin)
+    private Color getColorByInt(int numSkin)
     {
         switch (numSkin)
         {
@@ -229,8 +249,8 @@ public class PlayersSelector : MonoBehaviour
                 return Color.black;
         }
     }
-
-    private int getIntInColor(Color miColor)
+    
+    private int getIntByColor(Color miColor)
     {
         int aux = -1;
 
@@ -256,7 +276,40 @@ public class PlayersSelector : MonoBehaviour
 
         return aux;
     }
-    
+
+    private Sprite getSpriteInInt(int numSkin)
+    {
+        return skins[numSkin];
+    }
+
+    private int getIntBySprite(Sprite miSprite)
+    {
+        int aux = -1;
+
+        if (miSprite.name.Equals("Robot1(NoFondo)"))
+        {
+            aux = 0;
+        }
+
+        if (miSprite.name.Equals("Robot2(NoFondo)"))
+        {
+            aux = 1;
+        }
+
+        if (miSprite.name.Equals("Robot3(NoFondo)"))
+        {
+            aux = 2;
+        }
+
+        if (miSprite.name.Equals("Robot4(NoFondo)"))
+        {
+            aux = 3;
+        }
+
+        return aux;
+
+    }
+
     private int GetGamepadArrayPosition(int id)
     {
         var mandos = Gamepad.all;
