@@ -6,7 +6,7 @@ public class ControllerAssigner : MonoBehaviour
 {
     public static ControllerAssigner current;
     protected PlayerScript[] players;
-    public GameObject prefabPlayer;
+    public GameObject[] prefabPlayers;
     [SerializeField]protected int index = -1;
     void Start()
     {
@@ -17,10 +17,8 @@ public class ControllerAssigner : MonoBehaviour
 
         foreach (KeyValuePair<int, int> elemento in lista)
         {
-            PlayerScript player = Instantiate(prefabPlayer, transform).GetComponent<PlayerScript>();
+            PlayerScript player = Instantiate(prefabPlayers[elemento.Value], transform).GetComponent<PlayerScript>();
             player.SelectController(elemento.Key);
-
-            Debug.Log("Mi skin es: " + elemento.Value);
         }
     }
 
