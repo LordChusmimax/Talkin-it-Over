@@ -7,8 +7,11 @@ public class ManageSound : MonoBehaviour
 {
 
     private AudioSource song;
+    private AudioSource sound;
     public AudioClip[] songListMenu;
     public AudioClip[] songListBattle;
+    public AudioClip selectedItem;
+    public AudioClip clickedItem;
     private bool songStarted = false;
     private static ManageSound current;
     [SerializeField] private float musicVolume = 0.25f;
@@ -26,7 +29,8 @@ public class ManageSound : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
         SceneManager.sceneLoaded += OnSceneLoaded;
-        song = GetComponent<AudioSource>();
+        song = GetComponents<AudioSource>()[0];
+        sound = GetComponents<AudioSource>()[1];
         StartSong();
     }
 
@@ -65,5 +69,17 @@ public class ManageSound : MonoBehaviour
             song.clip = songListMenu[0];
             StartSong();
         }
+    }
+
+    public void SelectItem()
+    {
+        sound.clip = selectedItem;
+        sound.Play();
+    }
+
+    public void ClickItem()
+    {
+        sound.clip = clickedItem;
+        sound.Play();
     }
 }
