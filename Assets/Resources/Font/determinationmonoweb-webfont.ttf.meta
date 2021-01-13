@@ -8,10 +8,10 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Determination Mono Web
   fontNames:
   - Determination Mono Web
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 11100cbd51b3c74419b56deed35b6e3f, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
