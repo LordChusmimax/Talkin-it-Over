@@ -11,6 +11,11 @@ public class MenuScript : MonoBehaviour
     public GameObject helpFirstButton;
     public GameObject helpCloseButton;
 
+    private void Awake()
+    {
+        PlayerContainer.limpiarArray();
+    }
+
     #region Métodos para iniciar el juego o el Lab
     /// <summary>
     /// Método llamado desde el selector de jugadores

@@ -62,9 +62,9 @@ public class RoundSystem : MonoBehaviour
 
             foreach (var jug in playerAndPoint)
             {
-                Debug.Log("Jugador :" + jug.Key + " tiene " + jug.Value + " victorias");
+                //Debug.Log("Jugador :" + jug.Key + " tiene " + jug.Value + " victorias");
 
-                iniciarTexto += "Jugador " + jug.Key + " - " + jug.Value +  " de " + numRondas + " ganadas\n";
+                iniciarTexto += "Jugador " + (jug.Key + 1) + " - " + jug.Value +  " de " + numRondas + " ganadas\n";
 
                 puntuaciones.SetText(iniciarTexto);
 
@@ -90,6 +90,7 @@ public class RoundSystem : MonoBehaviour
         
         if (finished)
         {
+            limpiarResultados();
             SceneManager.LoadScene(0);
             StopCoroutine(corrutina);
         }
@@ -99,10 +100,18 @@ public class RoundSystem : MonoBehaviour
         }
     }
 
+    private void limpiarResultados()
+    {
+        current = null;
+        idPlayersLive.Clear();
+        playerAndPoint.Clear();
+        added = false;
+    }
+
     public void nextRound()
     {
         rondaActual++;
-        int escena = Random.Range(2, 4);
+        int escena = Random.Range(1, 4);
         SceneManager.LoadScene("Stage" + escena);
         StopCoroutine(corrutina);
     }
@@ -126,7 +135,7 @@ public class RoundSystem : MonoBehaviour
                 for (int i = 0; i < numPlayerLive; i++)
                 {
                     idPlayersLive.Add(i);
-                    iniciarTexto += "Jugador " + i + " - 0 de " + numRondas + " ganadas\n";
+                    iniciarTexto += "Jugador " + (i+ 1) + " - 0 de " + numRondas + " ganadas\n";
                 }
 
                 puntuaciones.SetText(iniciarTexto);
@@ -144,7 +153,7 @@ public class RoundSystem : MonoBehaviour
 
                 foreach (var jug in playerAndPoint)
                 {
-                    iniciarTexto += "Jugador " + jug.Key + " - " + jug.Value + " de " + numRondas + " ganadas\n";
+                    iniciarTexto += "Jugador " + (jug.Key + 1) + " - " + jug.Value + " de " + numRondas + " ganadas\n";
                 }
 
                 puntuaciones.SetText(iniciarTexto);
