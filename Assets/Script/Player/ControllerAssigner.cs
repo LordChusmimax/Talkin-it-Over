@@ -19,6 +19,8 @@ public class ControllerAssigner : MonoBehaviour
         {
             PlayerScript player = Instantiate(prefabPlayer, transform).GetComponent<PlayerScript>();
             player.SelectController(elemento.Key);
+
+            Debug.Log("Mi skin es: " + elemento.Value);
         }
     }
 
