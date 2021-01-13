@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class LanguageEnglish
 {
 
@@ -38,6 +35,7 @@ public class LanguageEnglish
         "jugador4=Player 4\n" +
         "unirse=Press 'Space' or 'X' to enter\n" +
         "empezar=Ready.... Press 'Start' or 'Enter'\n" + 
+        "volviendo=Return in\n" + 
         "pausa=Pause\n" +   //Dentro de partida
         "continuar=Continue\n" +
         "salir=Exit";

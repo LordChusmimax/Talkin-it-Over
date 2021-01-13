@@ -72,6 +72,7 @@ public class PlayerScript : MonoBehaviour
     private bool specialWasPressed;
     private AltarInteractionerScript altarInteractioner;
     private Collider2D altarInteractionerCollider;
+    private Coroutine deactivateRagDoll;
 
     public Animator Animator { get => animator; set => animator = value; }
     public GameObject RightArm { get => rightArm; set => rightArm = value; }
@@ -413,6 +414,11 @@ public class PlayerScript : MonoBehaviour
         animator.Update(0);
         dead = true;
         ActivateRagdoll();
+
+        if (deactivateRagDoll != null)
+        {
+            StopCoroutine(deactivateRagDoll);
+        }
         //Destroy(weapon.gameObject);
         if (dramaticCamera)
         {
@@ -434,7 +440,7 @@ public class PlayerScript : MonoBehaviour
         {
             stunTime += time;
             ActivateRagdoll();
-            StartCoroutine(DeactivateRalldogIEnumerator(time-0.5f));
+            deactivateRagDoll = StartCoroutine(DeactivateRalldogIEnumerator(time-0.5f));
         }
     }
 
@@ -462,6 +468,7 @@ public class PlayerScript : MonoBehaviour
     private void DeactivateRagdoll()
     {
         colliderPlayer.enabled = true;
+        deactivateRagDoll = null;
         transform.rotation = Quaternion.Euler(Vector3.zero);
 
         foreach (Limb limb in limbs)

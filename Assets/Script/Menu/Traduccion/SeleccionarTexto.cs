@@ -21,4 +21,13 @@ public class SeleccionarTexto : MonoBehaviour
         }
     }
 
+    public void modificarTexto(string extra)
+    {
+        if (ReaderLanguage.getDictionaryLenght() > 0)
+        {
+            componenteTexto = gameObject.GetComponent<TextMeshProUGUI>();
+            componenteTexto.SetText(ReaderLanguage.getTextByKey(id) + " " + extra);
+        }
+    }
+
 }
