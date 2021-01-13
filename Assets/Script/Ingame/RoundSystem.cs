@@ -12,8 +12,9 @@ public class RoundSystem : MonoBehaviour
     private static List<int> idPlayersLive = new List<int>();
     private Dictionary<int, int> playerAndPoint = new Dictionary<int, int>();
     private bool finished = false;
+    private Coroutine corrutina;
     public int numRondas = 3;
-
+    
     private void Start()
     {
         noDuplicatedThis();
@@ -43,8 +44,23 @@ public class RoundSystem : MonoBehaviour
         }*/
         
         Debug.Log("ID borrado: " + idPlayersLive.Remove(idPLayer));
-        
-        if (idPlayersLive.Count <= 1)
+
+        if (corrutina == null)
+        {
+            corrutina = StartCoroutine(readDead());
+        }
+        else
+        {
+            StopCoroutine(corrutina);
+            corrutina = StartCoroutine(readDead());
+        }
+    }
+
+    IEnumerator readDead()
+    {
+        yield return new WaitForSeconds(2);
+
+        if (idPlayersLive.Count == 1)
         {
             foreach (int id in idPlayersLive)
             {
@@ -67,20 +83,37 @@ public class RoundSystem : MonoBehaviour
             }
 
             StartCoroutine(loadNextRound());
+
         }
-        
+        else if (idPlayersLive.Count < 1)
+        {
+            Debug.Log(">>>INFO: Nadie ha ganado esta ronda");
+            StartCoroutine(loadNextRound());
+        }
     }
 
-    public void setWinner()
+    IEnumerator loadNextRound()
     {
+        yield return new WaitForSeconds(5);
         
+        if (finished)
+        {
+            SceneManager.LoadScene(0);
+            StopCoroutine(corrutina);
+        }
+        else
+        {
+            nextRound();
+        }
     }
 
-    public void notWinner()
+    public void nextRound()
     {
-        StartCoroutine(loadNextRound());
+        rondaActual++;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StopCoroutine(corrutina);
     }
-    
+
     private void noDuplicatedThis()
     {
         if (current == null)
@@ -98,27 +131,6 @@ public class RoundSystem : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-    }
-
-    public IEnumerator loadNextRound()
-    {
-        yield return new WaitForSeconds(5);
-
-        if (finished)
-        {
-            SceneManager.LoadScene(0);
-        }
-        else
-        {
-            nextRound();
-        }
-        
-    }
-
-    public void nextRound()
-    {
-        rondaActual++;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
