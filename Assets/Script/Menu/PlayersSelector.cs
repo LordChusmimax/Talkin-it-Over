@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class PlayersSelector : MonoBehaviour
 {
@@ -52,6 +51,7 @@ public class PlayersSelector : MonoBehaviour
     private void OnEnable()
     {
         input.Enable();
+        acualizarAviso();
     }
 
     private void OnDisable()
@@ -143,20 +143,18 @@ public class PlayersSelector : MonoBehaviour
 
                     skinsDisponibles.Enqueue(getIntBySprite(miPanel.GetChild(1).GetComponent<Image>().sprite));
 
-                    //miPanel.GetChild(1).GetComponent<Image>().color = Color.green;
-
                     paneles.Push(control.Value);
                     mandoYPanel.Remove(key);
                     break;
                 }
             }
+
+            acualizarAviso();
         }
         else
         {
-            corrutina = StartCoroutine(cerrarSelector());
+            corrutina = StartCoroutine(cerrarSelector(tiempoEspera));
         }
-
-        acualizarAviso();
     }
 
     private void cambiarSkin(InputAction.CallbackContext ctx)
@@ -208,17 +206,20 @@ public class PlayersSelector : MonoBehaviour
     {
         if (paneles.Count < 3)
         {
-            txtEmpezar.GetComponent<SeleccionarTexto>().id = "empezar";
-            txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto();
+            actualizarTexto("empezar");
             listos = true;
         }
         else
         {
-            txtEmpezar.GetComponent<SeleccionarTexto>().id = "unirse";
-            txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto();
+            actualizarTexto("unirse");
             listos = false;
         }
+    }
 
+    private void actualizarTexto(string clave)
+    {
+        txtEmpezar.GetComponent<SeleccionarTexto>().id = clave;
+        txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto();
     }
 
     private void soltarBoton()
@@ -227,6 +228,8 @@ public class PlayersSelector : MonoBehaviour
         {
             Debug.Log(">>>INFO: Se ha detenido la corrutina: " + corrutina);
             StopCoroutine(corrutina);
+            corrutina = null;
+            acualizarAviso();
         }
         
     }
@@ -348,15 +351,14 @@ public class PlayersSelector : MonoBehaviour
         return getMando;
     }
 
-    IEnumerator cerrarSelector()
+    IEnumerator cerrarSelector(int tiempo)
     {
         Debug.Log(">>>INFO: Se ha iniciado la corrutina correctamente");
-
-        int aux = 0;
+        
         while (true)
         {
 
-            if (aux >= tiempoEspera)
+            if (tiempo < 0)
             {
                 menu.SetActive(true);
                 menuScript.cerrarSelector();
@@ -364,10 +366,12 @@ public class PlayersSelector : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
 
-            yield return new WaitForSeconds(1);
+            txtEmpezar.GetComponent<SeleccionarTexto>().id = "volviendo";
+            txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto((tiempo + 1).ToString());
 
-            aux++;
-            Debug.Log("Tiempo pulsado: " + aux + " de " + tiempoEspera + " segundos");
+            yield return new WaitForSeconds(1);
+            
+            tiempo--;
         }
         
     }

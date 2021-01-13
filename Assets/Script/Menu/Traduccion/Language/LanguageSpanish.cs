@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public class LanguageSpanish
 {
     public static readonly string texto = "titulo=Talkin' it over\n" +    //Menú inicial
@@ -36,7 +33,8 @@ public class LanguageSpanish
         "jugador3=Jugador 3\n" +
         "jugador4=Jugador 4\n" +
         "unirse=Pulsad 'Espacio' o 'X' para entrar\n" +
-        "empezar=Listos.... Pulsad 'Start' o 'Enter'\n" +   
+        "empezar=Listos.... Pulsad 'Start' o 'Enter'\n" +
+        "volviendo=Volviendo en\n" +
         "pausa=Pausa\n" +       //Dentro de partida
         "continuar=Continuar\n" +
         "salir=Salir";
