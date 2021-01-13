@@ -14,7 +14,7 @@ public class SeleccionarTexto : MonoBehaviour
     public void modificarTexto()
     {
         
-        if (ReaderLanguage.getDictionaryLenght() > 0 || id.Equals("--"))
+        if (ReaderLanguage.getDictionaryLenght() > 0)
         {
             componenteTexto = gameObject.GetComponent<TextMeshProUGUI>();
             componenteTexto.SetText(ReaderLanguage.getTextByKey(id));

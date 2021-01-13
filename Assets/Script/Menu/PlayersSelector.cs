@@ -208,12 +208,14 @@ public class PlayersSelector : MonoBehaviour
     {
         if (paneles.Count < 3)
         {
-            txtEmpezar.SetActive(true);
+            txtEmpezar.GetComponent<SeleccionarTexto>().id = "empezar";
+            txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto();
             listos = true;
         }
         else
         {
-            txtEmpezar.SetActive(false);
+            txtEmpezar.GetComponent<SeleccionarTexto>().id = "unirse";
+            txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto();
             listos = false;
         }
 

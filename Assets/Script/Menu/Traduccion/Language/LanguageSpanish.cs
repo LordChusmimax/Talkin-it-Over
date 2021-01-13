@@ -35,6 +35,7 @@ public class LanguageSpanish
         "jugador2=Jugador 2\n" +
         "jugador3=Jugador 3\n" +
         "jugador4=Jugador 4\n" +
+        "unirse=Pulsad 'Espacio' o 'X' para entrar\n" +
         "empezar=Listos.... Pulsad 'Start' o 'Enter'\n" +   
         "pausa=Pausa\n" +       //Dentro de partida
         "continuar=Continuar\n" +
