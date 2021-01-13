@@ -8,6 +8,7 @@ public class AltarScript : MonoBehaviour
 
     [SerializeField]private bool renewable;
     [SerializeField] private float renewTime;
+    protected AudioSource pickUpSound;
 
     public GameObject WeaponObject { get => weaponObject; set => weaponObject = value; }
     private BoxCollider2D collider;
@@ -20,10 +21,12 @@ public class AltarScript : MonoBehaviour
         var childObjects = GetComponentsInChildren<SpriteRenderer>();
         weaponSprite = childObjects[1];
         doorSprite = childObjects[2];
+        pickUpSound = GetComponent<AudioSource>();
     }
 
     public void Interacted()
     {
+        pickUpSound.Play();
         weaponSprite.enabled = false;
         doorSprite.enabled = true;
         collider.enabled = false;

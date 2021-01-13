@@ -13,6 +13,7 @@ public class LoudSpeaker : MeleWeapon
         hurtBox = GetComponentsInChildren<Collider2D>()[1];
         hurtBoxScript = GetComponentInChildren<LoudSpeakerHurtBox>();
         hurtBoxScript.Faceleft = faceLeft;
+        attackSound = GetComponent<AudioSource>();
     }
 
     public override void Update()
@@ -29,6 +30,7 @@ public class LoudSpeaker : MeleWeapon
 
     protected override void HitStart()
     {
+        attackSound.Play();
         animator.SetBool("PreHit", false);
         animator.SetBool("HitStart", true);
         hurtBox.enabled = true;

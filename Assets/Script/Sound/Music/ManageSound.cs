@@ -56,7 +56,7 @@ public class ManageSound : MonoBehaviour
         if (scene.name == "Lab" || scene.name.StartsWith("Stage"))
         {
             EndSong();
-            int songNumber = Random.Range(1, songListBattle.Length);
+            int songNumber = Random.Range(0, songListBattle.Length);
             song.clip = songListBattle[songNumber];
             StartSong();
         }
