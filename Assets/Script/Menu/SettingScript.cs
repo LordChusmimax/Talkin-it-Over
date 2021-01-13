@@ -82,8 +82,6 @@ public class SettingScript : MonoBehaviour
         drpIdioma.value = idioma;
         ReaderLanguage.loadDiccionary(idioma);
 
-        Dictionary<string, string> prueba = ReaderLanguage.getDictionary();
-
         Debug.Log("INFO: Se ha cargado los datos correctamente");
     }
 

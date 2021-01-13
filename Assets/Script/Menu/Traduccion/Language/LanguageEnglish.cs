@@ -36,6 +36,7 @@ public class LanguageEnglish
         "jugador2=Player 2\n" +
         "jugador3=Player 3\n" +
         "jugador4=Player 4\n" +
+        "unirse=Press 'Space' or 'X' to enter\n" +
         "empezar=Ready.... Press 'Start' or 'Enter'\n" + 
         "pausa=Pause\n" +   //Dentro de partida
         "continuar=Continue\n" +
