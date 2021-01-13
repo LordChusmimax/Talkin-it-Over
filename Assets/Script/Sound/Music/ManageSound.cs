@@ -12,11 +12,12 @@ public class ManageSound : MonoBehaviour
     public AudioClip[] songListBattle;
     public AudioClip selectedItem;
     public AudioClip clickedItem;
+    private Scene scene;
     private bool songStarted = false;
     private static ManageSound current;
     [SerializeField] private float musicVolume = 0.25f;
 
-    void Start()
+    void Awake()
 
     {
         if (current != null)
@@ -27,11 +28,31 @@ public class ManageSound : MonoBehaviour
         {
             current = this;
             DontDestroyOnLoad(this.gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            song = GetComponents<AudioSource>()[0];
+            sound = GetComponents<AudioSource>()[1];
+            StartSong();
+            scene = SceneManager.GetActiveScene();
         }
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        song = GetComponents<AudioSource>()[0];
-        sound = GetComponents<AudioSource>()[1];
-        StartSong();
+    }
+
+    private void Update()
+    {
+        if (!song.isPlaying)
+        {
+            if (scene.name == "Lab" || scene.name.StartsWith("Stage"))
+            {
+                int songNumber = Random.Range(0, songListBattle.Length);
+                song.clip = songListBattle[songNumber];
+                StartSong();
+            }
+            else if (scene.name == "Menu")
+            {
+                int songNumber = Random.Range(0, songListMenu.Length);
+                song.clip = songListMenu[songNumber];
+                StartSong();
+            }
+        }
     }
 
     public void EndSong()
@@ -57,6 +78,7 @@ public class ManageSound : MonoBehaviour
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        this.scene = scene;
         if (scene.name == "Lab" || scene.name.StartsWith("Stage"))
         {
             EndSong();
@@ -65,7 +87,7 @@ public class ManageSound : MonoBehaviour
             StartSong();
         }
         else if (scene.name == "Menu")
-        {   
+        {
             song.clip = songListMenu[0];
             StartSong();
         }
@@ -82,4 +104,5 @@ public class ManageSound : MonoBehaviour
         sound.clip = clickedItem;
         sound.Play();
     }
+
 }

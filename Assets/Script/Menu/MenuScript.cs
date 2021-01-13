@@ -17,7 +17,7 @@ public class MenuScript : MonoBehaviour
     /// </summary>
     public void Jugar()
     {
-        SceneManager.LoadScene("Stage1");
+        SceneManager.LoadScene("Stage3");
     }
 
     /// <summary>
