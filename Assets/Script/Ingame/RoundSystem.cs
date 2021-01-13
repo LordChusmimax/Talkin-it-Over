@@ -110,7 +110,8 @@ public class RoundSystem : MonoBehaviour
     public void nextRound()
     {
         rondaActual++;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        int escena = Random.Range(2, 4);
+        SceneManager.LoadScene("Stage" + escena);
         StopCoroutine(corrutina);
     }
 
