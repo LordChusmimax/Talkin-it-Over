@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static Cinemachine.CinemachineTargetGroup;
 using static Constants;
 
 public class PlayerScript : MonoBehaviour
@@ -48,7 +49,10 @@ public class PlayerScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float stunTime = 0;
     private bool stunResistant = false;
+    private int idPlayer;
+    private int numPlayers;
 
+    private RoundSystem roundSystem;
     private CinemachineTargetGroup cmTargerGroup;
     private PlayerCollision playerCollision;
     private GroundCheckScript groundCheck;
@@ -93,6 +97,7 @@ public class PlayerScript : MonoBehaviour
         cmTargerGroup = transform.parent.GetComponentInChildren<CinemachineTargetGroup>();
         cmTargerGroup.AddMember(head.transform, 1, 1);
         highGravity = Physics2D.gravity.y * highGravityMod;
+        numPlayers = PlayerContainer.getNumPlayers();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         controls = new PlayerInputs();
@@ -105,6 +110,7 @@ public class PlayerScript : MonoBehaviour
         altarInteractioner = GetComponentInChildren<AltarInteractionerScript>();
         altarInteractioner.PlayerScript = this;
         altarInteractionerCollider = altarInteractioner.GetComponentInChildren<Collider2D>();
+        roundSystem = GameObject.Find("ContainerRoundSystem").GetComponent<RoundSystem>();
     }
 
     private void Start()
@@ -116,8 +122,6 @@ public class PlayerScript : MonoBehaviour
         OtherEvents();
         ButtonInitialStatus();
     }
-
-
 
     // Update is called once per frame
     private void Update()
@@ -279,12 +283,18 @@ public class PlayerScript : MonoBehaviour
         headExcepcion = false;
     }
 
+    public int getIdPlayer()
+    {
+        return idPlayer;
+    }
+
     private void Shoot()
     {
         if (shootPressed && !shootWasPressed)
         {
             weapon.Shoot();
-            
+            //GameObject prueba = cmTargerGroup.m_Targets[1].target.gameObject;
+            //Debug.Log(prueba.name);
         }
     }
 
@@ -365,6 +375,21 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public void SelectController(int num, int idPlayer)
+    {
+        this.idPlayer = idPlayer;
+        if (num == -1)
+        {
+            controls.devices = new InputDevice[] { Keyboard.current, Mouse.current };
+            playerAnimator.SelectAimAnimator(true);
+        }
+        else
+        {
+            controls.devices = new InputDevice[] { Gamepad.all[num] };
+            playerAnimator.SelectAimAnimator(false);
+        }
+    }
+
     /// <summary>
     /// Diferent updates from the animator
     /// </summary>
@@ -414,7 +439,9 @@ public class PlayerScript : MonoBehaviour
         animator.Update(0);
         dead = true;
         ActivateRagdoll();
-
+        numPlayers--;
+        roundSystem.deletedPlayer(idPlayer);
+        
         if (deactivateRagDoll != null)
         {
             StopCoroutine(deactivateRagDoll);
@@ -502,7 +529,9 @@ public class PlayerScript : MonoBehaviour
     private IEnumerator CameraAfterDeath()
     {
         yield return new WaitForSeconds(cameraResetTime);
+
         cmTargerGroup.RemoveMember(head.transform);
+        
     }
 
     private IEnumerator DeactivateNextFixedUpdate(Collider2D collider)
