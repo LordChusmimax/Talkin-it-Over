@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
@@ -36,6 +33,8 @@ public class PauseMenuScript : MonoBehaviour
     public void Leave()
     {
         PlayerContainer.limpiarArray();
+        GameObject roundSystem = GameObject.Find("ContainerRoundSystem");
+        Destroy(roundSystem);
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }

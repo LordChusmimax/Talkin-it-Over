@@ -1,9 +1,8 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerContainer
 {
-
     private static int[] ccccc = new int[4];
     private static Dictionary<int, int> controllers = new Dictionary<int, int>();
 
@@ -22,4 +21,9 @@ public class PlayerContainer
         return controllers;
     }
 
+    public static int getNumPlayers()
+    {
+        return controllers.Count;
+    }
+    
 }

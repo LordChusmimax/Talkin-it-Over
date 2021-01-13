@@ -13,12 +13,14 @@ public class ControllerAssigner : MonoBehaviour
         current = this;
 
         Dictionary<int, int> lista = PlayerContainer.getList();
+
         int i = 0;
 
         foreach (KeyValuePair<int, int> elemento in lista)
         {
             PlayerScript player = Instantiate(prefabPlayers[elemento.Value], transform).GetComponent<PlayerScript>();
-            player.SelectController(elemento.Key);
+            player.SelectController(elemento.Key, i);
+            i++;
         }
     }
 
