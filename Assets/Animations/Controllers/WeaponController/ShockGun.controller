@@ -74,7 +74,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fdb00adb9c2fec641a062f13e282cd22, type: 2}
+  m_Motion: {fileID: 7400000, guid: be5beff97fa95d7428109a9a2ab4893f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -101,7 +101,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b0b7518dfb6f3204a8b462b8c2b8cffa, type: 2}
+  m_Motion: {fileID: 7400000, guid: 290259ba34e4fa8439056c0ca1aca228, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -113,7 +113,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Punch
+  m_Name: ShockGun
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: PreHit
@@ -199,7 +199,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: bc802f9b5ca621340b3f57e313b6fdc3, type: 2}
+  m_Motion: {fileID: 7400000, guid: c1fab1dce7a9cb043a90099cb30628e3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

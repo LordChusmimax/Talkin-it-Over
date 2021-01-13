@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Punch2
+  m_Name: ShockGun2
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -7075012664604537915, guid: 380178d760781c8408195fcb7ba3d55a,
+      value: {fileID: 8954974051787070773, guid: 0a8468f9f53b0c94a8fa777b63aa1733,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -41,7 +41,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -7075012664604537915, guid: 380178d760781c8408195fcb7ba3d55a, type: 3}
+    - {fileID: 8954974051787070773, guid: 0a8468f9f53b0c94a8fa777b63aa1733, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
