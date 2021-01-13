@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class RoundSystem : MonoBehaviour
 {
@@ -10,39 +11,23 @@ public class RoundSystem : MonoBehaviour
     private int rondaActual = 0;
     private int numPlayerLive;
     private static List<int> idPlayersLive = new List<int>();
-    private Dictionary<int, int> playerAndPoint = new Dictionary<int, int>();
+    private static Dictionary<int, int> playerAndPoint = new Dictionary<int, int>();
     private bool finished = false;
+    private static bool added = false;
     private Coroutine corrutina;
     public int numRondas = 3;
+    public TextMeshProUGUI puntuaciones;
     
     private void Start()
     {
-        noDuplicatedThis();
-    }
-
-    private void OnEnable()
-    {
-
         numPlayerLive = PlayerContainer.getNumPlayers();
         idPlayersLive = new List<int>();
-
-        for (int i = 0; i < numPlayerLive; i++)
-        {
-            idPlayersLive.Add(i);
-        }
+        
+        prepareData();
     }
 
     public void deletedPlayer(int idPLayer)
-    {
-        /*for (int i = 0; i < numPlayerLive; i++)
-        {
-            if (idPlayersLive[i] == idPLayer)
-            {
-                Debug.Log("Jugador muerto: " + idPlayersLive[i]);
-                idPlayersLive.Remove(i);
-            }
-        }*/
-        
+    {        
         Debug.Log("ID borrado: " + idPlayersLive.Remove(idPLayer));
 
         if (corrutina == null)
@@ -73,9 +58,16 @@ public class RoundSystem : MonoBehaviour
                 playerAndPoint[id] = aux;
             }
 
+            string iniciarTexto = "";
+
             foreach (var jug in playerAndPoint)
             {
                 Debug.Log("Jugador :" + jug.Key + " tiene " + jug.Value + " victorias");
+
+                iniciarTexto += "Jugador " + jug.Key + " - " + jug.Value +  " de " + numRondas + " ganadas\n";
+
+                puntuaciones.SetText(iniciarTexto);
+
                 if (jug.Value >= numRondas)
                 {
                     finished = true;
@@ -115,16 +107,48 @@ public class RoundSystem : MonoBehaviour
         StopCoroutine(corrutina);
     }
 
-    private void noDuplicatedThis()
+    private void prepareData()
     {
         if (current == null)
         {
             current = this;
             DontDestroyOnLoad(this.gameObject);
 
-            for (int i = 0; i < numPlayerLive; i++)
+            if (!added)
             {
-                playerAndPoint.Add(i, 0);
+                for (int i = 0; i < numPlayerLive; i++)
+                {
+                    playerAndPoint.Add(i, 0);
+                }
+
+                string iniciarTexto = "";
+
+                for (int i = 0; i < numPlayerLive; i++)
+                {
+                    idPlayersLive.Add(i);
+                    iniciarTexto += "Jugador " + i + " - 0 de " + numRondas + " ganadas\n";
+                }
+
+                puntuaciones.SetText(iniciarTexto);
+
+                added = true;
+            }
+            else
+            {
+                string iniciarTexto = "";
+
+                for (int i = 0; i < numPlayerLive; i++)
+                {
+                    idPlayersLive.Add(i);
+                }
+
+                foreach (var jug in playerAndPoint)
+                {
+                    iniciarTexto += "Jugador " + jug.Key + " - " + jug.Value + " de " + numRondas + " ganadas\n";
+                }
+
+                puntuaciones.SetText(iniciarTexto);
+
             }
 
         }

@@ -85,11 +85,11 @@ public class PlayersSelector : MonoBehaviour
 
                 skinsDisponibles.Dequeue();
                 paneles.Pop();
-                Debug.Log("INFO: Se ha asignado el teclado correctamente");
+                //Debug.Log("INFO: Se ha asignado el teclado correctamente");
             }
             catch (ArgumentException)
             {
-                Debug.Log("ERROR: Ya está asignado el teclado");
+                //Debug.Log("ERROR: Ya está asignado el teclado");
             }
         }
         else
@@ -110,11 +110,11 @@ public class PlayersSelector : MonoBehaviour
                 skinsDisponibles.Dequeue();
                 paneles.Pop();
 
-                Debug.Log("INFO: Se ha asignado el mando correctamente");
+                //Debug.Log("INFO: Se ha asignado el mando correctamente");
             }
             catch (ArgumentException)
             {
-                Debug.Log("ERROR: Ya está asignado el mando");
+                //Debug.Log("ERROR: Ya está asignado el mando");
             }
         }
 
@@ -353,7 +353,7 @@ public class PlayersSelector : MonoBehaviour
 
     IEnumerator cerrarSelector(int tiempo)
     {
-        Debug.Log(">>>INFO: Se ha iniciado la corrutina correctamente");
+        //Debug.Log(">>>INFO: Se ha iniciado la corrutina correctamente");
         
         while (true)
         {
