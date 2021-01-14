@@ -13,6 +13,7 @@ public class ManageSound : MonoBehaviour
     public AudioClip selectedItem;
     public AudioClip clickedItem;
     private Scene scene;
+    private string lastScene;
     private bool songStarted = false;
     private static ManageSound current;
     [SerializeField] private float musicVolume = 0.25f;
@@ -26,13 +27,13 @@ public class ManageSound : MonoBehaviour
         }
         else
         {
+            lastScene = "Menu";
             current = this;
             DontDestroyOnLoad(this.gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
             song = GetComponents<AudioSource>()[0];
             sound = GetComponents<AudioSource>()[1];
             StartSong();
-            scene = SceneManager.GetActiveScene();
         }
     }
 
@@ -81,13 +82,17 @@ public class ManageSound : MonoBehaviour
         this.scene = scene;
         if (scene.name == "Lab" || scene.name.StartsWith("Stage"))
         {
-            EndSong();
-            int songNumber = Random.Range(0, songListBattle.Length);
-            song.clip = songListBattle[songNumber];
-            StartSong();
+            if (lastScene == "Menu")
+            {
+                lastScene = "Scene";
+                int songNumber = Random.Range(0, songListBattle.Length);
+                song.clip = songListBattle[songNumber];
+                StartSong();
+            }
         }
         else if (scene.name == "Menu")
         {
+            lastScene = "Menu";
             song.clip = songListMenu[0];
             StartSong();
         }
