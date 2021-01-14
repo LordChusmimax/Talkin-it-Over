@@ -22,7 +22,7 @@ public class MenuScript : MonoBehaviour
     /// </summary>
     public void Jugar()
     {
-        int escena = Random.Range(5, 5);
+        int escena = Random.Range(1, 5);
         SceneManager.LoadScene("Stage" + escena);
     }
 

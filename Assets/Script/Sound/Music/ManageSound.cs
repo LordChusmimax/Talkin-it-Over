@@ -100,8 +100,11 @@ public class ManageSound : MonoBehaviour
 
     public void SelectItem()
     {
-        sound.clip = selectedItem;
-        sound.Play();
+        if (sound != null)
+        {
+            sound.clip = selectedItem;
+            sound.Play();
+        }
     }
 
     public void ClickItem()
