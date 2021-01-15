@@ -26,6 +26,15 @@ public class RoundSystem : MonoBehaviour
         prepareData();
     }
 
+    private void OnDisable()
+    {
+        limpiarResultados();
+        if (corrutina != null)
+        {
+            StopCoroutine(corrutina);
+        }
+    }
+
     public void deletedPlayer(int idPLayer)
     {        
         Debug.Log("ID borrado: " + idPlayersLive.Remove(idPLayer));
