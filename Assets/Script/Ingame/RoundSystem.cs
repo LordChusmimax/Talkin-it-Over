@@ -28,7 +28,7 @@ public class RoundSystem : MonoBehaviour
 
     private void OnDisable()
     {
-        limpiarResultados();
+        //limpiarResultados();
         if (corrutina != null)
         {
             StopCoroutine(corrutina);
