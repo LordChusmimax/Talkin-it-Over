@@ -14,6 +14,7 @@ public class MenuScript : MonoBehaviour
     private void Awake()
     {
         PlayerContainer.limpiarArray();
+        RoundSystem.limpiarResultados();
     }
 
     #region Métodos para iniciar el juego o el Lab

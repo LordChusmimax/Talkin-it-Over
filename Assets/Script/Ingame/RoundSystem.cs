@@ -26,9 +26,8 @@ public class RoundSystem : MonoBehaviour
         prepareData();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
-        //limpiarResultados();
         if (corrutina != null)
         {
             StopCoroutine(corrutina);
@@ -109,7 +108,7 @@ public class RoundSystem : MonoBehaviour
         }
     }
 
-    private void limpiarResultados()
+    public static void limpiarResultados()
     {
         current = null;
         idPlayersLive.Clear();
