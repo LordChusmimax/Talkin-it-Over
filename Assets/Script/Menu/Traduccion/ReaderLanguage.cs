@@ -1,7 +1,5 @@
-﻿using System.Runtime;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class ReaderLanguage
 {

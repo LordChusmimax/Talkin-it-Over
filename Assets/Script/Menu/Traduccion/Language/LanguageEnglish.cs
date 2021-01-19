@@ -6,14 +6,14 @@ public class LanguageEnglish
         "jugar=Play\n" +
         "opciones=Options\n" +
         "ayuda=Help\n" +
-        "cerrar=Close game\n" + //Menú opciones
-        "musica=Music\n" +
+        "cerrar=Close game\n" + 
+        "musica=Music\n" +      //Menú opciones
         "efectos=Efects\n" +
         "graficos=Graphics\n" +
         "pantalla=Full screen\n" +
         "idioma=Language\n" +
-        "atras=Back\n" +    //Menú ayuda
-        "comoJugar=How to play\n" +
+        "atras=Back\n" +    
+        "comoJugar=How to play\n" +     //Menú ayuda
         "descripcion1=Talkin 'it Over is a 2D action platform video game in which you can play with friends locally and fight each other.\n" +
         "descripcion2=At the beginning of the game you will appear in a random scenario where you must defeat each other.\n" +
         "descripcion3=Be careful where you step! In each scenario there will be ledges where you can fall, traps and altars where you can take up weapons to defeat your opponent.\n" +
@@ -28,16 +28,18 @@ public class LanguageEnglish
         "acercade=About...\n" +
         "desarrolladores=Jesús Pinto Sáez / José Luis Gómez Miño\n" +
         "trassierra=IES Trassierra\n" +
-        "apuntar=Aim\n" +   //Menú selector personaje
-        "jugador1=Player 1\n" +
+        "apuntar=Aim\n" +   
+        "jugador1=Player 1\n" +     //Menú selector personaje
         "jugador2=Player 2\n" +
         "jugador3=Player 3\n" +
         "jugador4=Player 4\n" +
         "unirse=Press 'Space' or 'X' to enter\n" +
         "empezar=Ready.... Press 'Start' or 'Enter'\n" + 
         "volviendo=Return in\n" + 
-        "pausa=Pause\n" +   //Dentro de partida
-        "continuar=Continue\n" +
-        "salir=Exit";
+        "pausa=Pause\n" +   
+        "continuar=Continue\n" +    //Dentro de partida
+        "salir=Exit\n" +
+        "puntuacion1=Player \n" +
+        "puntuacion2= rounds won";
 
 }
