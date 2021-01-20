@@ -444,6 +444,8 @@ public class PlayerScript : MonoBehaviour
         
         if (SceneManager.GetActiveScene().Equals("Lab"))
         {
+            roundSystemLab = GameObject.Find("ContainerRoundSystem").GetComponent<RoundSystemLab>();
+
 
         }
         else
