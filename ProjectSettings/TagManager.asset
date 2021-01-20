@@ -56,11 +56,11 @@ TagManager:
   - name: background2
     uniqueID: 3006223555
     locked: 0
-  - name: back leg
-    uniqueID: 135724481
-    locked: 0
   - name: back hand
     uniqueID: 1588051249
+    locked: 0
+  - name: back leg
+    uniqueID: 135724481
     locked: 0
   - name: torso
     uniqueID: 1296122673
