@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 135724481
-  m_SortingLayer: -6
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: -3193089603156957109, guid: 47a966bfd097d254d84063fee2bf4465,
     type: 3}
@@ -710,7 +710,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 135724481
-  m_SortingLayer: -6
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 8226924714988558116, guid: 2a6950611e268ca4f9c758c0c10c48a7,
     type: 3}
@@ -1329,6 +1329,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LoudSpeaker
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429905135175611339, guid: a367539d2fbcba8499053e3dd8f27b16,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 2144737525
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429905135175611339, guid: a367539d2fbcba8499053e3dd8f27b16,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 8061022905655938206, guid: a367539d2fbcba8499053e3dd8f27b16,
         type: 3}
