@@ -53,6 +53,7 @@ public class PlayerScript : MonoBehaviour
     private int numPlayers;
 
     private RoundSystem roundSystem;
+    private RoundSystemLab roundSystemLab;
     private CinemachineTargetGroup cmTargerGroup;
     private PlayerCollision playerCollision;
     private GroundCheckScript groundCheck;
@@ -440,8 +441,16 @@ public class PlayerScript : MonoBehaviour
         dead = true;
         ActivateRagdoll();
         numPlayers--;
-        roundSystem.deletedPlayer(idPlayer);
         
+        if (SceneManager.GetActiveScene().Equals("Lab"))
+        {
+
+        }
+        else
+        {
+            roundSystem.deletedPlayer(idPlayer);
+        }
+
         if (deactivateRagDoll != null)
         {
             StopCoroutine(deactivateRagDoll);
