@@ -111,7 +111,15 @@ public class PlayerScript : MonoBehaviour
         altarInteractioner = GetComponentInChildren<AltarInteractionerScript>();
         altarInteractioner.PlayerScript = this;
         altarInteractionerCollider = altarInteractioner.GetComponentInChildren<Collider2D>();
-        roundSystem = GameObject.Find("ContainerRoundSystem").GetComponent<RoundSystem>();
+        try
+        {
+            roundSystem = GameObject.Find("ContainerRoundSystem").GetComponent<RoundSystem>();
+        }
+        catch (NullReferenceException)
+        {
+            Debug.Log("LAB: No se ha encontrado el sistema de rondas");
+        }
+        
     }
 
     private void Start()
