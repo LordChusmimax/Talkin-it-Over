@@ -16,7 +16,7 @@ public class RoundSystem : MonoBehaviour
     private static bool added = false;
     private Coroutine corrutina;
     public int numRondas = 3;
-    public TextMeshProUGUI puntuaciones;
+    public TextMeshProUGUI txtPuntuaciones;
     
     private void Start()
     {
@@ -24,6 +24,14 @@ public class RoundSystem : MonoBehaviour
         idPlayersLive = new List<int>();
         
         prepareData();
+    }
+
+    private void OnDestroy()
+    {
+        if (corrutina != null)
+        {
+            StopCoroutine(corrutina);
+        }
     }
 
     public void deletedPlayer(int idPLayer)
@@ -64,9 +72,9 @@ public class RoundSystem : MonoBehaviour
             {
                 //Debug.Log("Jugador :" + jug.Key + " tiene " + jug.Value + " victorias");
 
-                iniciarTexto += "Jugador " + (jug.Key + 1) + " - " + jug.Value +  " de " + numRondas + " ganadas\n";
+                iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
 
-                puntuaciones.SetText(iniciarTexto);
+                txtPuntuaciones.SetText(iniciarTexto);
 
                 if (jug.Value >= numRondas)
                 {
@@ -100,7 +108,7 @@ public class RoundSystem : MonoBehaviour
         }
     }
 
-    private void limpiarResultados()
+    public static void limpiarResultados()
     {
         current = null;
         idPlayersLive.Clear();
@@ -135,10 +143,12 @@ public class RoundSystem : MonoBehaviour
                 for (int i = 0; i < numPlayerLive; i++)
                 {
                     idPlayersLive.Add(i);
-                    iniciarTexto += "Jugador " + (i+ 1) + " - 0 de " + numRondas + " ganadas\n";
+                    //iniciarTexto += "Jugador " + (i+ 1) + " - 0 / " + numRondas + " ganadas\n";
+                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (i + 1) + " - 0/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
+                    //iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1");
                 }
 
-                puntuaciones.SetText(iniciarTexto);
+                txtPuntuaciones.SetText(iniciarTexto);
 
                 added = true;
             }
@@ -153,10 +163,10 @@ public class RoundSystem : MonoBehaviour
 
                 foreach (var jug in playerAndPoint)
                 {
-                    iniciarTexto += "Jugador " + (jug.Key + 1) + " - " + jug.Value + " de " + numRondas + " ganadas\n";
+                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
                 }
 
-                puntuaciones.SetText(iniciarTexto);
+                txtPuntuaciones.SetText(iniciarTexto);
 
             }
 

@@ -17,7 +17,7 @@ public class PlayersSelector : MonoBehaviour
     private Stack<int> paneles = new Stack<int>();
     private PlayerInputs input;
     private Coroutine corrutina;
-    [SerializeField] private int tiempoEspera = 3;
+    [SerializeField] private int tiempoEspera = 2;
     [SerializeField] private GameObject menu;
     [SerializeField] private MenuScript menuScript;
 
