@@ -51,6 +51,7 @@ public class PlayerScript : MonoBehaviour
     private bool stunResistant = false;
     private int idPlayer;
     private int numPlayers;
+    private bool isLab = false;
 
     private RoundSystem roundSystem;
     private RoundSystemLab roundSystemLab;
@@ -117,6 +118,7 @@ public class PlayerScript : MonoBehaviour
         }
         catch (NullReferenceException)
         {
+            isLab = true;
             Debug.Log("LAB: No se ha encontrado el sistema de rondas");
         }
         
@@ -450,13 +452,7 @@ public class PlayerScript : MonoBehaviour
         ActivateRagdoll();
         numPlayers--;
         
-        if (SceneManager.GetActiveScene().Equals("Lab"))
-        {
-            roundSystemLab = GameObject.Find("ContainerRoundSystem").GetComponent<RoundSystemLab>();
-
-
-        }
-        else
+        if (!isLab)
         {
             roundSystem.deletedPlayer(idPlayer);
         }

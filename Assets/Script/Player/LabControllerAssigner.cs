@@ -8,11 +8,12 @@ public class LabControllerAssigner : ControllerAssigner
 {
     private Transform[] spawners;
     private GameObject spawnerCollector;
-
+    
     void Start()
     {
         current = this;
         players = GetComponentsInChildren<PlayerScript>();
+        
         foreach (PlayerScript player in players)
         {
             player.SelectController(index);
@@ -44,4 +45,5 @@ public class LabControllerAssigner : ControllerAssigner
         return randomOrder;
     }
 
+    
 }

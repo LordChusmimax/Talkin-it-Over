@@ -108,6 +108,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ReloadLab",
+                    "type": "Button",
+                    "id": "91e8095b-6099-4788-bc5e-294091ea7415",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "CloseLab",
+                    "type": "Button",
+                    "id": "40880437-1310-473b-bd59-44cc47dcab97",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -451,6 +467,28 @@
                     "action": "CambiarSkin",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "98e9ac01-1c11-4250-972e-b7788a177ca5",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadLab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ecc083bf-5000-4446-a4e1-f59f4b88accc",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseLab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

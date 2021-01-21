@@ -121,6 +121,22 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ReloadLab"",
+                    ""type"": ""Button"",
+                    ""id"": ""91e8095b-6099-4788-bc5e-294091ea7415"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CloseLab"",
+                    ""type"": ""Button"",
+                    ""id"": ""40880437-1310-473b-bd59-44cc47dcab97"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -464,6 +480,28 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""CambiarSkin"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98e9ac01-1c11-4250-972e-b7788a177ca5"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReloadLab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ecc083bf-5000-4446-a4e1-f59f4b88accc"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseLab"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -513,6 +551,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_Player_Desasignar = m_Player.FindAction("Desasignar", throwIfNotFound: true);
         m_Player_Empezar = m_Player.FindAction("Empezar", throwIfNotFound: true);
         m_Player_CambiarSkin = m_Player.FindAction("CambiarSkin", throwIfNotFound: true);
+        m_Player_ReloadLab = m_Player.FindAction("ReloadLab", throwIfNotFound: true);
+        m_Player_CloseLab = m_Player.FindAction("CloseLab", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -575,6 +615,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Desasignar;
     private readonly InputAction m_Player_Empezar;
     private readonly InputAction m_Player_CambiarSkin;
+    private readonly InputAction m_Player_ReloadLab;
+    private readonly InputAction m_Player_CloseLab;
     public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -592,6 +634,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Desasignar => m_Wrapper.m_Player_Desasignar;
         public InputAction @Empezar => m_Wrapper.m_Player_Empezar;
         public InputAction @CambiarSkin => m_Wrapper.m_Player_CambiarSkin;
+        public InputAction @ReloadLab => m_Wrapper.m_Player_ReloadLab;
+        public InputAction @CloseLab => m_Wrapper.m_Player_CloseLab;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -640,6 +684,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @CambiarSkin.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
                 @CambiarSkin.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
                 @CambiarSkin.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
+                @ReloadLab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadLab;
+                @ReloadLab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadLab;
+                @ReloadLab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadLab;
+                @CloseLab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloseLab;
+                @CloseLab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloseLab;
+                @CloseLab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCloseLab;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -683,6 +733,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @CambiarSkin.started += instance.OnCambiarSkin;
                 @CambiarSkin.performed += instance.OnCambiarSkin;
                 @CambiarSkin.canceled += instance.OnCambiarSkin;
+                @ReloadLab.started += instance.OnReloadLab;
+                @ReloadLab.performed += instance.OnReloadLab;
+                @ReloadLab.canceled += instance.OnReloadLab;
+                @CloseLab.started += instance.OnCloseLab;
+                @CloseLab.performed += instance.OnCloseLab;
+                @CloseLab.canceled += instance.OnCloseLab;
             }
         }
     }
@@ -729,5 +785,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnDesasignar(InputAction.CallbackContext context);
         void OnEmpezar(InputAction.CallbackContext context);
         void OnCambiarSkin(InputAction.CallbackContext context);
+        void OnReloadLab(InputAction.CallbackContext context);
+        void OnCloseLab(InputAction.CallbackContext context);
     }
 }
