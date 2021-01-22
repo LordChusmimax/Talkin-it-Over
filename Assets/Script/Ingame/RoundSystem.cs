@@ -104,7 +104,7 @@ public class RoundSystem : MonoBehaviour
 
     IEnumerator readDead()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         if (idPlayersLive.Count == 1)
         {
