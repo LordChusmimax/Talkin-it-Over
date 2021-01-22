@@ -54,7 +54,6 @@ public class PlayerScript : MonoBehaviour
     private bool isLab = false;
 
     private RoundSystem roundSystem;
-    private RoundSystemLab roundSystemLab;
     private CinemachineTargetGroup cmTargerGroup;
     private PlayerCollision playerCollision;
     private GroundCheckScript groundCheck;

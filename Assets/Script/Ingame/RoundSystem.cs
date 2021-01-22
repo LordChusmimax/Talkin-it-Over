@@ -34,6 +34,59 @@ public class RoundSystem : MonoBehaviour
         }
     }
 
+    private void prepareData()
+    {
+        if (current == null)
+        {
+            current = this;
+            DontDestroyOnLoad(this.gameObject);
+
+            if (!added)
+            {
+                for (int i = 0; i < numPlayerLive; i++)
+                {
+                    playerAndPoint.Add(i, 0);
+                }
+
+                string iniciarTexto = "";
+
+                for (int i = 0; i < numPlayerLive; i++)
+                {
+                    idPlayersLive.Add(i);
+                    
+                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (i + 1) + " - 0/" + numRondas + "" + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
+                    
+                }
+
+                txtPuntuaciones.SetText(iniciarTexto);
+
+                added = true;
+            }
+            else
+            {
+                string iniciarTexto = "";
+
+                for (int i = 0; i < numPlayerLive; i++)
+                {
+                    idPlayersLive.Add(i);
+                }
+
+                foreach (var jug in playerAndPoint)
+                {
+                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
+                }
+
+                txtPuntuaciones.SetText(iniciarTexto);
+
+            }
+
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     public void deletedPlayer(int idPLayer)
     {        
         Debug.Log("ID borrado: " + idPlayersLive.Remove(idPLayer));
@@ -62,7 +115,7 @@ public class RoundSystem : MonoBehaviour
 
                 int aux = playerAndPoint[id];
                 aux++;
-                //Debug.Log("El juagdor " + id + " ha ganado " + aux + " parridas");
+
                 playerAndPoint[id] = aux;
             }
 
@@ -70,7 +123,6 @@ public class RoundSystem : MonoBehaviour
 
             foreach (var jug in playerAndPoint)
             {
-                //Debug.Log("Jugador :" + jug.Key + " tiene " + jug.Value + " victorias");
 
                 iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
 
@@ -123,58 +175,5 @@ public class RoundSystem : MonoBehaviour
         SceneManager.LoadScene("Stage" + escena);
         StopCoroutine(corrutina);
     }
-
-    private void prepareData()
-    {
-        if (current == null)
-        {
-            current = this;
-            DontDestroyOnLoad(this.gameObject);
-
-            if (!added)
-            {
-                for (int i = 0; i < numPlayerLive; i++)
-                {
-                    playerAndPoint.Add(i, 0);
-                }
-
-                string iniciarTexto = "";
-
-                for (int i = 0; i < numPlayerLive; i++)
-                {
-                    idPlayersLive.Add(i);
-                    //iniciarTexto += "Jugador " + (i+ 1) + " - 0 / " + numRondas + " ganadas\n";
-                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (i + 1) + " - 0/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
-                    //iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1");
-                }
-
-                txtPuntuaciones.SetText(iniciarTexto);
-
-                added = true;
-            }
-            else
-            {
-                string iniciarTexto = "";
-
-                for (int i = 0; i < numPlayerLive; i++)
-                {
-                    idPlayersLive.Add(i);
-                }
-
-                foreach (var jug in playerAndPoint)
-                {
-                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
-                }
-
-                txtPuntuaciones.SetText(iniciarTexto);
-
-            }
-
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
-
+    
 }
