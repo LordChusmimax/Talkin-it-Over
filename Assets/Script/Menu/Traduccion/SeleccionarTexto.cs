@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using TMPro;
 
 public class SeleccionarTexto : MonoBehaviour
@@ -6,18 +7,15 @@ public class SeleccionarTexto : MonoBehaviour
     public string id;
     private TextMeshProUGUI componenteTexto;
     
-    private void OnEnable()
+    private void Start()
     {
         modificarTexto();
     }
 
     public void modificarTexto()
     {
-        if (ReaderLanguage.getDictionaryLenght() > 0)
-        {
-            componenteTexto = gameObject.GetComponent<TextMeshProUGUI>();
-            componenteTexto.SetText(ReaderLanguage.getTextByKey(id));
-        }
+        componenteTexto = gameObject.GetComponent<TextMeshProUGUI>();
+        componenteTexto.SetText(ReaderLanguage.getTextByKey(id));
     }
 
     public void modificarTexto(string extra)
