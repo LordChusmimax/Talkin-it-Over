@@ -64,17 +64,6 @@ public class PlayerScript : MonoBehaviour
     private Limb[] limbs;
     private bool paused;
 
-    private bool jumpPressed;
-    private bool shootPressed;
-    private bool menuPressed;
-    private bool pickPressed;
-    private bool specialPressed;
-
-    private bool jumpWasPressed;
-    private bool shootWasPressed;
-    private bool menuWasPressed;
-    private bool pickWasPressed;
-    private bool specialWasPressed;
     private AltarInteractionerScript altarInteractioner;
     private Collider2D altarInteractionerCollider;
     private Coroutine deactivateRagDoll;
@@ -151,18 +140,13 @@ public class PlayerScript : MonoBehaviour
         {
             HandleStun();
         }
-        ButtonStatusUpdate();
+
         if (!paused && !dead && stunTime<=0)
         {
             Move();
             AnimatorUpdates();
             WeaponUpdate();
         }
-    }
-
-    private void LateUpdate()
-    {
-        ButtonStatusLateUpdate();
     }
 
     private void FixedUpdate()
@@ -187,60 +171,6 @@ public class PlayerScript : MonoBehaviour
         bool menuPressed = false;
         bool pickPressed = false;
         bool specialPressed = false;
-    }
-
-    private void ButtonStatusUpdate()
-    {
-        if (controls.Player.Jump.ReadValue<float>() == 1)
-        {
-            jumpPressed = true;
-        }
-        else
-        {
-            jumpPressed = false;
-        }
-        if (controls.Player.Shoot.ReadValue<float>() == 1)
-        {
-            shootPressed = true;
-        }
-        else
-        {
-            shootPressed = false;
-        }
-        if (controls.Player.Menu.ReadValue<float>() == 1)
-        {
-            menuPressed = true;
-        }
-        else
-        {
-            menuPressed = false;
-        }
-        if (controls.Player.Pick.ReadValue<float>() == 1)
-        {
-            pickPressed = true;
-        }
-        else
-        {
-            pickPressed = false;
-        }
-        if (controls.Player.Special.ReadValue<float>() == 1)
-        {
-            specialPressed = true;
-        }
-        else
-        {
-            specialPressed = false;
-        }
-    }
-
-
-    private void ButtonStatusLateUpdate()
-    {
-        jumpWasPressed = jumpPressed;
-        shootWasPressed = shootPressed;
-        menuWasPressed = menuPressed;
-        pickWasPressed = pickPressed;
-        specialWasPressed = specialPressed;
     }
 
     /// <summary>
