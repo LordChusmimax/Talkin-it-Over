@@ -74,6 +74,7 @@ public class PlayerScript : MonoBehaviour
     public bool Dead { get => dead; set => dead = value; }
     public Weapon Weapon { get => weapon; set => weapon = value; }
     public bool StunResistant { get => stunResistant; set => stunResistant = value; }
+    // something
 
     private void Awake()
     {
