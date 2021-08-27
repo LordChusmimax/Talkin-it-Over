@@ -125,12 +125,23 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
+        ControllerEvents();
         groundCheck = GetComponentInChildren<GroundCheckScript>();
         colliderPlayer = GetComponent<Collider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         OtherEvents();
         ButtonInitialStatus();
+    }
+
+
+    private void ControllerEvents()
+    {
+        controls.Player.Jump.performed += Jump;
+        controls.Player.Jump.canceled += JumpEnd;
+        controls.Player.Menu.performed += Menu;
+        controls.Player.Shoot.performed += Shoot;
+        controls.Player.Pick.performed += PickUpActivation;
     }
 
     // Update is called once per frame
@@ -141,14 +152,9 @@ public class PlayerScript : MonoBehaviour
             HandleStun();
         }
         ButtonStatusUpdate();
-        Menu();
         if (!paused && !dead && stunTime<=0)
         {
-            Shoot();
-            PickUpActivation();
             Move();
-            Jump();
-            JumpEnd();
             AnimatorUpdates();
             WeaponUpdate();
         }
@@ -163,6 +169,15 @@ public class PlayerScript : MonoBehaviour
     {
         grounded = groundCheck.isGrounded;
         Fall();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+        controls.Player.Jump.Dispose();
+        controls.Player.Menu.Dispose();
+        controls.Player.Shoot.Dispose();
+        controls.Player.Pick.Dispose();
     }
 
     private void ButtonInitialStatus()
@@ -218,6 +233,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+
     private void ButtonStatusLateUpdate()
     {
         jumpWasPressed = jumpPressed;
@@ -248,12 +264,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void Menu()
+    private void Menu(InputAction.CallbackContext obj)
     {
-        if (menuPressed && !menuWasPressed)
-        {
             GameEvents.current.PressPause();
-        }
     }
 
     /// <summary>
@@ -273,9 +286,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void PickUpActivation()
+    private void PickUpActivation(InputAction.CallbackContext obj)
     {
-        if (pickPressed && !pickWasPressed)
+        if (!paused && !dead && stunTime <= 0)
         {
             altarInteractionerCollider.enabled = true;
             StartCoroutine(DeactivateNextFixedUpdate(altarInteractionerCollider));
@@ -298,13 +311,11 @@ public class PlayerScript : MonoBehaviour
         return idPlayer;
     }
 
-    private void Shoot()
+    private void Shoot(InputAction.CallbackContext obj)
     {
-        if (shootPressed && !shootWasPressed)
+        if (!paused && !dead && stunTime <= 0)
         {
             weapon.Shoot();
-            //GameObject prueba = cmTargerGroup.m_Targets[1].target.gameObject;
-            //Debug.Log(prueba.name);
         }
     }
 
@@ -345,9 +356,10 @@ public class PlayerScript : MonoBehaviour
     /// <summary>
     /// controls everything related to jumps
     /// </summary>
-    private void Jump()
+    private void Jump(InputAction.CallbackContext obj)
     {
-        if (grounded && jumpPressed && !jumpWasPressed)
+        Debug.Log("Jump");
+        if (grounded)
         {
             animator.SetTrigger("Jump");
             forceFall = 0;
@@ -359,12 +371,9 @@ public class PlayerScript : MonoBehaviour
     /// <summary>
     /// forces augmented gravity if "jump" is released early
     /// </summary>
-    private void JumpEnd()
+    private void JumpEnd(InputAction.CallbackContext obj)
     {
-        if (!jumpPressed && jumpWasPressed)
-        {
             forceFall = 1;
-        }
     }
 
     /// <summary>
