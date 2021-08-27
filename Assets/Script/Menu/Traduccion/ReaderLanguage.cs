@@ -5,10 +5,11 @@ public class ReaderLanguage
 {
     private static readonly Dictionary<string, string> diccionario = new Dictionary<string, string>();
     public static string pruebaTexto;
+    private static List<string> listaIdiomas;
     private static SystemLanguage _systemLanguage;
 
     /// <summary>
-    /// Rellenamos el dccionario con el archivo de idioma
+    /// Rellenamos el dccionario con el archivo de idioma [Pendiente de solucionar BUG Ascii]
     /// </summary>
     /// <param name="idioma">
     /// 1 = Español
@@ -29,13 +30,39 @@ public class ReaderLanguage
 
         diccionario.Clear();
         var file = Resources.Load<TextAsset>("Idiomas/" + _systemLanguage.ToString());
-
+        
         foreach (var line in file.text.Split('\n'))
         {
             var prop = line.Split('=');
             diccionario[prop[0]] = prop[1];
         }
+    }
 
+    public static void loadDiccionary(int idioma)
+    {
+        if (listaIdiomas == null) { cargarListaIdiomas(); }
+
+        diccionario.Clear();
+        var file = Resources.Load<TextAsset>("Idiomas/" + listaIdiomas[idioma]);
+
+        foreach (var line in file.text.Split('\n'))
+        {
+            var prop = line.Split('=');
+            diccionario[prop[0]] = prop[1].Trim();
+        }
+    }
+
+    private static void cargarListaIdiomas()
+    {
+        var files = Resources.LoadAll<TextAsset>("Idiomas");
+        listaIdiomas = new List<string>();
+
+        int i = 0;
+        foreach (var file in files)
+        {
+            listaIdiomas.Add(file.name);
+            i++;
+        }
     }
 
     /// <summary>
@@ -45,7 +72,7 @@ public class ReaderLanguage
     /// 1 = Español
     /// 2 = Ingles
     /// </param>
-    public static void loadDiccionary(int idioma)
+    public static void loadDiccionary3(int idioma)
     {
         switch (idioma)
         {
@@ -77,9 +104,22 @@ public class ReaderLanguage
         diccionario.Clear();
     }
 
+    public static List<string> getIdiomas()
+    {
+        return listaIdiomas;
+    }
+
     public static string getTextByKey(string key)
     {
-        return diccionario[key];
+        try
+        {
+            return diccionario[key];
+        }
+        catch (KeyNotFoundException)
+        {
+            
+            return "No return";
+        }
     }
 
     /// <summary>
