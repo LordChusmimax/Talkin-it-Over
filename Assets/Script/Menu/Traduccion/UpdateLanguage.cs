@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 using TMPro;
-using System;
 
 public class UpdateLanguage : MonoBehaviour
 {
-    private int idioma;
-
-    public void modificarIdioma(int intIdioma)
+    public void modificarIdioma(int idioma)
     {
         ReaderLanguage.clearDiccionary();
-        ReaderLanguage.loadDiccionary(intIdioma);
+        ReaderLanguage.loadDiccionary(idioma);
 
-        this.idioma = intIdioma;
         var objetos = Resources.FindObjectsOfTypeAll<SeleccionarTexto>();
 
         foreach (var texto in objetos)
@@ -20,22 +16,6 @@ public class UpdateLanguage : MonoBehaviour
             componenteTexto.SetText(ReaderLanguage.getTextByKey(texto.id).ToString());
         }
 
-
-        //Debug.Log(ReaderLanguage.getTextByKey("volviendo") + " " + 10);
     }
 
-    public void setIdioma(int idioma)
-    {
-        if (idioma < 0)
-        {
-            this.idioma = 0;
-            return;
-        }
-        this.idioma = idioma;
-    }
-
-    public int getIdioma()
-    {
-        return this.idioma;
-    }
 }

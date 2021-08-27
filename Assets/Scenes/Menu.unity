@@ -325,7 +325,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 1028584411}
     m_SelectOnDown: {fileID: 976627521}
     m_SelectOnLeft: {fileID: 0}
@@ -516,7 +515,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 2140561403}
     m_SelectOnDown: {fileID: 400099679}
     m_SelectOnLeft: {fileID: 1842997604}
@@ -1882,7 +1880,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 23140258}
     m_SelectOnDown: {fileID: 1880377685}
     m_SelectOnLeft: {fileID: 1842997604}
@@ -2633,7 +2630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 2
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 976627521}
     m_SelectOnDown: {fileID: 1916266756}
     m_SelectOnLeft: {fileID: 0}
@@ -3650,7 +3646,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 2
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 976627521}
     m_SelectOnDown: {fileID: 1916266756}
     m_SelectOnLeft: {fileID: 0}
@@ -4542,7 +4537,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 12519991}
     m_SelectOnDown: {fileID: 1474752577}
     m_SelectOnLeft: {fileID: 0}
@@ -5000,7 +4994,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 1916266756}
     m_SelectOnDown: {fileID: 12519991}
     m_SelectOnLeft: {fileID: 0}
@@ -6549,7 +6542,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -6840,7 +6832,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 1861694440}
     m_SelectOnDown: {fileID: 609749127}
     m_SelectOnLeft: {fileID: 0}
@@ -7477,7 +7468,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 976627521}
     m_SelectOnDown: {fileID: 1916266756}
     m_SelectOnLeft: {fileID: 0}
@@ -7634,7 +7624,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -9753,7 +9742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -10098,7 +10086,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 2087702234}
     m_SelectOnDown: {fileID: 1405945722}
     m_SelectOnLeft: {fileID: 0}
@@ -10305,7 +10292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 400099679}
     m_SelectOnDown: {fileID: 2140561403}
     m_SelectOnLeft: {fileID: 1842997604}
@@ -10558,7 +10544,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 1474752577}
     m_SelectOnDown: {fileID: 1028584411}
     m_SelectOnLeft: {fileID: 0}
@@ -11027,7 +11012,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &1990254679
 Canvas:
   m_ObjectHideFlags: 0
@@ -12060,7 +12044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 2
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 976627521}
     m_SelectOnDown: {fileID: 1916266756}
     m_SelectOnLeft: {fileID: 0}
@@ -12211,7 +12194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000032001, y: 128.98}
+  m_AnchoredPosition: {x: 0.0000042957, y: 150.09}
   m_SizeDelta: {x: 808, y: 157.9542}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121081826
@@ -12262,8 +12245,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 92
-  m_fontSizeBase: 92
+  m_fontSize: 98
+  m_fontSizeBase: 98
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -12395,7 +12378,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 1880377685}
     m_SelectOnDown: {fileID: 23140258}
     m_SelectOnLeft: {fileID: 1842997604}
