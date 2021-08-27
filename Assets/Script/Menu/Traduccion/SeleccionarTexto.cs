@@ -13,7 +13,6 @@ public class SeleccionarTexto : MonoBehaviour
 
     public void modificarTexto()
     {
-        
         if (ReaderLanguage.getDictionaryLenght() > 0)
         {
             componenteTexto = gameObject.GetComponent<TextMeshProUGUI>();
@@ -26,7 +25,9 @@ public class SeleccionarTexto : MonoBehaviour
         if (ReaderLanguage.getDictionaryLenght() > 0)
         {
             componenteTexto = gameObject.GetComponent<TextMeshProUGUI>();
-            componenteTexto.SetText(ReaderLanguage.getTextByKey(id) + " " + extra);
+
+            string texto = string.Concat(ReaderLanguage.getTextByKey(id), " " + extra);
+            componenteTexto.SetText(texto);
         }
     }
 
