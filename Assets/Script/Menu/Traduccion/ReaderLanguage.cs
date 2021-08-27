@@ -8,13 +8,6 @@ public class ReaderLanguage
     private static List<string> listaIdiomas;
     private static SystemLanguage _systemLanguage;
 
-    /// <summary>
-    /// Rellenamos el dccionario con el archivo de idioma [Pendiente de solucionar BUG Ascii]
-    /// </summary>
-    /// <param name="idioma">
-    /// 1 = Español
-    /// 2 = Ingles
-    /// </param>
     public static void loadDiccionary2(int idioma)
     {
         switch (idioma)
@@ -38,6 +31,13 @@ public class ReaderLanguage
         }
     }
 
+    /// <summary>
+    /// Rellenamos el diccionario con el contenido del archivo
+    /// </summary>
+    /// <param name="idioma">
+    /// 0 - Ingles
+    /// 1 - Español
+    /// </param>
     public static void loadDiccionary(int idioma)
     {
         if (listaIdiomas == null) { cargarListaIdiomas(); }
@@ -57,11 +57,9 @@ public class ReaderLanguage
         var files = Resources.LoadAll<TextAsset>("Idiomas");
         listaIdiomas = new List<string>();
 
-        int i = 0;
         foreach (var file in files)
         {
             listaIdiomas.Add(file.name);
-            i++;
         }
     }
 
@@ -74,7 +72,7 @@ public class ReaderLanguage
     /// </param>
     public static void loadDiccionary3(int idioma)
     {
-        switch (idioma)
+        /*switch (idioma)
         {
             case 0:
                 foreach (var line in LanguageSpanish.texto.Split('\n'))
@@ -91,7 +89,7 @@ public class ReaderLanguage
                     diccionario[prop[0]] = prop[1];
                 }
                 break;
-        }
+        }*/
     }
 
     public static Dictionary<string, string> getDictionary()
@@ -104,11 +102,20 @@ public class ReaderLanguage
         diccionario.Clear();
     }
 
+    /// <summary>
+    /// Devuelve las listas detectadas en el sistema
+    /// </summary>
+    /// <returns></returns>
     public static List<string> getIdiomas()
     {
         return listaIdiomas;
     }
 
+    /// <summary>
+    /// Devuelve el  contenido del diccionario al pasarle la clave
+    /// </summary>
+    /// <param name="key">Clave string</param>
+    /// <returns>Texto en el idioma correspondiente</returns>
     public static string getTextByKey(string key)
     {
         try

@@ -1,17 +1,37 @@
 ﻿using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class UpdateLanguage : MonoBehaviour
 {
-    private int idioma;
+    private int idioma = 0;
+    private bool selected = false;
 
-    public void modificarIdioma(int intIdioma)
+    [SerializeField]
+    private Dropdown dropdown;
+
+    private void OnEnable()
+    {
+        if (!selected)
+        {
+            selectValue();
+        }
+    }
+
+    /// <summary>
+    /// Modificamos el diccionario del idioma y actualizamos los
+    /// componentes que se ecuentrar en la memoria
+    /// </summary>
+    /// <param name="idioma">
+    /// Entero devuelto por el Dropdown del idioma
+    /// </param>
+    public void modificarIdioma(int idioma)
     {
         ReaderLanguage.clearDiccionary();
-        ReaderLanguage.loadDiccionary(intIdioma);
+        ReaderLanguage.loadDiccionary(idioma);
 
-        this.idioma = intIdioma;
+        this.idioma = idioma;
         var objetos = Resources.FindObjectsOfTypeAll<SeleccionarTexto>();
 
         foreach (var texto in objetos)
@@ -19,9 +39,12 @@ public class UpdateLanguage : MonoBehaviour
             var componenteTexto = texto.GetComponent<TextMeshProUGUI>();
             componenteTexto.SetText(ReaderLanguage.getTextByKey(texto.id).ToString());
         }
+    }
 
-
-        //Debug.Log(ReaderLanguage.getTextByKey("volviendo") + " " + 10);
+    public void selectValue()
+    {
+        dropdown.value = idioma;
+        selected = true;
     }
 
     public void setIdioma(int idioma)
