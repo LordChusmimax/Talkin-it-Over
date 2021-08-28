@@ -26,11 +26,11 @@ public class PlayersSelector : MonoBehaviour
         //Inicialización del Input
         input = new PlayerInputs();
 
-        input.Player.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
-        input.Player.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
-        input.Player.Desasignar.canceled += ctxSoltarBoton => soltarBoton();
-        input.Player.CambiarSkin.performed += ctxCambiar => cambiarSkin(ctxCambiar);
-        input.Player.Empezar.performed += ctxEmpezar => empezarJuego();
+        input.Menu.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
+        input.Menu.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
+        input.Menu.Desasignar.canceled += ctxSoltarBoton => soltarBoton();
+        input.Menu.CambiarSkin.performed += ctxCambiar => cambiarSkin(ctxCambiar);
+        input.Menu.Empezar.performed += ctxEmpezar => empezarJuego();
 
         //Inicialización del array de los paneles
         paneles.Push(3);

@@ -91,38 +91,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Asignar"",
-                    ""type"": ""Button"",
-                    ""id"": ""dc1e8a26-af05-4536-a059-0c60f2c66a50"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Desasignar"",
-                    ""type"": ""Button"",
-                    ""id"": ""2a027b78-a40d-4e4a-88a7-2c8541595639"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Empezar"",
-                    ""type"": ""Button"",
-                    ""id"": ""7625f852-8fcc-4df2-ab76-56ef14a527e3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""CambiarSkin"",
-                    ""type"": ""Button"",
-                    ""id"": ""c5e0cd76-b58c-4d8f-896e-c652e149e0a0"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""ReloadLab"",
                     ""type"": ""Button"",
                     ""id"": ""91e8095b-6099-4788-bc5e-294091ea7415"",
@@ -362,138 +330,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e1712bc6-912e-4159-8cd4-d55683f960d7"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Asignar"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3ade30cd-4608-4e8e-8fd1-2e0f70f64896"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Asignar"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""feb5cb7f-97c0-4402-a1c6-aa58959801a8"",
-                    ""path"": ""<Keyboard>/backspace"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Desasignar"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""896e2ec5-909b-41e3-a52a-25ddacc357ce"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Desasignar"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8f43c4f3-3078-4d7c-90f4-a12c3269e796"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Empezar"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""799431ef-adad-4dd0-9807-efb5cb1856ed"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Empezar"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""DirectionKeyboard"",
-                    ""id"": ""e1799e3b-ff56-4f60-b780-967d70088c84"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CambiarSkin"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""8a92546b-ee1d-4115-aad4-13aa87ef3f33"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CambiarSkin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""34098096-df55-453b-ad2d-c18e50edc928"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CambiarSkin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""DirectionGamepad"",
-                    ""id"": ""964c1ec6-4244-4862-8a79-6c789f89e902"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CambiarSkin"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""e4b79bc7-8469-40e9-9075-c6cd15968300"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CambiarSkin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""ef4e0de2-b252-432b-b8ff-d7fc021ccfd0"",
-                    ""path"": ""<Gamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CambiarSkin"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
                     ""id"": ""98e9ac01-1c11-4250-972e-b7788a177ca5"",
                     ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
@@ -513,6 +349,178 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""CloseLab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""eebd4a18-ff1c-485c-b132-002c79028e3a"",
+            ""actions"": [
+                {
+                    ""name"": ""Asignar"",
+                    ""type"": ""Button"",
+                    ""id"": ""023d16a6-88d9-43e0-9ab9-005424d904a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Desasignar"",
+                    ""type"": ""Button"",
+                    ""id"": ""3a496588-6993-43e4-a826-222d020e8adf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Empezar"",
+                    ""type"": ""Button"",
+                    ""id"": ""89d394f8-4f28-4756-bd2e-c025e1482a8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""CambiarSkin"",
+                    ""type"": ""Button"",
+                    ""id"": ""2ae3704c-ae3b-4951-bb51-1257a2cd17bd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7fa06474-6b2b-4e90-93d7-5b737163c3a9"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Asignar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ceba60a-1939-4b56-ba58-d9aedfc95142"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Asignar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e790b34-cb2d-4584-a61c-685e8668044b"",
+                    ""path"": ""<Keyboard>/backspace"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Desasignar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa03d848-fc81-4335-9842-c4f3a0e04990"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Desasignar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be1155e8-d9ef-441e-bf44-b977202c042b"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Empezar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e2bb629-d618-4aa4-8e16-d55f592446f9"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Empezar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""DirectionKeyboard"",
+                    ""id"": ""4b98aee9-b6ff-469c-8e1f-a6783b9f64bf"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7a6976b3-bdd4-4f4d-a50d-27b64ac30779"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""bf1ac5b2-85ef-4864-93e5-c4ff1cab6d7b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""DirectionGamepad"",
+                    ""id"": ""5242e674-66d3-4ef0-bd3c-141e9922e7de"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""dce41bef-2db9-4498-ae2d-240cb1c687db"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""cb5a14c7-1296-4ee1-afb2-8a152ee06f4e"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CambiarSkin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -558,12 +566,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_Player_Slow = m_Player.FindAction("Slow", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_MousePosition = m_Player.FindAction("MousePosition", throwIfNotFound: true);
-        m_Player_Asignar = m_Player.FindAction("Asignar", throwIfNotFound: true);
-        m_Player_Desasignar = m_Player.FindAction("Desasignar", throwIfNotFound: true);
-        m_Player_Empezar = m_Player.FindAction("Empezar", throwIfNotFound: true);
-        m_Player_CambiarSkin = m_Player.FindAction("CambiarSkin", throwIfNotFound: true);
         m_Player_ReloadLab = m_Player.FindAction("ReloadLab", throwIfNotFound: true);
         m_Player_CloseLab = m_Player.FindAction("CloseLab", throwIfNotFound: true);
+        // Menu
+        m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+        m_Menu_Asignar = m_Menu.FindAction("Asignar", throwIfNotFound: true);
+        m_Menu_Desasignar = m_Menu.FindAction("Desasignar", throwIfNotFound: true);
+        m_Menu_Empezar = m_Menu.FindAction("Empezar", throwIfNotFound: true);
+        m_Menu_CambiarSkin = m_Menu.FindAction("CambiarSkin", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -622,10 +632,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Slow;
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_MousePosition;
-    private readonly InputAction m_Player_Asignar;
-    private readonly InputAction m_Player_Desasignar;
-    private readonly InputAction m_Player_Empezar;
-    private readonly InputAction m_Player_CambiarSkin;
     private readonly InputAction m_Player_ReloadLab;
     private readonly InputAction m_Player_CloseLab;
     public struct PlayerActions
@@ -641,10 +647,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Slow => m_Wrapper.m_Player_Slow;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @MousePosition => m_Wrapper.m_Player_MousePosition;
-        public InputAction @Asignar => m_Wrapper.m_Player_Asignar;
-        public InputAction @Desasignar => m_Wrapper.m_Player_Desasignar;
-        public InputAction @Empezar => m_Wrapper.m_Player_Empezar;
-        public InputAction @CambiarSkin => m_Wrapper.m_Player_CambiarSkin;
         public InputAction @ReloadLab => m_Wrapper.m_Player_ReloadLab;
         public InputAction @CloseLab => m_Wrapper.m_Player_CloseLab;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -683,18 +685,6 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @MousePosition.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMousePosition;
-                @Asignar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAsignar;
-                @Asignar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAsignar;
-                @Asignar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAsignar;
-                @Desasignar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
-                @Desasignar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
-                @Desasignar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDesasignar;
-                @Empezar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
-                @Empezar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
-                @Empezar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEmpezar;
-                @CambiarSkin.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
-                @CambiarSkin.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
-                @CambiarSkin.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCambiarSkin;
                 @ReloadLab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadLab;
                 @ReloadLab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadLab;
                 @ReloadLab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadLab;
@@ -732,6 +722,57 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @ReloadLab.started += instance.OnReloadLab;
+                @ReloadLab.performed += instance.OnReloadLab;
+                @ReloadLab.canceled += instance.OnReloadLab;
+                @CloseLab.started += instance.OnCloseLab;
+                @CloseLab.performed += instance.OnCloseLab;
+                @CloseLab.canceled += instance.OnCloseLab;
+            }
+        }
+    }
+    public PlayerActions @Player => new PlayerActions(this);
+
+    // Menu
+    private readonly InputActionMap m_Menu;
+    private IMenuActions m_MenuActionsCallbackInterface;
+    private readonly InputAction m_Menu_Asignar;
+    private readonly InputAction m_Menu_Desasignar;
+    private readonly InputAction m_Menu_Empezar;
+    private readonly InputAction m_Menu_CambiarSkin;
+    public struct MenuActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public MenuActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Asignar => m_Wrapper.m_Menu_Asignar;
+        public InputAction @Desasignar => m_Wrapper.m_Menu_Desasignar;
+        public InputAction @Empezar => m_Wrapper.m_Menu_Empezar;
+        public InputAction @CambiarSkin => m_Wrapper.m_Menu_CambiarSkin;
+        public InputActionMap Get() { return m_Wrapper.m_Menu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMenuActions instance)
+        {
+            if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+            {
+                @Asignar.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnAsignar;
+                @Asignar.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnAsignar;
+                @Asignar.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnAsignar;
+                @Desasignar.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnDesasignar;
+                @Desasignar.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnDesasignar;
+                @Desasignar.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnDesasignar;
+                @Empezar.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnEmpezar;
+                @Empezar.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnEmpezar;
+                @Empezar.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnEmpezar;
+                @CambiarSkin.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCambiarSkin;
+                @CambiarSkin.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCambiarSkin;
+                @CambiarSkin.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCambiarSkin;
+            }
+            m_Wrapper.m_MenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
                 @Asignar.started += instance.OnAsignar;
                 @Asignar.performed += instance.OnAsignar;
                 @Asignar.canceled += instance.OnAsignar;
@@ -744,16 +785,10 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @CambiarSkin.started += instance.OnCambiarSkin;
                 @CambiarSkin.performed += instance.OnCambiarSkin;
                 @CambiarSkin.canceled += instance.OnCambiarSkin;
-                @ReloadLab.started += instance.OnReloadLab;
-                @ReloadLab.performed += instance.OnReloadLab;
-                @ReloadLab.canceled += instance.OnReloadLab;
-                @CloseLab.started += instance.OnCloseLab;
-                @CloseLab.performed += instance.OnCloseLab;
-                @CloseLab.canceled += instance.OnCloseLab;
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public MenuActions @Menu => new MenuActions(this);
     private int m_AllControlSchemesSchemeIndex = -1;
     public InputControlScheme AllControlSchemesScheme
     {
@@ -792,11 +827,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnSlow(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnReloadLab(InputAction.CallbackContext context);
+        void OnCloseLab(InputAction.CallbackContext context);
+    }
+    public interface IMenuActions
+    {
         void OnAsignar(InputAction.CallbackContext context);
         void OnDesasignar(InputAction.CallbackContext context);
         void OnEmpezar(InputAction.CallbackContext context);
         void OnCambiarSkin(InputAction.CallbackContext context);
-        void OnReloadLab(InputAction.CallbackContext context);
-        void OnCloseLab(InputAction.CallbackContext context);
     }
 }
