@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5835747377212601029}
   - component: {fileID: 6876290250486034986}
   m_Layer: 0
-  m_Name: Altar
+  m_Name: AltarPrefab
   m_TagString: Altar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

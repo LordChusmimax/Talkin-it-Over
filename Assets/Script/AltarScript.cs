@@ -6,8 +6,11 @@ public class AltarScript : MonoBehaviour
 {
     [SerializeField] private GameObject weaponObject;
 
-    [SerializeField]private bool renewable;
+    [SerializeField] private bool renewable;
     [SerializeField] private float renewTime;
+
+    public Altar altar;
+
     protected AudioSource pickUpSound;
 
     public GameObject WeaponObject { get => weaponObject; set => weaponObject = value; }
@@ -17,10 +20,13 @@ public class AltarScript : MonoBehaviour
 
     private void Awake()
     {
+
         collider = GetComponent<BoxCollider2D>();
         var childObjects = GetComponentsInChildren<SpriteRenderer>();
         weaponSprite = childObjects[1];
         doorSprite = childObjects[2];
+        weaponSprite.GetComponent<SpriteRenderer>().sprite = altar.weaponSprite;
+        weaponObject = altar.weaponObject;
         pickUpSound = GetComponent<AudioSource>();
     }
 
