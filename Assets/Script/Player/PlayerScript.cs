@@ -288,8 +288,8 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void Jump(InputAction.CallbackContext obj)
     {
-        Debug.Log("Jump");
-        if (grounded)
+    
+            if (!paused && !dead && stunTime <= 0 && grounded)
         {
             animator.SetTrigger("Jump");
             forceFall = 0;
