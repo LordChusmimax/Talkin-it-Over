@@ -196,7 +196,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Menu(InputAction.CallbackContext obj)
     {
-            GameEvents.current.PressPause();
+        GameEvents.current.PressPause();
     }
 
     /// <summary>
