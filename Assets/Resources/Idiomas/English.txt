@@ -39,4 +39,4 @@ pausa=Pause
 continuar=Continue
 salir=Exit
 puntuacion1=Player 
-puntuacion2= rounds won
+puntuacion2=rounds won
