@@ -11,8 +11,9 @@ public class Shotgun : FireWeapon
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         hole = GetComponentsInChildren<Transform>()[1];
         animator = GetComponent<Animator>();
         attackSound = GetComponent<AudioSource>();

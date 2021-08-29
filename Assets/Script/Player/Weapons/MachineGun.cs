@@ -12,18 +12,47 @@ public class MachineGun : FireWeapon
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
+        base.Start();
         hole = GetComponentsInChildren<Transform>()[1];
         animator = GetComponent<Animator>();
         attackSound = GetComponent<AudioSource>();
         trigger = false;
+        heat = 0;
+        overheated = false;
+        coolingSpeed = 25;
     }
 
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
+        CheckHeat();
+        CheckColor();
+    }
+
+    private void CheckHeat()
+    {
+        if (heat >= 100)
+        {
+            overheated = true;
+            Release();
+        }
+        if (heat > 0)
+        {
+            heat -= Time.deltaTime * coolingSpeed;
+        }
+        else
+        {
+            overheated = false;
+            heat = 0;
+        }
+    }
+
+    private void CheckColor()
+    {
+        spriteRenderer.color = new Color(1, 1-heat/100, 1 - heat/100, 1);
     }
 
     public override void onPick()
@@ -36,7 +65,7 @@ public class MachineGun : FireWeapon
 
     public override void Shoot()
     {
-        if (currentCd <= 0)
+        if (currentCd <= 0 && !overheated)
         {
             trigger = true;
             KeepShooting();
@@ -49,6 +78,7 @@ public class MachineGun : FireWeapon
         animator.SetTrigger("Shoot");
         currentCd = cadence;
         CreateBullet();
+        heat += 10;
         StartCoroutine(ShootCadence());
     }
 
@@ -75,7 +105,7 @@ public class MachineGun : FireWeapon
     IEnumerator ShootCadence()
     {
         yield return new WaitForSeconds(cadence);
-        if (trigger) {KeepShooting();};
+        if (trigger) { KeepShooting(); };
     }
 
 
