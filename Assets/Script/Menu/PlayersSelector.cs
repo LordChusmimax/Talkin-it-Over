@@ -9,7 +9,6 @@ public class PlayersSelector : MonoBehaviour
 {
     public GameObject txtEmpezar;
     public Sprite[] skins;
-    private int skinUsadas = 0;
     private bool listos = false;
     private Dictionary<int, int> mandoYPanel = new Dictionary<int, int>();
     private Dictionary<int, int> mandoYSkin = new Dictionary<int, int>();
