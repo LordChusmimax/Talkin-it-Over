@@ -66,7 +66,7 @@ public class RoundSystem : MonoBehaviour
                 {
                     idPlayersLive.Add(i);
                     
-                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (i + 1) + " - 0/" + numRondas + "" + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
+                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (i + 1) + " - 0/" + numRondas + " " + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
                     
                 }
 
@@ -85,7 +85,7 @@ public class RoundSystem : MonoBehaviour
 
                 foreach (var jug in playerAndPoint)
                 {
-                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
+                    iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + " " + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
                 }
 
                 txtPuntuaciones.SetText(iniciarTexto);
@@ -137,7 +137,7 @@ public class RoundSystem : MonoBehaviour
             foreach (var jug in playerAndPoint)
             {
 
-                iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
+                iniciarTexto += ReaderLanguage.getTextByKey("puntuacion1") + (jug.Key + 1) + " - " + jug.Value + "/" + numRondas + " " + ReaderLanguage.getTextByKey("puntuacion2") + "\n";
 
                 txtPuntuaciones.SetText(iniciarTexto);
 
@@ -171,6 +171,11 @@ public class RoundSystem : MonoBehaviour
         inputEnabled = true;
     }
 
+    /// <summary>
+    /// AL pulsar el botón se cargará la siguiente ronda  o finalizará
+    /// el juego si se han completado las rondas
+    /// </summary>
+    /// <param name="obj"></param>
     public void initNextRound(InputAction.CallbackContext obj)
     {
         //¿Han finalizado las rondas?
