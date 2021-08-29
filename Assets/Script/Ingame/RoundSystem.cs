@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class RoundSystem : MonoBehaviour
 {
@@ -15,8 +16,12 @@ public class RoundSystem : MonoBehaviour
     private bool finished = false;
     private static bool added = false;
     private Coroutine corrutina;
-    public int numRondas = 3;
-    public TextMeshProUGUI txtPuntuaciones;
+    private PlayerInputs inputRondas;
+    private bool inputEnabled = false;
+    [SerializeField]
+    private int numRondas = 3;
+    [SerializeField]
+    private TextMeshProUGUI txtPuntuaciones;
     
     private void Start()
     {
@@ -32,6 +37,13 @@ public class RoundSystem : MonoBehaviour
         {
             StopCoroutine(corrutina);
         }
+
+        if (inputEnabled)
+        {
+            inputRondas.Disable();
+            inputRondas.Menu.Asignar.Dispose();
+        }
+
     }
 
     private void prepareData()
@@ -106,6 +118,7 @@ public class RoundSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
 
+        //¿Hay al menos un jugador vivo?
         if (idPlayersLive.Count == 1)
         {
             foreach (int id in idPlayersLive)
@@ -134,16 +147,49 @@ public class RoundSystem : MonoBehaviour
                 }
             }
 
-            StartCoroutine(loadNextRound());
-
+            //StartCoroutine(loadNextRound());
+            activeScore();
         }
         else if (idPlayersLive.Count < 1)
         {
             Debug.Log(">>>INFO: Nadie ha ganado esta ronda");
-            StartCoroutine(loadNextRound());
+            //StartCoroutine(loadNextRound());
+            activeScore();
         }
     }
 
+    public void activeScore()
+    {
+        //Activamos el texto con las puntuaciones
+        txtPuntuaciones.gameObject.SetActive(true);
+
+        //Activamos el mando para iniciar la siguiente ronda
+        inputRondas = new PlayerInputs();
+        inputRondas.Menu.Asignar.performed += initNextRound;
+
+        inputRondas.Enable();
+        inputEnabled = true;
+    }
+
+    public void initNextRound(InputAction.CallbackContext obj)
+    {
+        //¿Han finalizado las rondas?
+        if (finished)
+        {
+            limpiarResultados();
+            SceneManager.LoadScene(0);
+            StopCoroutine(corrutina);
+        }
+        else
+        {
+            nextRound();
+        }
+    }
+
+    /// <summary>
+    /// Esperamos 5 segundos antes de que carge el siguinte mapa
+    /// </summary>
+    /// <returns></returns>
     IEnumerator loadNextRound()
     {
         yield return new WaitForSeconds(5);
