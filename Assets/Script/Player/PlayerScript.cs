@@ -129,7 +129,8 @@ public class PlayerScript : MonoBehaviour
         controls.Player.Jump.performed += Jump;
         controls.Player.Jump.canceled += JumpEnd;
         controls.Player.Menu.performed += Menu;
-        controls.Player.Shoot.performed += Shoot;
+        controls.Player.Shoot.started += Shoot;
+        controls.Player.Shoot.canceled += Release;
         controls.Player.Pick.performed += PickUpActivation;
     }
 
@@ -247,6 +248,11 @@ public class PlayerScript : MonoBehaviour
         {
             weapon.Shoot();
         }
+    }
+
+    private void Release(InputAction.CallbackContext obj)
+    {
+        weapon.Release();
     }
 
     /// <summary>
@@ -387,6 +393,7 @@ public class PlayerScript : MonoBehaviour
         animator.SetTrigger("Die");
         animator.Update(0);
         dead = true;
+        weapon.Release();
         ActivateRagdoll();
         numPlayers--;
         
@@ -418,6 +425,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (stunTime <= 0)
         {
+            weapon.Release();
             stunTime += time;
             ActivateRagdoll();
             deactivateRagDoll = StartCoroutine(DeactivateRalldogIEnumerator(time-0.5f));

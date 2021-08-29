@@ -29,6 +29,11 @@ public abstract class Weapon:MonoBehaviour
 
     public abstract void Shoot();
 
+    public virtual void Release()
+    {
+
+    }
+
     public void HandleCd()
     {
         if (currentCd > 0)
