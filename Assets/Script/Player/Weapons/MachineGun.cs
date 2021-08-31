@@ -36,6 +36,7 @@ public class MachineGun : FireWeapon
     {
         if (heat >= 100)
         {
+            heat = 100;
             overheated = true;
             Release();
         }
@@ -67,6 +68,8 @@ public class MachineGun : FireWeapon
     {
         if (currentCd <= 0 && !overheated)
         {
+            animator.ResetTrigger("Release");
+            animator.SetTrigger("Shoot");
             trigger = true;
             KeepShooting();
         }
@@ -75,7 +78,6 @@ public class MachineGun : FireWeapon
     public void KeepShooting()
     {
         attackSound.Play();
-        animator.SetTrigger("Shoot");
         currentCd = cadence;
         CreateBullet();
         heat += 10;
@@ -84,6 +86,7 @@ public class MachineGun : FireWeapon
 
     public override void Release()
     {
+        animator.SetTrigger("Release");
         trigger = false;
     }
 
