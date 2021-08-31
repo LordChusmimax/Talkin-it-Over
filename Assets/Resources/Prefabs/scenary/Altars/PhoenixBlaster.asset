@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 737fcd6dbcca1b44cba69b5b6d17ef84, type: 3}
-  m_Name: Machinegun
+  m_Name: PhoenixBlaster
   m_EditorClassIdentifier: 
-  weaponName: Machinegun
-  weaponSprite: {fileID: 21300000, guid: 8a0ab21909583cc448edcd8e4414e565, type: 3}
-  weaponObject: {fileID: 1438928521081680261, guid: 1830a66e6eb59244fa82673d9f77601c,
+  weaponName: 
+  weaponSprite: {fileID: 21300000, guid: f3c2a7ccf8881f94a828a88e5d1deb43, type: 3}
+  weaponObject: {fileID: 1438928521081680261, guid: c971535ffba217e45a96120f844be8a1,
     type: 3}

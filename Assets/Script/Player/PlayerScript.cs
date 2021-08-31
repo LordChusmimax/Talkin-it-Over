@@ -145,8 +145,8 @@ public class PlayerScript : MonoBehaviour
         if (!paused && !dead && stunTime<=0)
         {
             Move();
-            AnimatorUpdates();
             WeaponUpdate();
+            AnimatorUpdates();
         }
     }
 
