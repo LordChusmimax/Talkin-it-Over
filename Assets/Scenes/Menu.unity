@@ -11737,8 +11737,11 @@ MonoBehaviour:
   songListMenu:
   - {fileID: 8300000, guid: ca5d7b4cd224a23489e78ba862216b88, type: 3}
   songListBattle:
-  - {fileID: 8300000, guid: 7b78023f7fdfcb54e8131164ea5f6adc, type: 3}
-  - {fileID: 8300000, guid: 8820de36c6540a24eb50aeeca2ca5c65, type: 3}
+  - {fileID: 8300000, guid: 86598dccd22e8e5498e22b7cc7144001, type: 3}
+  songListCritical:
+  - {fileID: 8300000, guid: be20283dc99cfd2458dca2d979492f03, type: 3}
+  songListIdle:
+  - {fileID: 8300000, guid: 622287d637d908642bfc33edf4a2b657, type: 3}
   selectedItem: {fileID: 8300000, guid: b66fd2cca3499e9408544481e110153c, type: 3}
   clickedItem: {fileID: 8300000, guid: 1fff33366c03183499e556c94437a871, type: 3}
   musicVolume: 0.25

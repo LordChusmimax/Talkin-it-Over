@@ -16,6 +16,6 @@ public class SecondCameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camera.orthographicSize = mainCamera.orthographicSize*3f;
+        camera.orthographicSize = 25 +  mainCamera.orthographicSize*0.3f;
     }
 }

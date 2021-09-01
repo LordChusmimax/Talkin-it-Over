@@ -97,7 +97,7 @@ public class PhoenixBlastScript : FireWeapon
     {
         positionHandling = new Vector3(0f, 0, 0);
         rotationHandling = new Quaternion(0, 0, 0, 0);
-        scaleHandling = new Vector3(1f, 1f, 1);
+        scaleHandling = new Vector3(1f, 1f, 1f);
         base.onPick();
     }
 

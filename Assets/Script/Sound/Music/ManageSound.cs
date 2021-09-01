@@ -10,17 +10,22 @@ public class ManageSound : MonoBehaviour
     private AudioSource sound;
     public AudioClip[] songListMenu;
     public AudioClip[] songListBattle;
+    public AudioClip[] songListCritical;
+    public AudioClip[] songListIdle;
+    public AudioClip[][] songListList;
     public AudioClip selectedItem;
     public AudioClip clickedItem;
     private Scene scene;
     private string lastScene;
-    private bool songStarted = false;
     private static ManageSound current;
+    private int songVersion = 1;
+    private int songNumber;
     [SerializeField] private float musicVolume = 0.25f;
 
     void Awake()
 
     {
+        songListList = new AudioClip[][] { songListMenu, songListBattle, songListCritical, songListIdle };
         if (current != null)
         {
             GameObject.Destroy(this.gameObject);
@@ -43,17 +48,36 @@ public class ManageSound : MonoBehaviour
         {
             if (scene.name == "Lab" || scene.name.StartsWith("Stage"))
             {
-                int songNumber = Random.Range(0, songListBattle.Length);
-                song.clip = songListBattle[songNumber];
+                songNumber = Random.Range(0, songListBattle.Length);
+                song.clip = songListList[songVersion][songNumber];
                 StartSong();
             }
             else if (scene.name == "Menu")
             {
-                int songNumber = Random.Range(0, songListMenu.Length);
+                songNumber = Random.Range(0, songListMenu.Length);
                 song.clip = songListMenu[songNumber];
                 StartSong();
             }
         }
+        /*
+        if (Time.frameCount%600 == 0)
+        {
+           songVersion = Random.Range(1, 4);
+           Debug.Log(songVersion);
+            var time = song.time;
+            song.clip = songListList[songVersion][songNumber];
+            song.time = time;
+        }
+        */
+    }
+
+    public void OnPause(bool pause)
+    {
+        var time = song.time;
+        song.clip = songListList[pause ? 3 : songVersion][songNumber];
+        Debug.Log(song.clip.name);
+        song.time = time;
+        song.Play();
     }
 
     public void EndSong()
@@ -82,11 +106,13 @@ public class ManageSound : MonoBehaviour
         this.scene = scene;
         if (scene.name == "Lab" || scene.name.StartsWith("Stage"))
         {
+
+            GameEvents.current.PausePressed += OnPause;
             if (lastScene == "Menu")
             {
                 lastScene = "Scene";
                 int songNumber = Random.Range(0, songListBattle.Length);
-                song.clip = songListBattle[songNumber];
+                song.clip = songListList[songVersion][songNumber];
                 StartSong();
             }
         }
