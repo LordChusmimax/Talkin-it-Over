@@ -264,11 +264,11 @@ public class PlayerScript : MonoBehaviour
         if (movement != 0)
         {
             var currentScale = transform.localScale;
-            if (currentScale.x > 0)
+            if (movement > 0)
             {
                 faceLeft = true;
             }
-            else if (currentScale.x < 0)
+            else if (movement < 0)
             {
                 faceLeft = false;
             }
