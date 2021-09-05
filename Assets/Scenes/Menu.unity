@@ -8761,6 +8761,7 @@ GameObject:
   - component: {fileID: 1660446692}
   - component: {fileID: 1660446691}
   - component: {fileID: 1660446693}
+  - component: {fileID: 1660446694}
   m_Layer: 5
   m_Name: PanelSelectorPlayer
   m_TagString: Untagged
@@ -8851,6 +8852,18 @@ MonoBehaviour:
   tiempoEspera: 2
   menu: {fileID: 1164013064}
   menuScript: {fileID: 1990254683}
+--- !u!114 &1660446694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660446689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b4370fe8057b3478fac9749eb36909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1708458346
 GameObject:
   m_ObjectHideFlags: 0
