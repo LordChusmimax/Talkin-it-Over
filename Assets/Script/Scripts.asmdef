@@ -1,12 +1,15 @@
 {
     "name": "Scripts",
+    "rootNamespace": "",
     "references": [
         "Unity.Mathematics",
         "Unity.InputSystem",
         "UnityEditor.UI",
         "UnityEngine.UI",
         "Unity.TextMeshPro",
-        "Cinemachine"
+        "Cinemachine",
+        "AstarPathfindingProject",
+        "AstarPathfindingProjectEditor"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
