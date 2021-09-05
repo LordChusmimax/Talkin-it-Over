@@ -111,4 +111,10 @@ public class DroneWeaponScript : MonoBehaviour
             currentCd -= Time.deltaTime;
         }
     }
+
+    public void Die()
+    {
+        lineRenderer.enabled = false;
+        this.enabled = false;
+    }
 }

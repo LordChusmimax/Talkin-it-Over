@@ -2657,6 +2657,7 @@ MonoBehaviour:
   target: {fileID: 1915618510}
   speed: 400
   nextWaypointDistance: 3
+  droneWeaponScript: {fileID: 1515389370}
 --- !u!70 &1128318154
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

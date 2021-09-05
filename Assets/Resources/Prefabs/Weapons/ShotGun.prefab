@@ -104,7 +104,10 @@ MonoBehaviour:
   faceLeft: 0
   dispersion: 20
   burst: 1
-  range: 5
+  range: 20
+  heat: 0
+  coolingSpeed: 0
+  overheated: 0
   bulletGameObject: {fileID: 3077296128562402621, guid: a5ee60a12584fa4438fa0b97eea922d4,
     type: 3}
 --- !u!95 &627233907366307883

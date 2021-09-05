@@ -6,7 +6,7 @@ public class PlayerCollision : MonoBehaviour
     [HideInInspector] public int playerIndex;
 
 
-    private CapsuleCollider2D playerColider;
+    private CapsuleCollider2D playerCollider;
     private PlayerScript playerScript;
     private Weapon weapon;
     private Rigidbody2D rb;
@@ -21,7 +21,7 @@ public class PlayerCollision : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         weapon = playerScript.Weapon;
         rb = GetComponent<Rigidbody2D>();
-        playerColider = GetComponent<CapsuleCollider2D>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
