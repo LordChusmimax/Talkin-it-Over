@@ -1250,6 +1250,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordAltar
       objectReference: {fileID: 0}
+    - target: {fileID: 5835747377212601034, guid: a960a51855c629944b3788d14dd08693,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5835747377707343408, guid: a960a51855c629944b3788d14dd08693,
         type: 3}
       propertyPath: m_Sprite
@@ -1356,6 +1361,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SwordAltar (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835747377212601034, guid: a960a51855c629944b3788d14dd08693,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5835747377707343408, guid: a960a51855c629944b3788d14dd08693,
         type: 3}
@@ -1583,6 +1593,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordAltar (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5835747377212601034, guid: a960a51855c629944b3788d14dd08693,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5835747377707343408, guid: a960a51855c629944b3788d14dd08693,
         type: 3}
       propertyPath: m_Sprite
@@ -1774,6 +1789,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SwordAltar (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835747377212601034, guid: a960a51855c629944b3788d14dd08693,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5835747377707343408, guid: a960a51855c629944b3788d14dd08693,
         type: 3}
