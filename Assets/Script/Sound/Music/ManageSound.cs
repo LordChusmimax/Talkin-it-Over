@@ -110,17 +110,19 @@ public class ManageSound : MonoBehaviour
             GameEvents.current.PausePressed += OnPause;
             if (lastScene == "Menu")
             {
-                lastScene = "Scene";
                 int songNumber = Random.Range(0, songListBattle.Length);
                 song.clip = songListList[songVersion][songNumber];
+                song.time = 0f;
                 StartSong();
+                lastScene = "Scene";
             }
         }
         else if (scene.name == "Menu")
         {
-            lastScene = "Menu";
             song.clip = songListMenu[0];
+            song.time = 0f;
             StartSong();
+            lastScene = "Menu";
         }
     }
 

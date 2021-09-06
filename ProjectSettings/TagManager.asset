@@ -10,6 +10,7 @@ TagManager:
   - Altar
   - NonLethal
   - Lethal
+  - Enemy
   layers:
   - Default
   - TransparentFX

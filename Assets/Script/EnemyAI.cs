@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using Cinemachine;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -18,16 +19,38 @@ public class EnemyAI : MonoBehaviour
     private Animator animator;
     public DroneWeaponScript droneWeaponScript;
 
-    public Collider2D weaponCollider;
-    public Rigidbody2D weaponRigidbody;
-    public HingeJoint2D weaponJoint;
+    private Collider2D weaponCollider;
+    private Rigidbody2D weaponRigidbody;
+    private HingeJoint2D weaponJoint;
+    public bool dead;
+
+    private GameObject[] players;
+    private PlayerScript[] playerScripts;
+
+    private CinemachineTargetGroup cmTargetGroup;
+    private float targetDistance;
 
     // Start is called before the first frame update
     void Start()
     {
+        dead = false;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        var weapon = GetComponentsInChildren<Transform>()[1];
+        weaponCollider = weapon.GetComponent<Collider2D>();
+        weaponRigidbody = weapon.GetComponent<Rigidbody2D>();
+        weaponJoint = weapon.GetComponent<HingeJoint2D>();
+
+        players = GameObject.FindGameObjectsWithTag("Player");
+        playerScripts = new PlayerScript[players.Length];
+        for (int i=0 ; i<players.Length; i++)
+        {
+            playerScripts[i] = players[i].GetComponent<PlayerScript>();
+        }
+
+        cmTargetGroup = GameObject.Find("CM TargetGroup").GetComponent<CinemachineTargetGroup>();
+        cmTargetGroup.AddMember(transform,1,4);
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
@@ -49,9 +72,11 @@ public class EnemyAI : MonoBehaviour
             reachedEndOfPath = false;
         }
 
+        ChooseTarget();
+
         Vector2 direction = ((Vector2)path.vectorPath[currentWayPoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
-        rb.AddForce(force);
+        if ((targetDistance > 8 || !droneWeaponScript.aimingTarget) && target != null) rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]);
 
@@ -65,8 +90,29 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {
-        if (seeker.IsDone())
+        if (seeker.IsDone() && target!= null)
             seeker.StartPath(rb.position, target.position, OnPathComplete);
+    }
+
+    private void ChooseTarget()
+    {
+        target = null;
+        droneWeaponScript.target = null;
+        targetDistance = 1000f;
+        for (int i = 0; i < players.Length; i++)
+        {
+            var newDistance = Vector2.Distance(transform.position, players[i].transform.position);
+            if (newDistance < targetDistance && !playerScripts[i].Dead)
+            {
+                targetDistance = newDistance;
+                target = players[i].transform;
+                droneWeaponScript.target = players[i];
+            }
+        }
+        if (targetDistance < 20 || target == null)
+        {
+
+        }
     }
 
     void UpdateRotation()
@@ -90,18 +136,22 @@ public class EnemyAI : MonoBehaviour
 
     public void Die()
     {
-        droneWeaponScript.Die();
-        Debug.Log("dead");
-        seeker.enabled = false;
-        rb.gravityScale = 1.5f;
-        animator.enabled = false;
+        if (!dead)
+        {
+            droneWeaponScript.Die();
+            seeker.enabled = false;
+            rb.gravityScale = 2f;
+            animator.enabled = false;
 
-        weaponCollider.enabled = true;
-        weaponJoint.enabled = true;
-        weaponRigidbody.bodyType = RigidbodyType2D.Dynamic;
+            weaponCollider.enabled = true;
+            weaponJoint.enabled = true;
+            weaponRigidbody.bodyType = RigidbodyType2D.Dynamic;
 
+            cmTargetGroup.RemoveMember(transform);
 
-        enabled = false;
+            dead = true;
+            enabled = false;
+        }
     }
 
 

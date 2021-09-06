@@ -6,7 +6,7 @@ using Unity.Mathematics;
 public class DroneWeaponScript : MonoBehaviour
 {
 
-    public GameObject Target;
+    public GameObject target;
     private LineRenderer lineRenderer;
     private RaycastHit2D hit2D;
     public Transform laser;
@@ -19,12 +19,14 @@ public class DroneWeaponScript : MonoBehaviour
     public float range;
 
     private float currentCd;
+    public bool aimingTarget;
 
     // Start is called before the first frame update
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         currentCd = 0;
+        aimingTarget = false;
     }
 
     // Update is called once per frame
@@ -38,11 +40,20 @@ public class DroneWeaponScript : MonoBehaviour
 
     void RotationCorrection()
     {
-        var dirVec = (Vector3)Target.transform.position - transform.position;
-        var dirAngle = math.atan2(dirVec.y, dirVec.x) * 180 / math.PI;
+        if (target == null)
+        {
+            lineRenderer.enabled = false;
+        }
+        else
+        {
+            lineRenderer.enabled = true;
+
+            var dirVec = (Vector3)target.transform.position - transform.position;
+            var dirAngle = math.atan2(dirVec.y, dirVec.x) * 180 / math.PI;
 
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, dirAngle), 0.5f);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, dirAngle), 0.5f);
+        }
     }
 
     void LaserScript()
@@ -59,22 +70,30 @@ public class DroneWeaponScript : MonoBehaviour
         }
         lineRenderer.SetPosition(0, laser.position);
         lineRenderer.SetPosition(1, endLaser);
+
     }
 
     void ShootScript()
     {
         if (hit2D.rigidbody != null)
         {
-            if (hit2D.rigidbody.gameObject.layer >= 8 && hit2D.rigidbody.gameObject.layer <= 12)
+            if(target == null) { }
+            else if (hit2D.rigidbody.gameObject.layer >= 8 && hit2D.rigidbody.gameObject.layer <= 12)
             {
+                aimingTarget = true;
                 lineRenderer.startColor = Color.green;
                 lineRenderer.endColor = Color.green;
                 Shoot();
             }
             else
             {
+                aimingTarget = false;
                 lineRenderer.startColor = Color.red;
                 lineRenderer.endColor = Color.red;
+                if (currentCd < 1)
+                {
+                    currentCd = 1;
+                }
             }
         }
     }

@@ -12,7 +12,10 @@ public class PunchHurtBox : MonoBehaviour
     {
         if (collider.GetComponent<PlayerScript>() == null || !collider.GetComponent<PlayerScript>().StunResistant)
         {
-            collider.attachedRigidbody.AddForce(new Vector3((faceleft ? 1000 : -1000), 0, 0));
+            if (collider.attachedRigidbody != null)
+            {
+                collider.attachedRigidbody.AddForce(new Vector3((faceleft ? 1000 : -1000), 0, 0));
+            }
         }
     }
 }

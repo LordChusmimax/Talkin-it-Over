@@ -2653,7 +2653,7 @@ PrefabInstance:
         type: 3}
       propertyPath: altar
       value: 
-      objectReference: {fileID: 11400000, guid: 3f16e421795b93a4885f5efe3506e4cc,
+      objectReference: {fileID: 11400000, guid: f5f829fc19414224693c5a76940932d5,
         type: 2}
     - target: {fileID: 5835747377212601029, guid: a960a51855c629944b3788d14dd08693,
         type: 3}

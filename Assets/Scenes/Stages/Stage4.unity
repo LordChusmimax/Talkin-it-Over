@@ -831,7 +831,7 @@ PrefabInstance:
         type: 3}
       propertyPath: altar
       value: 
-      objectReference: {fileID: 11400000, guid: c08f0f871efcacb46911483139177c56,
+      objectReference: {fileID: 11400000, guid: 3f16e421795b93a4885f5efe3506e4cc,
         type: 2}
     - target: {fileID: 5835747377212601029, guid: a960a51855c629944b3788d14dd08693,
         type: 3}
@@ -2640,7 +2640,7 @@ PrefabInstance:
         type: 3}
       propertyPath: altar
       value: 
-      objectReference: {fileID: 11400000, guid: ef9f57498f06772418fda05e7d1ba5c9,
+      objectReference: {fileID: 11400000, guid: db07e74f93c2d5b479688172a16b6c1f,
         type: 2}
     - target: {fileID: 5835747377212601029, guid: a960a51855c629944b3788d14dd08693,
         type: 3}
@@ -2923,7 +2923,7 @@ PrefabInstance:
         type: 3}
       propertyPath: altar
       value: 
-      objectReference: {fileID: 11400000, guid: c08f0f871efcacb46911483139177c56,
+      objectReference: {fileID: 11400000, guid: 3f16e421795b93a4885f5efe3506e4cc,
         type: 2}
     - target: {fileID: 5835747377212601029, guid: a960a51855c629944b3788d14dd08693,
         type: 3}
