@@ -97,11 +97,14 @@ public class PlayerSelectorScript : MonoBehaviour
         if (!isConnected)
         {
             //Introducimos el id del controlador al array
-            deviceConnected[numDeviceConnected] = idDevice;
+            deviceConnected[firstPositionFree] = idDevice;
             numDeviceConnected++;
 
             //Ejecutamos el método del Script para modificar el panel
             panelScript.addPlayereInPanel(firstPositionFree);
+
+            //Mostramos el estado actual del array
+            //showArray();
 
             //Finalizamos la ejecución del método
             return;
@@ -112,6 +115,7 @@ public class PlayerSelectorScript : MonoBehaviour
 
     }
 
+    
     /// <summary>
     /// Desactivamos el jugador en función del controlador pulsado.
     /// Si no existe dentro del array se omite el proceso
@@ -124,6 +128,7 @@ public class PlayerSelectorScript : MonoBehaviour
         int deviceArrayPosition = -1;
 
         //Comprobamo si hay al menos un mando conectado, modificando el booleano 'isConnected'
+        //En caso de encontrarlo la variable será 'True', sino será 'False'
         if (numDeviceConnected != 0)
         {
             int i = 0;
@@ -154,9 +159,13 @@ public class PlayerSelectorScript : MonoBehaviour
             //Ejecutamos el método del Script para modificar el panel
             panelScript.removePlayerinPanel(deviceArrayPosition);
 
+            //Mostramos el estado actual del array
+            //showArray();
+
             return;
         }
 
+        //Mandamos un mensaje de aviso al desarrollador
         //Debug.Log("INFO: El controlador " + idDevice + " ya está desconectado");
 
     }
@@ -170,6 +179,23 @@ public class PlayerSelectorScript : MonoBehaviour
     {
 
 
+    }
+
+    /// <summary>
+    /// Método que mostrará por consola el estado actual del array
+    /// </summary>
+    private void showArray()
+    {
+        string list = " {";
+        
+        foreach (var valor in deviceConnected)
+        {
+            list += valor + " ";
+        }
+
+        list += "}";
+
+        Debug.Log(list);
     }
 
 }

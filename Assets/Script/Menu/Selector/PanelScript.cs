@@ -13,7 +13,7 @@ public class PanelScript : MonoBehaviour
     /// <param name="deviceArrayPosition">Panel a activar</param>
     public void addPlayereInPanel(int deviceArrayPosition)
     {
-        Debug.Log("INFO: Añadiendo controlador en la posición: " + deviceArrayPosition);
+        //Debug.Log("INFO: Añadiendo controlador en la posición: " + deviceArrayPosition);
         isPanelActive(true, deviceArrayPosition);
     }
 
@@ -23,7 +23,7 @@ public class PanelScript : MonoBehaviour
     /// <param name="deviceArrayPosition">Panel a desactivar</param>
     public void removePlayerinPanel(int deviceArrayPosition)
     {
-        Debug.Log("INFO: Eliminando controlador en la posición: " + deviceArrayPosition);
+        //Debug.Log("INFO: Eliminando controlador en la posición: " + deviceArrayPosition);
         isPanelActive(false, deviceArrayPosition);
     }
 
