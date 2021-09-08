@@ -11,6 +11,7 @@ TagManager:
   - NonLethal
   - Lethal
   - Enemy
+  - Platform
   layers:
   - Default
   - TransparentFX
