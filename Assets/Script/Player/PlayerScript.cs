@@ -109,7 +109,7 @@ public class PlayerScript : MonoBehaviour
             isLab = true;
             Debug.Log("LAB: No se ha encontrado el sistema de rondas");
         }
-        
+
     }
 
     private void Start()
@@ -142,7 +142,7 @@ public class PlayerScript : MonoBehaviour
             HandleStun();
         }
 
-        if (!paused && !dead && stunTime<=0)
+        if (!paused && !dead && stunTime <= 0)
         {
             Move();
             WeaponUpdate();
@@ -255,6 +255,8 @@ public class PlayerScript : MonoBehaviour
         weapon.Release();
     }
 
+
+
     /// <summary>
     /// flips the sprite when you change direction
     /// </summary>
@@ -294,14 +296,36 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void Jump(InputAction.CallbackContext obj)
     {
-    
-            if (!paused && !dead && stunTime <= 0 && grounded)
+
+        if (!paused && !dead && stunTime <= 0 && grounded)
         {
-            animator.SetTrigger("Jump");
-            forceFall = 0;
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
-            StartCoroutine(ExtendedJumpTimer());
+            if (controls.Player.Down.ReadValue<float> () == 1)
+            {
+
+            }
+            else
+            {
+                animator.SetTrigger("Jump");
+                forceFall = 0;
+                rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpForce);
+                StartCoroutine(ExtendedJumpTimer());
+            }
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (controls.Player.Down.ReadValue<float>() == 1 && controls.Player.Jump.ReadValue<float>() == 1 && collision.gameObject.tag == "Platform")
+        {
+            Physics2D.IgnoreCollision(colliderPlayer, collision.collider, true);
+            StartCoroutine(ReactivateCollision(collision.collider));
+        }
+    }
+
+    private IEnumerator ReactivateCollision(Collider2D platformCollider)
+    {
+        yield return new WaitForSeconds(0.3f);
+        Physics2D.IgnoreCollision(colliderPlayer, platformCollider, false);
     }
 
     /// <summary>
@@ -309,7 +333,7 @@ public class PlayerScript : MonoBehaviour
     /// </summary>
     private void JumpEnd(InputAction.CallbackContext obj)
     {
-            forceFall = 1;
+        forceFall = 1;
     }
 
     /// <summary>
@@ -396,7 +420,7 @@ public class PlayerScript : MonoBehaviour
         weapon.Release();
         ActivateRagdoll();
         numPlayers--;
-        
+
         if (!isLab)
         {
             roundSystem.deletedPlayer(idPlayer);
@@ -428,7 +452,7 @@ public class PlayerScript : MonoBehaviour
             weapon.Release();
             stunTime += time;
             ActivateRagdoll();
-            deactivateRagDoll = StartCoroutine(DeactivateRalldogIEnumerator(time-0.5f));
+            deactivateRagDoll = StartCoroutine(DeactivateRalldogIEnumerator(time - 0.5f));
         }
     }
 
@@ -492,7 +516,7 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(cameraResetTime);
 
         cmTargerGroup.RemoveMember(head.transform);
-        
+
     }
 
     private IEnumerator DeactivateNextFixedUpdate(Collider2D collider)

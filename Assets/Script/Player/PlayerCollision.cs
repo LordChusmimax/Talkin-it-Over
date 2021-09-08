@@ -49,5 +49,4 @@ public class PlayerCollision : MonoBehaviour
             playerScript.Die(false);
         }
     }
-
 }
