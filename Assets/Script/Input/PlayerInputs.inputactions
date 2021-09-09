@@ -6,6 +6,14 @@
             "id": "5e774777-7bac-4cf1-b86d-9431a5ed7ff1",
             "actions": [
                 {
+                    "name": "Down",
+                    "type": "Button",
+                    "id": "60ebce40-85f4-4909-945e-d17994017ee4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "185834f4-1886-4939-b9c7-c9f3abd468d2",
@@ -334,6 +342,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "CloseLab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47c8d0f6-0b2d-4854-a263-55e12e878145",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8810a317-1a60-4580-94eb-5d7fb20ac66f",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b20d52e3-0a8d-4167-88e2-1350c95200ea",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

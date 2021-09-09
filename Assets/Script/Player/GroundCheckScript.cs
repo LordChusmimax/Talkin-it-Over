@@ -16,7 +16,7 @@ public class GroundCheckScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform")
         {
             if (playerAnimator != null)
             {
@@ -29,7 +29,7 @@ public class GroundCheckScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform")
         {
             playerAnimator.SetBool("Air", true);
             isGrounded = false;
@@ -38,7 +38,7 @@ public class GroundCheckScript : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Platform")
         {
             isGrounded = true;
         }
