@@ -101,7 +101,7 @@ public class PlayerSelectorScript : MonoBehaviour
             numDeviceConnected++;
 
             //Ejecutamos el método del Script para modificar el panel
-            panelScript.addPlayereInPanel(firstPositionFree);
+            panelScript.activePanel(true, firstPositionFree);
 
             //Mostramos el estado actual del array
             //showArray();
@@ -157,7 +157,7 @@ public class PlayerSelectorScript : MonoBehaviour
             numDeviceConnected--;
 
             //Ejecutamos el método del Script para modificar el panel
-            panelScript.removePlayerinPanel(deviceArrayPosition);
+            panelScript.activePanel(false, deviceArrayPosition);
 
             //Mostramos el estado actual del array
             //showArray();

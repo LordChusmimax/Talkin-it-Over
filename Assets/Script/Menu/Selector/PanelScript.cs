@@ -5,28 +5,18 @@ using UnityEngine;
 public class PanelScript : MonoBehaviour
 {
     [SerializeField]
-    private Sprite[] skin;
+    private Sprite[] skins;
+    private bool[] skinsUsed;
 
-    /// <summary>
-    /// Función llamada desde el script 'PlayerSelectorScript' y que activará el panel correspondiente.
-    /// </summary>
-    /// <param name="deviceArrayPosition">Panel a activar</param>
-    public void addPlayereInPanel(int deviceArrayPosition)
+    private void Awake()
     {
-        //Debug.Log("INFO: Añadiendo controlador en la posición: " + deviceArrayPosition);
-        isPanelActive(true, deviceArrayPosition);
-    }
+        //Creamos una lista donde indicaremos las sins que estarán usadas
+        //por otros  jugadores
+        skinsUsed = new bool[skins.Length];
 
-    /// <summary>
-    /// Función llamada desde el script 'PlayerSelectorScript' y que desactivará el panel correspondiente.
-    /// </summary>
-    /// <param name="deviceArrayPosition">Panel a desactivar</param>
-    public void removePlayerinPanel(int deviceArrayPosition)
-    {
-        //Debug.Log("INFO: Eliminando controlador en la posición: " + deviceArrayPosition);
-        isPanelActive(false, deviceArrayPosition);
-    }
 
+
+    }
 
     /// <summary>
     /// Función al que se le indicará si tiene que activar o desactivar un panel
@@ -37,13 +27,21 @@ public class PanelScript : MonoBehaviour
     /// False -> Desactivar panel
     /// </param>
     /// <param name="panelPosition">Panel a modificar</param>
-    private void isPanelActive(bool active, int panelPosition)
+    public void activePanel(bool active, int panelPosition)
     {
         //Guardamos el objeto panel que vamos a modificar
-        Transform miPanel = transform.GetChild(panelPosition);
+        Transform myPanel = transform.GetChild(panelPosition);
 
         //Modificamos el estado del objeto panel
-        GameObject aux = miPanel.gameObject;
+        GameObject aux = myPanel.gameObject;
         aux.SetActive(active);
+
+
+    }
+
+
+    public void changeSkin()
+    {
+
     }
 }
