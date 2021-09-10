@@ -260,7 +260,6 @@ public class PlayerScript : MonoBehaviour
 
     private void DownPressed(InputAction.CallbackContext obj)
     {
-        Debug.Log("Down Pressed");
         if (!obj.performed)
         {
             return;
@@ -269,7 +268,6 @@ public class PlayerScript : MonoBehaviour
        if (obj.interaction is MultiTapInteraction)
         {
             downJump = true;
-            Debug.Log("MultyTapped");
             Invoke("DownJumpRestore", 0.5f);
         }
     }
@@ -339,7 +337,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform" && ((controls.Player.Down.ReadValue<float>() == 1 && controls.Player.Jump.ReadValue<float>() == 1 ) || downJump))
+        if (collision.gameObject.layer == 17 && ((controls.Player.Down.IsPressed() && controls.Player.Jump.IsPressed()) || downJump))
         {
             Physics2D.IgnoreCollision(colliderPlayer, collision.collider, true);
             StartCoroutine(ReactivateCollision(collision.collider));
@@ -416,8 +414,8 @@ public class PlayerScript : MonoBehaviour
     /// <param name="index">number of the player(starts by 0)</param>
     public void SetLayer(int index)
     {
-        this.gameObject.layer = index + 8;
-        weapon.SetLayer(index + 8);
+        this.gameObject.layer = index*2 + 8;
+        weapon.SetLayer(index * 2 + 8);
         foreach (Limb limb in limbs)
         {
             limb.gameObject.layer = gameObject.layer;

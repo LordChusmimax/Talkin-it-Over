@@ -11,7 +11,7 @@
                     "id": "60ebce40-85f4-4909-945e-d17994017ee4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press,MultiTap(tapTime=0.1)"
+                    "interactions": "Press,MultiTap"
                 },
                 {
                     "name": "Move",
@@ -205,7 +205,7 @@
                 {
                     "name": "",
                     "id": "71da3783-efce-45aa-87d8-8ce6304a4dca",
-                    "path": "<Gamepad>/dpad",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

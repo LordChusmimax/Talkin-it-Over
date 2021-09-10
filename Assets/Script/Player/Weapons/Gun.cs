@@ -54,7 +54,7 @@ public class Gun : FireWeapon
         var bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.range = range;
         bulletScript.faceLeft = faceLeft;
-        bulletScript.gameObject.layer = gameObject.layer;
+        bulletScript.gameObject.layer = gameObject.layer+1;
         bulletScript.enabled=true;
     }
 

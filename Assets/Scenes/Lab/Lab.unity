@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 7680236}
   - component: {fileID: 7680238}
   - component: {fileID: 7680237}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 14466697}
   - component: {fileID: 14466699}
   - component: {fileID: 14466698}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: enemyDrone (2)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 107207458}
   - component: {fileID: 107207457}
   - component: {fileID: 107207456}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: droneWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 155480509}
   - component: {fileID: 155480510}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: drone2_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 199650757}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1016,7 @@ GameObject:
   - component: {fileID: 203452748}
   - component: {fileID: 203452750}
   - component: {fileID: 203452749}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 443045317}
   - component: {fileID: 443045319}
   - component: {fileID: 443045318}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1627,7 +1627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 495220603}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1855,7 +1855,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &572411789
 GameObject:
@@ -1957,7 +1957,7 @@ GameObject:
   - component: {fileID: 630299605}
   - component: {fileID: 630299607}
   - component: {fileID: 630299606}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: enemyDrone (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2257,7 +2257,7 @@ GameObject:
   - component: {fileID: 758628679}
   - component: {fileID: 758628678}
   - component: {fileID: 758628677}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: droneWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2987,7 +2987,7 @@ Transform:
   - {fileID: 1547152232}
   - {fileID: 1052339816}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994834278
 GameObject:
@@ -3386,7 +3386,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1055604099}
   - component: {fileID: 1055604100}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: drone2_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3473,7 +3473,7 @@ GameObject:
   - component: {fileID: 1128318155}
   - component: {fileID: 1128318154}
   - component: {fileID: 1128318153}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: enemyDrone
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3625,6 +3625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
     type: 3}
   m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
@@ -3910,7 +3911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1457427401}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3943,7 +3944,7 @@ GameObject:
   - component: {fileID: 1471388216}
   - component: {fileID: 1471388215}
   - component: {fileID: 1471388214}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: platform
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -3961,7 +3962,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 469958455
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -4053,12 +4054,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471388213}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 11.875, y: -1.5, z: 0}
   m_LocalScale: {x: 1.0999944, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1480775117
 GameObject:
@@ -4210,7 +4211,7 @@ GameObject:
   - component: {fileID: 1515389374}
   - component: {fileID: 1515389373}
   - component: {fileID: 1515389372}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: droneWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4551,7 +4552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1533316761}
   - component: {fileID: 1533316762}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: drone2_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4633,13 +4634,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1534533625}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Enemies
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1534533625
 Transform:
   m_ObjectHideFlags: 0
@@ -4655,7 +4656,7 @@ Transform:
   - {fileID: 630299604}
   - {fileID: 14466696}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540365338
 GameObject:
@@ -4779,7 +4780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623175421}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4912,7 +4913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1759717357}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5539,7 +5540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1949270602}
-  m_Layer: 13
+  m_Layer: 19
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

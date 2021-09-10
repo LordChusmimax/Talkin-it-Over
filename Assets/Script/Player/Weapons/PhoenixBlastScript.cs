@@ -24,6 +24,8 @@ public class PhoenixBlastScript : FireWeapon
 
     RaycastHit2D hit2D;
 
+    public LayerMask layerMask;
+
 
 
     // Start is called before the first frame update
@@ -133,7 +135,7 @@ public class PhoenixBlastScript : FireWeapon
 
     private void LaserUpdate()
     {
-        hit2D = Physics2D.Raycast(laser.position, new Vector2(Mathf.Cos(laser.eulerAngles.z * Mathf.PI / 180) * (faceLeft ? 1 : -1), Mathf.Sin(laser.eulerAngles.z * Mathf.PI / 180) * (faceLeft ? 1 : -1)), Mathf.Infinity);
+        hit2D = Physics2D.Raycast(laser.position, new Vector2(Mathf.Cos(laser.eulerAngles.z * Mathf.PI / 180) * (faceLeft ? 1 : -1), Mathf.Sin(laser.eulerAngles.z * Mathf.PI / 180) * (faceLeft ? 1 : -1)), Mathf.Infinity, layerMask);
 
         var distance = Vector2.Distance(laser.position, hit2D.point) * 20;
         distance = hit2D.point == Vector2.zero ? 1000 : distance;

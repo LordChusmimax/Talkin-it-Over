@@ -177,7 +177,6 @@ GameObject:
   - component: {fileID: 9200339427251668230}
   - component: {fileID: 6429905135175611339}
   - component: {fileID: 8398749008791935143}
-  - component: {fileID: 7934801828235424068}
   - component: {fileID: 6610804198709101826}
   - component: {fileID: 3126859228238794881}
   m_Layer: 0
@@ -276,6 +275,7 @@ MonoBehaviour:
   range: 70
   heat: 0
   coolingSpeed: 0
+  heatPerShot: 0
   overheated: 0
   laserSprites:
   - {fileID: -1870471040690374742, guid: 972864c80620bca4989a7a9fdfd5e0b4, type: 3}
@@ -292,29 +292,9 @@ MonoBehaviour:
   - {fileID: -8890948003447471299, guid: 2da2019506662494fab09057b1dafb4a, type: 3}
   - {fileID: -3589648707645337524, guid: 2da2019506662494fab09057b1dafb4a, type: 3}
   - {fileID: 2209142360283959459, guid: 2da2019506662494fab09057b1dafb4a, type: 3}
---- !u!114 &7934801828235424068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438928521081680261}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b9c5076d65e5604a80a37ddde414639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cadence: 0.2
-  aim: 1
-  faceLeft: 0
-  dispersion: 5
-  burst: 0
-  range: 70
-  heat: 0
-  coolingSpeed: 0
-  overheated: 0
-  bulletGameObject: {fileID: 3077296128562402621, guid: a5ee60a12584fa4438fa0b97eea922d4,
-    type: 3}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1007222583
 --- !u!95 &6610804198709101826
 Animator:
   serializedVersion: 3
