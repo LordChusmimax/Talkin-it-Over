@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.SceneManagement;
 using static Cinemachine.CinemachineTargetGroup;
 using static Constants;
@@ -67,6 +68,7 @@ public class PlayerScript : MonoBehaviour
     private AltarInteractionerScript altarInteractioner;
     private Collider2D altarInteractionerCollider;
     private Coroutine deactivateRagDoll;
+    private bool downJump = false;
 
     public Animator Animator { get => animator; set => animator = value; }
     public GameObject RightArm { get => rightArm; set => rightArm = value; }
@@ -132,6 +134,7 @@ public class PlayerScript : MonoBehaviour
         controls.Player.Shoot.started += Shoot;
         controls.Player.Shoot.canceled += Release;
         controls.Player.Pick.performed += PickUpActivation;
+        controls.Player.Down.performed += DownPressed;
     }
 
     // Update is called once per frame
@@ -255,6 +258,27 @@ public class PlayerScript : MonoBehaviour
         weapon.Release();
     }
 
+    private void DownPressed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Down Pressed");
+        if (!obj.performed)
+        {
+            return;
+        }
+
+       if (obj.interaction is MultiTapInteraction)
+        {
+            downJump = true;
+            Debug.Log("MultyTapped");
+            Invoke("DownJumpRestore", 0.5f);
+        }
+    }
+
+    private void DownJumpRestore()
+    {
+        downJump = false;
+    }
+
 
 
     /// <summary>
@@ -315,7 +339,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (controls.Player.Down.ReadValue<float>() == 1 && controls.Player.Jump.ReadValue<float>() == 1 && collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Platform" && ((controls.Player.Down.ReadValue<float>() == 1 && controls.Player.Jump.ReadValue<float>() == 1 ) || downJump))
         {
             Physics2D.IgnoreCollision(colliderPlayer, collision.collider, true);
             StartCoroutine(ReactivateCollision(collision.collider));

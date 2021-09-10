@@ -295,7 +295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticSize: 25
-  dinamicSize: 0.8
+  dinamicSize: 1
+  movementRatio: 1.2
 --- !u!1 &6402745441148984679
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +394,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticSize: 25
-  dinamicSize: 0
+  dinamicSize: 1
+  movementRatio: 2
 --- !u!1 &6402745441366106398
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticSize: 25
   dinamicSize: 1
+  movementRatio: 1
 --- !u!1 &6402745442124009843
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,4 +923,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticSize: 25
-  dinamicSize: 0.5
+  dinamicSize: 1
+  movementRatio: 1.4

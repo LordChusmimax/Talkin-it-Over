@@ -6,6 +6,7 @@ public class MachineGun : FireWeapon
 {
     [Header("Gun Values")]
     [SerializeField] private GameObject bulletGameObject;
+    [SerializeField] private GameObject smoke;
     private Animator animator;
     private Transform hole;
     private bool trigger;
@@ -21,7 +22,6 @@ public class MachineGun : FireWeapon
         trigger = false;
         heat = 0;
         overheated = false;
-        coolingSpeed = 25;
     }
 
     // Update is called once per frame
@@ -38,6 +38,8 @@ public class MachineGun : FireWeapon
         {
             heat = 100;
             overheated = true;
+            var smokeEntity = GameObject.Instantiate(smoke,transform.position, transform.rotation);
+            if (!faceLeft) smokeEntity.transform.localScale = new Vector3(-smokeEntity.transform.localScale.x, smokeEntity.transform.localScale.y, 0);
             Release();
         }
         if (heat > 0)
@@ -80,7 +82,7 @@ public class MachineGun : FireWeapon
         attackSound.Play();
         currentCd = cadence;
         CreateBullet();
-        heat += 10;
+        heat += heatPerShot;
         StartCoroutine(ShootCadence());
     }
 

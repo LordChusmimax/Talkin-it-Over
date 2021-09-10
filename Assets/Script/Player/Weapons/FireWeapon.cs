@@ -9,5 +9,6 @@ public abstract class FireWeapon : Weapon
     [SerializeField] protected float range;
     [SerializeField] protected float heat;
     [SerializeField] protected int coolingSpeed;
+    [SerializeField] protected int heatPerShot;
     [SerializeField] protected bool overheated;
 }

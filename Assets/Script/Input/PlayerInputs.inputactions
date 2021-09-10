@@ -11,7 +11,7 @@
                     "id": "60ebce40-85f4-4909-945e-d17994017ee4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press,MultiTap(tapTime=0.1)"
                 },
                 {
                     "name": "Move",
@@ -184,6 +184,39 @@
                     "name": "",
                     "id": "8cbcfd07-94d3-4c63-b84c-a55170abd60f",
                     "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd767f95-21bd-4917-9d1d-1b258f94eedb",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71da3783-efce-45aa-87d8-8ce6304a4dca",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9b53a07-b13f-464d-9e63-472989d5249a",
+                    "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SecondCameraScript : MonoBehaviour
 {
-    public float staticSize,dinamicSize;
+    public float staticSize,dinamicSize,movementRatio;
 
     Camera mainCamera,camera;
     // Start is called before the first frame update
@@ -18,5 +18,6 @@ public class SecondCameraScript : MonoBehaviour
     void Update()
     {
         camera.orthographicSize = staticSize +  mainCamera.orthographicSize* dinamicSize;
+        transform.position = new Vector2(transform.parent.position.x* movementRatio, transform.parent.position.y*movementRatio);
     }
 }
