@@ -32,7 +32,8 @@ public class PlayerSelectorScript : MonoBehaviour
 
         //Asignamos los inputs a las funciones especíificas
         inputs.Menu.Asignar.performed += ctxConectar => conectarJugador(ctxConectar.control.device);
-        inputs.Menu.Desasignar.performed += ctxConectar => desconectarJugador(ctxConectar.control.device);
+        inputs.Menu.Desasignar.performed += ctxDesconectar => desconectarJugador(ctxDesconectar.control.device);
+        inputs.Menu.CambiarSkin.performed += ctxCambiarSkin => cambiarSkin(ctxCambiarSkin.control.device);
         inputs.Menu.Empezar.performed += empezarPartida;
 
         //Iniciamos el sistema de Inputs
@@ -94,24 +95,15 @@ public class PlayerSelectorScript : MonoBehaviour
 
         //Si no está conectado, añádelo al array
         //En caso de que lo esté no hagas nada
-        if (!isConnected)
-        {
-            //Introducimos el id del controlador al array
-            deviceConnected[firstPositionFree] = idDevice;
-            numDeviceConnected++;
+        if (isConnected) { return; }
 
-            //Ejecutamos el método del Script para modificar el panel
-            panelScript.activePanel(true, firstPositionFree);
+        //Introducimos el id del controlador al array
+        deviceConnected[firstPositionFree] = idDevice;
+        numDeviceConnected++;
 
-            //Mostramos el estado actual del array
-            //showArray();
+        //Ejecutamos el método del Script para modificar el panel
+        panelScript.activePanel(true, firstPositionFree, 0);
 
-            //Finalizamos la ejecución del método
-            return;
-        }
-
-        //Mandamos un mensaje de aviso al desarrollador
-        //Debug.Log("INFO: El controlador " + idDevice + " ya está conectado");
 
     }
 
@@ -149,24 +141,53 @@ public class PlayerSelectorScript : MonoBehaviour
 
         //Si está conectado lo saca del array
         //Si no está conectado no hagas nada
-        if (isConnected)
+        if (!isConnected) { return; }
+
+        //Cambiamos el valor del array a 0 (sin controlador) y restamos
+        //el número de controladores conectados
+        deviceConnected[deviceArrayPosition] = 0;
+        numDeviceConnected--;
+
+        //Ejecutamos el método del Script para modificar el panel
+        panelScript.activePanel(false, deviceArrayPosition, 0);
+    }
+
+    /// <summary>
+    /// Método que llamará al método del script 'PanelScript' para que modifique
+    /// la skin en función de la dirección recibida
+    /// </summary>
+    /// <param name="device">Controlador que ha realizado el Input</param>
+    private void cambiarSkin(InputDevice device)
+    {
+        bool isConnected = false;
+        int idDevice = device.deviceId;
+        int deviceArrayPosition = -1;
+
+        //Comprobamo si hay al menos un mando conectado, modificando el booleano 'isConnected'
+        //En caso de encontrarlo la variable será 'True', sino será 'False'
+        if (numDeviceConnected != 0)
         {
-            //Cambiamos el valor del array a 0 (sin controlador) y restamos
-            //el número de controladores conectados
-            deviceConnected[deviceArrayPosition] = 0;
-            numDeviceConnected--;
+            int i = 0;
 
-            //Ejecutamos el método del Script para modificar el panel
-            panelScript.activePanel(false, deviceArrayPosition);
+            //Comprobamos si el mando ya está conectado
+            foreach (var valor in deviceConnected)
+            {
+                //En caso de coincidencia modificamos el bool y guardamos su posición en el array
+                if (valor == idDevice)
+                {
+                    isConnected = true;
+                    deviceArrayPosition = i;
+                }
 
-            //Mostramos el estado actual del array
-            //showArray();
-
-            return;
+                i++;
+            }
         }
 
-        //Mandamos un mensaje de aviso al desarrollador
-        //Debug.Log("INFO: El controlador " + idDevice + " ya está desconectado");
+        //Comprobamos si el mando se encuentra activo en el array
+        if (!isConnected) { return; }
+
+        int operation = (int) inputs.Menu.CambiarSkin.ReadValue<float>();
+        panelScript.assignSkin(deviceArrayPosition, operation);
 
     }
 
