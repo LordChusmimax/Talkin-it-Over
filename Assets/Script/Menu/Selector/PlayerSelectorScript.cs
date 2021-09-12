@@ -14,11 +14,19 @@ public class PlayerSelectorScript : MonoBehaviour
     [SerializeField]
     private PanelScript panelScript;
 
+    [SerializeField]
+    private MenuScript menuScript;
+
 
     private void Awake()
     {
         initInputs();
         deviceConnected = new int[4];
+    }
+
+    private void OnDisable()
+    {
+        inputs.Disable();
     }
 
     /// <summary>
@@ -102,7 +110,7 @@ public class PlayerSelectorScript : MonoBehaviour
         numDeviceConnected++;
 
         //Ejecutamos el método del Script para modificar el panel
-        panelScript.activePanel(true, firstPositionFree, 0);
+        panelScript.modifyPanel(true, firstPositionFree, 0);
 
 
     }
@@ -149,7 +157,7 @@ public class PlayerSelectorScript : MonoBehaviour
         numDeviceConnected--;
 
         //Ejecutamos el método del Script para modificar el panel
-        panelScript.activePanel(false, deviceArrayPosition, 0);
+        panelScript.modifyPanel(false, deviceArrayPosition, 0);
     }
 
     /// <summary>
@@ -198,8 +206,71 @@ public class PlayerSelectorScript : MonoBehaviour
     /// <param name="obj">Null</param>
     private void empezarPartida(InputAction.CallbackContext obj)
     {
+        //Bloqueamos si no ha suficientes jugadores listos
+        //if (numDeviceConnected < 2) { return; }
 
+        //Guardamos las skins asignadas
+        int[] skins = panelScript.getArray();
 
+        //Con un bucle 'for' recorremos tanto el array de los controladores
+        //conectados como el de las skins
+        for (int i = 0; i < deviceConnected.Length; i++)
+        {
+            //Si la posición está vacia pasa a la siguiente instancia
+            if (deviceConnected[i].Equals(0)) { continue; }
+
+            //Restamos en 1 para adaptarlo a la llamada en el array de los demas Script
+            int adaptedSkin = skins[i] - 1;
+            int controllerPosition = 0;
+
+            //Modificamos el controlador del teclado para adaptarlo a la solicitud
+            if (deviceConnected[i].Equals(1)) {
+                deviceConnected[i] = -1;
+                //Debug.Log("Se ha modificado el controlador a: " + deviceConnected[i]);
+
+                //Llamamos al método del Script 'ayadirControler' para guardar la información
+                PlayerContainer.ayadirControler(deviceConnected[i], adaptedSkin);
+            }
+            else
+            {
+                //Si no es el teclado guardamos la posición del controlador
+                controllerPosition = GetGamepadArrayPosition(deviceConnected[i]);
+                PlayerContainer.ayadirControler(controllerPosition, adaptedSkin);
+            }
+        }
+
+        //Llamamos al método de 'Jugar' del Script 'menuScript' para que cargue
+        //la escena del juego con los datos introducidos.
+        menuScript.Jugar();
+
+    }
+
+    /// <summary>
+    /// Método que, al pasarle por parámetro el id del controlador
+    /// devolverá la posición asignada en el array de Unity
+    /// </summary>
+    /// <param name="id">
+    ///     int - id del controlador
+    /// </param>
+    /// <returns>
+    ///     int - Posición en el array del controlador
+    /// </returns>
+    private int GetGamepadArrayPosition(int id)
+    {
+        var mandos = Gamepad.all;
+        int getMandoPosition = -1;
+
+        for (int i = 0; i < mandos.Count; i++)
+        {
+            int idMando = mandos[i].deviceId;
+
+            if (id.Equals(idMando))
+            {
+                getMandoPosition = i;
+            }
+        }
+
+        return getMandoPosition;
     }
 
     /// <summary>
@@ -207,7 +278,7 @@ public class PlayerSelectorScript : MonoBehaviour
     /// </summary>
     private void showArray()
     {
-        string list = " {";
+        string list = "Controladores conectados: {";
         
         foreach (var valor in deviceConnected)
         {

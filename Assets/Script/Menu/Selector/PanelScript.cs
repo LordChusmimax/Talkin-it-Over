@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +30,7 @@ public class PanelScript : MonoBehaviour
     /// False -> Desactivar panel
     /// </param>
     /// <param name="panelPosition">Panel a modificar</param>
-    public void activePanel(bool active, int panelPosition, int operation)
+    public void modifyPanel(bool active, int panelPosition, int operation)
     {
         //Guardamos el objeto panel que vamos a modificar
         myPanel = transform.GetChild(panelPosition);
@@ -48,7 +46,7 @@ public class PanelScript : MonoBehaviour
             assignSkin(panelPosition, operation);
 
             //Mostramos en consola el estado de la lista
-            showArray();
+            //showArray();
             return;
         }
 
@@ -56,7 +54,7 @@ public class PanelScript : MonoBehaviour
         clearSkins(panelPosition);
 
         //Mostramos en consola el estado de la lista
-        showArray();
+        //showArray();
     }
 
     
@@ -93,6 +91,8 @@ public class PanelScript : MonoBehaviour
             //Sumamos 1 al valor de skins activas
             numSkinsActive++;
 
+            //showArray();
+
             //Finalizamos la ejecución del método
             return;
         }
@@ -100,9 +100,12 @@ public class PanelScript : MonoBehaviour
         //Seleccionamos el panel que vamos a modificar
         myPanel = transform.GetChild(panelPosition);
 
-        //Compribamos la siguiente skin disponible y guardamos su valor
+        //Compribamos la siguiente skin disponible, guardamos su valor y
+        //asignamos el Sprite al panel
         int skinChanged = changeSkin(operation, panelPosition);
         myPanel.GetChild(1).GetComponent<Image>().sprite = spriteSkins[skinChanged -1];
+
+        //showArray();
     }
 
     /// <summary>
@@ -124,7 +127,7 @@ public class PanelScript : MonoBehaviour
         int vueltas = 0;
         int topeVueltas = numSkins * 2;
 
-        Debug.Log("INFO: Skin actual: " + actualSkin);
+        //Debug.Log("INFO: Skin actual: " + actualSkin);
 
         //Buscamos en el array por la siguiente skin disponible
         do
@@ -151,7 +154,7 @@ public class PanelScript : MonoBehaviour
                 //Cerrar el bucle si se ha encontrado en uso la skin solicitada
                 if (skinInArray.Equals(actualSkin))
                 {
-                    Debug.Log("INFO: Coincidencia encontrada en la skin: " + actualSkin);
+                    //Debug.Log("INFO: Coincidencia encontrada en la skin: " + actualSkin);
                     avalibleSkin = false;
                     break;
                 }
@@ -166,7 +169,7 @@ public class PanelScript : MonoBehaviour
 
         //Modificamos el valor de la skin en el array
         skinsAsigned[panelPosition] = actualSkin;
-        showArray();
+        //showArray();
 
         return actualSkin;
     }
@@ -200,18 +203,66 @@ public class PanelScript : MonoBehaviour
         if (numSkinsActive.Equals(0)) { return 1; }
 
         //Creamos una variable donde guardamos el valor mínimo encontrado
-        int potentialSkin = 1;
+        int potentialSkin = 0;
 
-        //Recorremos el array comprobando las skins asignadas
-        foreach (var skinInArray in skinsAsigned)
+        //Creamos otra variable booleana que comprobará si se ha localizado
+        //una skin viable
+        bool avalible = false;
+
+        //Creamos las variables para controlar el número de vueltas e impedir
+        //que se genere un bucle infinito.
+        int vueltas = 0;
+        int topeVueltas = numSkins * 2;
+
+        //Creamos un bucle que nos permitirá comprobar cada skin
+        //y ver si está disponible.
+        do
         {
-            //Si no hay skin asignada pasa a la siguiente valor
-            if (skinInArray.Equals(0)) { continue; }
 
-            if (skinInArray.Equals(potentialSkin)) { potentialSkin++; }
-        }
+            if (vueltas >= topeVueltas)
+            {
+                Debug.Log("ERROR: Salida de emergencia en bucle de skins");
+                return 1;
+            }
 
+            //Buscamos la siguiente skin
+            potentialSkin++;
+
+            //Recorremos el array comprobando las skins solicitada
+            foreach (var skinInArray in skinsAsigned)
+            {
+                //Si no hay skin asignada pasa a la siguiente valor
+                if (skinInArray.Equals(0)) { continue; }
+
+                //Si la skin ya está en uso busca por la siguiente skin
+                if (skinInArray.Equals(potentialSkin)) 
+                {
+                    avalible = false;
+                    break;
+                }
+
+                avalible = true;
+            }
+
+            //Guardamos el número de vueltas dadas en el bucle.
+            vueltas++;
+
+        } while (!avalible);
+
+        
         return potentialSkin;
+    }
+
+    /// <summary>
+    /// Método que devuelve el array con las skins asignadas
+    /// para cada jugador
+    /// </summary>
+    /// <returns>
+    ///     int[] - Array con los valores de las skins asignadas
+    /// </returns>
+    public int[] getArray()
+    {
+        return skinsAsigned;
     }
 
     /// <summary>
@@ -219,7 +270,7 @@ public class PanelScript : MonoBehaviour
     /// </summary>
     private void showArray()
     {
-        string list = " { ";
+        string list = "Skins asignadas: { ";
 
         foreach (var valor in skinsAsigned)
         {
