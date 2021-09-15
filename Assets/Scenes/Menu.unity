@@ -11738,10 +11738,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ca5d7b4cd224a23489e78ba862216b88, type: 3}
   songListBattle:
   - {fileID: 8300000, guid: 86598dccd22e8e5498e22b7cc7144001, type: 3}
+  - {fileID: 8300000, guid: f7b23a490fcc5794ab0a4bcd92587087, type: 3}
   songListCritical:
-  - {fileID: 8300000, guid: be20283dc99cfd2458dca2d979492f03, type: 3}
+  - {fileID: 8300000, guid: 9e0e7669e7256cb448a3e669a4f45f53, type: 3}
+  - {fileID: 8300000, guid: 898afbdc53cca1f4c9b642dfb4c6f34a, type: 3}
   songListIdle:
   - {fileID: 8300000, guid: 622287d637d908642bfc33edf4a2b657, type: 3}
+  - {fileID: 8300000, guid: af49a5992df3f2441b12cd227eb2a82e, type: 3}
   selectedItem: {fileID: 8300000, guid: b66fd2cca3499e9408544481e110153c, type: 3}
   clickedItem: {fileID: 8300000, guid: 1fff33366c03183499e556c94437a871, type: 3}
   musicVolume: 0.25
