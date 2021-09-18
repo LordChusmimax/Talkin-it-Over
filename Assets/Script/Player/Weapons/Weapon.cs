@@ -10,10 +10,14 @@ public abstract class Weapon:MonoBehaviour
     protected Vector3 positionHandling;
     protected Vector3 scaleHandling;
     protected AudioSource attackSound;
+    protected SpriteRenderer spriteRenderer;
 
     public bool Aim { get => aim; set => aim = value; }
 
-
+    public virtual void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     public virtual void Update()
     {
@@ -28,6 +32,11 @@ public abstract class Weapon:MonoBehaviour
     }
 
     public abstract void Shoot();
+
+    public virtual void Release()
+    {
+
+    }
 
     public void HandleCd()
     {

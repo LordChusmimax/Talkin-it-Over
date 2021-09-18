@@ -18,6 +18,8 @@ public class ControllerAssigner : MonoBehaviour
 
         foreach (KeyValuePair<int, int> elemento in lista)
         {
+            //Debug.Log("Controlador: " + elemento.Key);
+            
             PlayerScript player = Instantiate(prefabPlayers[elemento.Value], transform).GetComponent<PlayerScript>();
             player.SelectController(elemento.Key, i);
             i++;

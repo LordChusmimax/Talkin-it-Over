@@ -9,7 +9,6 @@ public class PlayersSelector : MonoBehaviour
 {
     public GameObject txtEmpezar;
     public Sprite[] skins;
-    private int skinUsadas = 0;
     private bool listos = false;
     private Dictionary<int, int> mandoYPanel = new Dictionary<int, int>();
     private Dictionary<int, int> mandoYSkin = new Dictionary<int, int>();
@@ -22,6 +21,35 @@ public class PlayersSelector : MonoBehaviour
     [SerializeField] private MenuScript menuScript;
 
     private void Awake()
+    {
+        //Inicialización del Input
+        /*input = new PlayerInputs();
+
+        input.Menu.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
+        input.Menu.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
+        input.Menu.Desasignar.canceled += ctxSoltarBoton => soltarBoton();
+        input.Menu.CambiarSkin.performed += ctxCambiar => cambiarSkin(ctxCambiar);
+        input.Menu.Empezar.performed += ctxEmpezar => empezarJuego();
+
+        //Inicialización del array de los paneles
+        paneles.Push(3);
+        paneles.Push(2);
+        paneles.Push(1);
+        paneles.Push(0);
+
+        //Inicialización del array de las Skins
+        skinsDisponibles.Enqueue(0);
+        skinsDisponibles.Enqueue(1);
+        skinsDisponibles.Enqueue(2);
+        skinsDisponibles.Enqueue(3);
+
+        //Activar input
+        input.Enable();
+
+        Debug.Log("NO DEBO MOSTRARME");*/
+    }
+
+    private void Start()
     {
         //Inicialización del Input
         input = new PlayerInputs();
@@ -46,8 +74,10 @@ public class PlayersSelector : MonoBehaviour
 
         //Activar input
         input.Enable();
+
+        Debug.Log("NO DEBO MOSTRARME");
     }
-    
+
     private void OnEnable()
     {
         input.Enable();

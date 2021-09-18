@@ -2,12 +2,13 @@
 using System.Collections;
 using UnityEngine;
 
-public class Shotgun : FireWeapon
+public class MachineGun : FireWeapon
 {
-    [Header("ShotGun Values")]
+    [Header("Gun Values")]
     [SerializeField] private GameObject bulletGameObject;
-    private Transform hole;
     private Animator animator;
+    private Transform hole;
+    private bool trigger;
 
 
     // Start is called before the first frame update
@@ -17,17 +18,46 @@ public class Shotgun : FireWeapon
         hole = GetComponentsInChildren<Transform>()[1];
         animator = GetComponent<Animator>();
         attackSound = GetComponent<AudioSource>();
+        trigger = false;
+        heat = 0;
+        overheated = false;
+        coolingSpeed = 25;
     }
 
     // Update is called once per frame
     public override void Update()
     {
         base.Update();
+        CheckHeat();
+        CheckColor();
+    }
+
+    private void CheckHeat()
+    {
+        if (heat >= 100)
+        {
+            overheated = true;
+            Release();
+        }
+        if (heat > 0)
+        {
+            heat -= Time.deltaTime * coolingSpeed;
+        }
+        else
+        {
+            overheated = false;
+            heat = 0;
+        }
+    }
+
+    private void CheckColor()
+    {
+        spriteRenderer.color = new Color(1, 1-heat/100, 1 - heat/100, 1);
     }
 
     public override void onPick()
     {
-        positionHandling = new Vector3(0f, 0f, 0);
+        positionHandling = new Vector3(0f, 0, 0);
         rotationHandling = new Quaternion(0, 0, 0, 0);
         scaleHandling = new Vector3(1f, 1f, 1);
         base.onPick();
@@ -35,16 +65,26 @@ public class Shotgun : FireWeapon
 
     public override void Shoot()
     {
-        if (currentCd <= 0)
+        if (currentCd <= 0 && !overheated)
         {
-            attackSound.Play();
-            animator.SetTrigger("Shoot");
-            currentCd = cadence;
-            for (int i = 0; i < 6; i++)
-            {
-                CreateBullet();
-            }
+            trigger = true;
+            KeepShooting();
         }
+    }
+
+    public void KeepShooting()
+    {
+        attackSound.Play();
+        animator.SetTrigger("Shoot");
+        currentCd = cadence;
+        CreateBullet();
+        heat += 10;
+        StartCoroutine(ShootCadence());
+    }
+
+    public override void Release()
+    {
+        trigger = false;
     }
 
     private void CreateBullet()
@@ -54,11 +94,18 @@ public class Shotgun : FireWeapon
         bullet.transform.position = hole.position;
         bullet.transform.rotation = transform.rotation;
         bullet.transform.Rotate(bulletDispersion * Vector3.forward);
+
         var bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.range = range;
         bulletScript.faceLeft = faceLeft;
         bulletScript.gameObject.layer = gameObject.layer;
         bulletScript.enabled = true;
+    }
+
+    IEnumerator ShootCadence()
+    {
+        yield return new WaitForSeconds(cadence);
+        if (trigger) { KeepShooting(); };
     }
 
 
