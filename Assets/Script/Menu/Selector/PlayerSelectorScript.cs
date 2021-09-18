@@ -10,12 +10,14 @@ public class PlayerSelectorScript : MonoBehaviour
     private PlayerInputs inputs;
     private int[] deviceConnected;
     private int numDeviceConnected = 0;
+    private int timeWait = 2;
+    private Coroutine coroutine;
+    private bool ready;
     
-    [SerializeField]
-    private PanelScript panelScript;
-
-    [SerializeField]
-    private MenuScript menuScript;
+    [SerializeField] private PanelScript panelScript;
+    [SerializeField] private MenuScript menuScript;
+    [SerializeField] private GameObject txtEmpezar;
+    [SerializeField] private GameObject menu;
 
 
     private void Awake()
@@ -24,9 +26,19 @@ public class PlayerSelectorScript : MonoBehaviour
         deviceConnected = new int[4];
     }
 
+    private void OnEnable()
+    {
+        inputs.Enable();
+        actualizarAviso();
+    }
+
     private void OnDisable()
     {
+        //Desactivamos los inputs del selector
         inputs.Disable();
+
+        //Comprobamos si existe la corrutina de salida del selector y al destruimos
+        if (coroutine != null) { StopCoroutine(coroutine); }
     }
 
     /// <summary>
@@ -41,6 +53,7 @@ public class PlayerSelectorScript : MonoBehaviour
         //Asignamos los inputs a las funciones especíificas
         inputs.Menu.Asignar.performed += ctxConectar => conectarJugador(ctxConectar.control.device);
         inputs.Menu.Desasignar.performed += ctxDesconectar => desconectarJugador(ctxDesconectar.control.device);
+        inputs.Menu.Desasignar.canceled += ctxSoltarBoton => soltarBoton();
         inputs.Menu.CambiarSkin.performed += ctxCambiarSkin => cambiarSkin(ctxCambiarSkin.control.device);
         inputs.Menu.Empezar.performed += empezarPartida;
 
@@ -112,7 +125,7 @@ public class PlayerSelectorScript : MonoBehaviour
         //Ejecutamos el método del Script para modificar el panel
         panelScript.modifyPanel(true, firstPositionFree, 0);
 
-
+        actualizarAviso();
     }
 
     
@@ -148,8 +161,13 @@ public class PlayerSelectorScript : MonoBehaviour
         }
 
         //Si está conectado lo saca del array
-        //Si no está conectado no hagas nada
-        if (!isConnected) { return; }
+        //Si no está conectado lanza la corrutina de vuelta al menú
+        if (!isConnected) 
+        {
+            //Iniciamos la corrutina y la guardamos en la varable 'corutine'
+            coroutine = StartCoroutine(cerrarSelector(timeWait));
+            return;
+        }
 
         //Cambiamos el valor del array a 0 (sin controlador) y restamos
         //el número de controladores conectados
@@ -158,6 +176,8 @@ public class PlayerSelectorScript : MonoBehaviour
 
         //Ejecutamos el método del Script para modificar el panel
         panelScript.modifyPanel(false, deviceArrayPosition, 0);
+
+        actualizarAviso();
     }
 
     /// <summary>
@@ -207,7 +227,7 @@ public class PlayerSelectorScript : MonoBehaviour
     private void empezarPartida(InputAction.CallbackContext obj)
     {
         //Bloqueamos si no ha suficientes jugadores listos
-        //if (numDeviceConnected < 2) { return; }
+        if (!ready) { return; }
 
         //Guardamos las skins asignadas
         int[] skins = panelScript.getArray();
@@ -271,6 +291,96 @@ public class PlayerSelectorScript : MonoBehaviour
         }
 
         return getMandoPosition;
+    }
+
+    /// <summary>
+    /// Método donde se comprobará el número de jugadores conectados
+    /// y se actualizará la variable de 'ready', ademas de cambiar el texto de aviso
+    /// </summary>
+    private void actualizarAviso()
+    {
+        //Comprobamos el número de jugadores conectados
+        if (numDeviceConnected >= 2)
+        {
+            //Actualizamos el aviso del texto y modificamos la variable de 'ready'
+            actualizarTexto("empezar");
+            ready = true;
+
+            return;
+        }
+
+        actualizarTexto("unirse");
+        ready = false;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="clave">
+    ///     string - Texto que se usará para buscar el elemento del diccionario.
+    /// </param>
+    private void actualizarTexto(string clave)
+    {
+        //Modificamos el id del componenete y actualizamos el aviso
+        txtEmpezar.GetComponent<SeleccionarTexto>().id = clave;
+        txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto();
+    }
+
+    /// <summary>
+    /// Método lanzado al pulsar el botón de salir sin estar conectado el mando donde,
+    /// tras unos segundos se desactivará el panel de selección y se activará el del menú
+    /// </summary>
+    /// <param name="tiempo">
+    ///     int - Tiempo en segundos que requerirá para activar el evento
+    /// </param>
+    /// <returns></returns>
+    IEnumerator cerrarSelector(int tiempo)
+    {
+        //Mantenemos la corrutina activa con un bucle infinito
+        while (true)
+        {
+            //Comprobamos si el tiempo ha llegado a 0
+            if (tiempo < 0)
+            {
+                //Activamos el panel del menú y cerramos el selector de personajes
+                menu.SetActive(true);
+                menuScript.cerrarSelector();
+
+                //Desactivamos el panel del selector
+                this.gameObject.SetActive(false);
+            }
+
+            //Modificamos el texto avisando del tiempo restante
+            txtEmpezar.GetComponent<SeleccionarTexto>().id = "volviendo";
+            txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto((tiempo + 1).ToString());
+
+            //Hacemos que la corrutina eespere un segundo
+            yield return new WaitForSeconds(1);
+
+            //Reducimos el tiempo restante
+            tiempo--;
+        }
+
+    }
+
+    /// <summary>
+    /// Método lanzado al soltar el botón de retroceso del controlador.
+    /// Si existe una corrutina activa para volver al menú la destruye y actualiza el
+    /// mensaje del texto.
+    /// </summary>
+    private void soltarBoton()
+    {
+        //Comprobamos si existe una corrutina activa
+        if (coroutine != null)
+        {
+            Debug.Log(">>>INFO: Se ha detenido la corrutina: " + coroutine);
+            
+            //Destruimos la corrutina, vaciamos la variable y actualizamos el texto.
+            StopCoroutine(coroutine);
+            coroutine = null;
+            actualizarAviso();
+        }
+
     }
 
     /// <summary>

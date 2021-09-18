@@ -8760,7 +8760,6 @@ GameObject:
   - component: {fileID: 1660446690}
   - component: {fileID: 1660446692}
   - component: {fileID: 1660446691}
-  - component: {fileID: 1660446693}
   - component: {fileID: 1660446695}
   - component: {fileID: 1660446694}
   m_Layer: 5
@@ -8832,27 +8831,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660446689}
   m_CullTransparentMesh: 0
---- !u!114 &1660446693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660446689}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa091fdf653bec541971c83afd8f82a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  txtEmpezar: {fileID: 1386222941}
-  skins:
-  - {fileID: 21300000, guid: 187a39e82bdb3fe409e787f6f567456f, type: 3}
-  - {fileID: 21300000, guid: 0d7c5fbcdb915a74e923e913191e8dec, type: 3}
-  - {fileID: 21300000, guid: 077e84cb30ddd644e9bafa6b9dd202e9, type: 3}
-  - {fileID: 21300000, guid: 01bed1e8e222d1b488249b4d3f189aca, type: 3}
-  tiempoEspera: 2
-  menu: {fileID: 1164013064}
-  menuScript: {fileID: 1990254683}
 --- !u!114 &1660446694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8884,6 +8862,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelScript: {fileID: 1660446694}
   menuScript: {fileID: 1990254683}
+  txtEmpezar: {fileID: 1386222941}
+  menu: {fileID: 1164013064}
 --- !u!1 &1708458346
 GameObject:
   m_ObjectHideFlags: 0
