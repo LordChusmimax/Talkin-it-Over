@@ -42,8 +42,8 @@ public class PlayerAnimator
     public void XVelocityAnimator()
     {
         var velocity = Mathf.Abs(controls.Player.Move.ReadValue<float>());
-        velocity = velocity >= 0.2 ? velocity : 0.0f;
-        animator.SetFloat("XVelocity", velocity);
+        velocity = velocity >= 0.1f ? velocity : 0.0f;
+        animator.SetFloat("XVelocity",controls.Player.Slow.ReadValue<float>()==1? velocity/2:velocity);
     }
 
     /// <summary>
