@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class RoundSystemScript : MonoBehaviour
+{
+
+
+    public void deletedPlayer(int idPLayer)
+    {
+        nextRound();
+    }
+
+    public void nextRound()
+    {
+        int escena = Random.Range(1, 6);
+        SceneManager.LoadScene("Stage" + escena);
+    }
+}

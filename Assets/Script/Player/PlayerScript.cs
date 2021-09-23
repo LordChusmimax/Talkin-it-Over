@@ -53,7 +53,7 @@ public class PlayerScript : MonoBehaviour
     private int numPlayers;
     private bool isLab = false;
 
-    private RoundSystem roundSystem;
+    private RoundSystemScript roundSystem;
     private CinemachineTargetGroup cmTargerGroup;
     private PlayerCollision playerCollision;
     private GroundCheckScript groundCheck;
@@ -102,7 +102,7 @@ public class PlayerScript : MonoBehaviour
         altarInteractionerCollider = altarInteractioner.GetComponentInChildren<Collider2D>();
         try
         {
-            roundSystem = GameObject.Find("ContainerRoundSystem").GetComponent<RoundSystem>();
+            roundSystem = GameObject.Find("ContainerRoundSystem").GetComponent<RoundSystemScript>();
         }
         catch (NullReferenceException)
         {
