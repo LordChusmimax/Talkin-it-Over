@@ -447,6 +447,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a130b49d-2cbf-4c8a-94f6-dd96b703cc28"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Desasignar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""be1155e8-d9ef-441e-bf44-b977202c042b"",
                     ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",

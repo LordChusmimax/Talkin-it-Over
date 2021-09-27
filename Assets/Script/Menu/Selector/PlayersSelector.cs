@@ -225,7 +225,7 @@ public class PlayersSelector : MonoBehaviour
                 
                 miSkin = getIntBySprite(transform.GetChild(control.Value).GetChild(1).GetComponent<Image>().sprite);
 
-                PlayerContainer.ayadirControler(control.Key, miSkin);
+                PlayerContainer.addController(control.Key, miSkin);
             }
             menuScript.Jugar();
         }

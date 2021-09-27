@@ -332,6 +332,8 @@ public class PlayerScript : MonoBehaviour
 
     public void SelectController(int num, int idPlayer)
     {
+        Debug.Log("INFO: Id del jugador: " + idPlayer);
+        
         this.idPlayer = idPlayer;
         if (num == -1)
         {

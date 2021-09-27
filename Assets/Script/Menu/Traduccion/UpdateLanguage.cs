@@ -24,7 +24,7 @@ public class UpdateLanguage : MonoBehaviour
     /// componentes que se ecuentrar en la memoria
     /// </summary>
     /// <param name="idioma">
-    /// Entero devuelto por el Dropdown del idioma
+    ///     int - Valor devuelto por el Dropdown del idioma
     /// </param>
     public void modificarIdioma(int idioma)
     {

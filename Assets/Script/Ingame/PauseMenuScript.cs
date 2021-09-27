@@ -32,7 +32,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public void Leave()
     {
-        PlayerContainer.limpiarArray();
+        PlayerContainer.clearArray();
         GameObject roundSystem = GameObject.Find("ContainerRoundSystem");
         Destroy(roundSystem);
         Time.timeScale = 1;

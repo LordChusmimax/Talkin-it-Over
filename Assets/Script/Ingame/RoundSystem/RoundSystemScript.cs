@@ -6,10 +6,17 @@ using UnityEngine.SceneManagement;
 public class RoundSystemScript : MonoBehaviour
 {
 
+    private static RoundSystemScript current;
+
+    private void Awake()
+    {
+        current = this;
+    }
 
     public void deletedPlayer(int idPLayer)
     {
         nextRound();
+        
     }
 
     public void nextRound()

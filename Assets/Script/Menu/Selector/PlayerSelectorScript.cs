@@ -248,14 +248,14 @@ public class PlayerSelectorScript : MonoBehaviour
                 deviceConnected[i] = -1;
                 //Debug.Log("Se ha modificado el controlador a: " + deviceConnected[i]);
 
-                //Llamamos al método del Script 'ayadirControler' para guardar la información
-                PlayerContainer.ayadirControler(deviceConnected[i], adaptedSkin);
+                //Llamamos al método del Script 'addController' para guardar la información
+                PlayerContainer.addController(deviceConnected[i], adaptedSkin);
             }
             else
             {
                 //Si no es el teclado guardamos la posición del controlador
                 controllerPosition = GetGamepadArrayPosition(deviceConnected[i]);
-                PlayerContainer.ayadirControler(controllerPosition, adaptedSkin);
+                PlayerContainer.addController(controllerPosition, adaptedSkin);
             }
         }
 
@@ -309,12 +309,15 @@ public class PlayerSelectorScript : MonoBehaviour
             return;
         }
 
+        //Actualizamos el aviso del texto y modificamos la variable de 'ready'
         actualizarTexto("unirse");
         ready = false;
     }
 
+
     /// <summary>
-    /// 
+    /// Método donde se modificará el texto del componente llamando al script 'SeleccionarTexto'
+    /// y pasándole el 'id' para buscarlo en el diccionario.
     /// </summary>
     /// <param name="clave">
     ///     string - Texto que se usará para buscar el elemento del diccionario.
@@ -350,9 +353,12 @@ public class PlayerSelectorScript : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
 
-            //Modificamos el texto avisando del tiempo restante
+            //Modificamos el texto para que tome el 'id' del diccionario
             txtEmpezar.GetComponent<SeleccionarTexto>().id = "volviendo";
-            txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto((tiempo + 1).ToString());
+            
+            //Pasamos un valor como parámetro para que se sustituya por la palabra clave
+            //dentro de la cadena del diccionario.
+            txtEmpezar.GetComponent<SeleccionarTexto>().modificarTexto((tiempo + 1).ToString(), (timeWait + 1).ToString());
 
             //Hacemos que la corrutina eespere un segundo
             yield return new WaitForSeconds(1);
@@ -373,7 +379,7 @@ public class PlayerSelectorScript : MonoBehaviour
         //Comprobamos si existe una corrutina activa
         if (coroutine != null)
         {
-            Debug.Log(">>>INFO: Se ha detenido la corrutina: " + coroutine);
+            //Debug.Log(">>>INFO: Se ha detenido la corrutina: " + coroutine);
             
             //Destruimos la corrutina, vaciamos la variable y actualizamos el texto.
             StopCoroutine(coroutine);

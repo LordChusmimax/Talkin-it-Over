@@ -13,7 +13,7 @@ public class MenuScript : MonoBehaviour
 
     private void Awake()
     {
-        PlayerContainer.limpiarArray();
+        PlayerContainer.clearArray();
         RoundSystem.limpiarResultados();
     }
 

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreScript : MonoBehaviour
+public class ScoreControllerScript : MonoBehaviour
 {
-    private static ScoreScript current;
+    private static ScoreControllerScript current;
 
     private void Awake()
     {
@@ -14,7 +14,8 @@ public class ScoreScript : MonoBehaviour
 
     /// <summary>
     /// Método que comprobará si existe el mismo objeto en escena.
-    /// Si existe lo elimina, si no se guardará la variable estática.
+    /// En caso de que exista eliminará el nuevo, si no se guardará la variable estática y
+    /// se marcará para que no se destruya al cambiar de escena.
     /// </summary>
     private void deleteDuplicate()
     {
