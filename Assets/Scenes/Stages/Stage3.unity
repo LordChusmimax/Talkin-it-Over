@@ -1145,6 +1145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: smallbox_0 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8651822102044020225, guid: 373ba7a4e75abe548b6aa76ac3202b71,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8651822102044020231, guid: 373ba7a4e75abe548b6aa76ac3202b71,
         type: 3}
       propertyPath: m_RootOrder
@@ -3861,6 +3866,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: smallbox_0 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8651822102044020225, guid: 373ba7a4e75abe548b6aa76ac3202b71,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 8651822102044020231, guid: 373ba7a4e75abe548b6aa76ac3202b71,
         type: 3}
       propertyPath: m_RootOrder
@@ -5711,6 +5721,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: smallbox_0 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8651822102044020225, guid: 373ba7a4e75abe548b6aa76ac3202b71,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 8651822102044020231, guid: 373ba7a4e75abe548b6aa76ac3202b71,
         type: 3}

@@ -32,8 +32,10 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if (collision.collider.gameObject.layer != 17)
+        {
             Destroy(this.gameObject);
+        }
         
     }
 
