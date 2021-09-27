@@ -23,6 +23,35 @@ public class PlayersSelector : MonoBehaviour
     private void Awake()
     {
         //Inicialización del Input
+        /*input = new PlayerInputs();
+
+        input.Menu.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
+        input.Menu.Desasignar.performed += ctxDesasignar => desasignarJugador(ctxDesasignar);
+        input.Menu.Desasignar.canceled += ctxSoltarBoton => soltarBoton();
+        input.Menu.CambiarSkin.performed += ctxCambiar => cambiarSkin(ctxCambiar);
+        input.Menu.Empezar.performed += ctxEmpezar => empezarJuego();
+
+        //Inicialización del array de los paneles
+        paneles.Push(3);
+        paneles.Push(2);
+        paneles.Push(1);
+        paneles.Push(0);
+
+        //Inicialización del array de las Skins
+        skinsDisponibles.Enqueue(0);
+        skinsDisponibles.Enqueue(1);
+        skinsDisponibles.Enqueue(2);
+        skinsDisponibles.Enqueue(3);
+
+        //Activar input
+        input.Enable();
+
+        Debug.Log("NO DEBO MOSTRARME");*/
+    }
+
+    private void Start()
+    {
+        //Inicialización del Input
         input = new PlayerInputs();
 
         input.Menu.Asignar.performed += ctxAsignar => asignarJugador(ctxAsignar);
@@ -45,8 +74,10 @@ public class PlayersSelector : MonoBehaviour
 
         //Activar input
         input.Enable();
+
+        Debug.Log("NO DEBO MOSTRARME");
     }
-    
+
     private void OnEnable()
     {
         input.Enable();
@@ -194,7 +225,7 @@ public class PlayersSelector : MonoBehaviour
                 
                 miSkin = getIntBySprite(transform.GetChild(control.Value).GetChild(1).GetComponent<Image>().sprite);
 
-                PlayerContainer.ayadirControler(control.Key, miSkin);
+                PlayerContainer.addController(control.Key, miSkin);
             }
             menuScript.Jugar();
         }
