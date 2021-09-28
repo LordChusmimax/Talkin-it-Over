@@ -8,12 +8,14 @@ public class RoundSystemScript : MonoBehaviour
 
     private static RoundSystemScript current;
 
+
+
     private void Awake()
     {
         current = this;
     }
 
-    public void deletedPlayer(int idPLayer)
+    public void deletedPlayer(int idPlayer)
     {
         nextRound();
         

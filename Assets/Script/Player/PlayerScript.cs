@@ -321,11 +321,7 @@ public class PlayerScript : MonoBehaviour
 
         if (!paused && !dead && stunTime <= 0 && grounded)
         {
-            if (controls.Player.Down.ReadValue<float> () == 1)
-            {
-
-            }
-            else
+            if (!controls.Player.Down.IsPressed())
             {
                 animator.SetTrigger("Jump");
                 forceFall = 0;
