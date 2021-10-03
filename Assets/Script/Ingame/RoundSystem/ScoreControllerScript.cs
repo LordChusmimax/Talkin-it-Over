@@ -26,10 +26,11 @@ public class ScoreControllerScript : MonoBehaviour
             return;
         }
 
-        //Inicializamos la variable de 'current' y evitamos que el objeto sea
-        //destruido al iniciar la nueva escena
+        //Inicializamos la variable de 'current', evitamos que el objeto sea
+        //destruido al iniciar la nueva escena e inicializamos las variables
+        //del sistema de rondas.
         current = this;
+        ScoreData.initData();
         DontDestroyOnLoad(this.gameObject);
-        Debug.Log("Asignado nuevo objeto");
     }
 }

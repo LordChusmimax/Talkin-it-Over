@@ -103,6 +103,7 @@ public class MachineGun : FireWeapon
         var bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.range = range;
         bulletScript.faceLeft = faceLeft;
+        bulletScript.idPlayer = idPlayer;
         bulletScript.gameObject.layer = gameObject.layer+1;
         bulletScript.enabled = true;
     }

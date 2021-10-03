@@ -28,25 +28,29 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.collider.tag == "Ammunition" && !playerScript.Dead)
         {
+            //Tomamos la información de la bala y notificamos al sistema de rondas
+            BulletScript bullet = collision.gameObject.GetComponent<BulletScript>();
+            ScoreData.addKill(bullet.idPlayer);
+
             playerScript.Die(true);
         }
-
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-
-        if (collision.tag == "NonLethal" && !playerScript.Dead)
+        
+        if (collider.tag == "NonLethal" && !playerScript.Dead)
         {
             playerScript.Stun(3);
         }
-        else if (collision.tag == "Lethal" && !playerScript.Dead)
+        else if (collider.tag == "Lethal" && !playerScript.Dead)
         {
             playerScript.Die(true);
         }
-        else if (collision.tag == "Scenary" && !playerScript.Dead)
+        else if (collider.tag == "Scenary" && !playerScript.Dead)
         {
             playerScript.Die(false);
         }
     }
+
 }

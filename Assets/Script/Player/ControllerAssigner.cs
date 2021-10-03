@@ -11,9 +11,9 @@ public class ControllerAssigner : MonoBehaviour
     void Start()
     {
         current = this;
-        ScoreData.initData();
-
+        
         Dictionary<int, int> lista = PlayerContainer.getList();
+        Dictionary<int, int> playersKills = ScoreData.getKills();
 
         int i = 0;
 

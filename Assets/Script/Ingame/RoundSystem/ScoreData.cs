@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows;
 using UnityEngine;
 
 public class ScoreData
@@ -41,11 +42,14 @@ public class ScoreData
     /// </param>
     public static void addKill(int idPlayer)
     {
-        //Guardamos el número de kills que tiene el jugador actualmente.
+        //Guardamos el número de kills que tiene el jugador actualmente e
+        //incrementamos su valor.
         int kills = killsPlayer[idPlayer];
+        kills++;
 
-        //Incrementamos en uno su valor y lo guardamos de nuevo en el array.
-        killsPlayer[idPlayer] = kills++;
+        //Guardamos de nuevo en el array.
+        killsPlayer[idPlayer] = kills;
+
     }
 
     /// <summary>
@@ -59,9 +63,10 @@ public class ScoreData
     {
         //Guardamos el número de rondas ganada del jugador.
         int rounds = roundsPlayer[idPlayer];
+        rounds++;
 
-        //Incrementamos en uno su valor y lo guardamos de nuevo en el array.
-        roundsPlayer[idPlayer] = rounds++;
+        //Guardamos de nuevo en el array.
+        roundsPlayer[idPlayer] = rounds;
     }
 
     /// <summary>
@@ -69,7 +74,27 @@ public class ScoreData
     /// </summary>
     public static void clearData()
     {
+        //Limpiamos ambas listas
+        killsPlayer.Clear();
+        roundsPlayer.Clear();
+    }
 
+    /// <summary>
+    /// Método donde se devuelve el diccionario con la información de las kills
+    /// que llevan los jugadores.
+    /// </summary>
+    public static Dictionary<int, int> getKills()
+    {
+        return killsPlayer;
+    }
+
+    /// <summary>
+    /// Método donde se devuelve el diccionario con la información de las rondas
+    /// ganadas que llevan los jugadores.
+    /// </summary>
+    public static Dictionary<int, int> getRounds()
+    {
+        return roundsPlayer;
     }
 
 }

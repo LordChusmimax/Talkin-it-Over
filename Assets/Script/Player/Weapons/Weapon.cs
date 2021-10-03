@@ -11,6 +11,7 @@ public abstract class Weapon:MonoBehaviour
     protected Vector3 scaleHandling;
     protected AudioSource attackSound;
     protected SpriteRenderer spriteRenderer;
+    protected int idPlayer;
 
     public bool Aim { get => aim; set => aim = value; }
 
@@ -49,5 +50,15 @@ public abstract class Weapon:MonoBehaviour
     public virtual void SetLayer(int layer)
     {
         gameObject.layer = layer;
+    }
+
+    public virtual void SetIdPlayer(int idPlayer)
+    {
+        this.idPlayer = idPlayer;
+    }
+
+    public int getIdPlayer()
+    {
+        return idPlayer;
     }
 }

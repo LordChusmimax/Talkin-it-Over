@@ -13,6 +13,7 @@ public class Sword : MeleWeapon
         rotationHandling = new Quaternion(0, 0, 0, 0);
         scaleHandling = new Vector3(1f, 1f, 1);
         base.onPick();
+        hurtBoxScript.IdPlayer = idPlayer;
     }
 
     public void Awake()
@@ -22,6 +23,7 @@ public class Sword : MeleWeapon
         hurtBoxScript = GetComponentInChildren<SwordHurtBox>();
         hurtBoxScript.Faceleft = faceLeft;
         attackSound = GetComponent<AudioSource>();
+
     }
 
     public override void Update()
@@ -50,6 +52,7 @@ public class Sword : MeleWeapon
         animator.SetBool("HitStart", false);
         animator.SetBool("PostHit", true);
         hurtBox.enabled = false;
+        hurtBoxScript.hited = false;
     }
 
     protected override void PreHit()

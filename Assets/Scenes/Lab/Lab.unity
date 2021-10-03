@@ -3962,7 +3962,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 469958455
+    m_Bits: 469914935
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
@@ -4640,7 +4640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1534533625
 Transform:
   m_ObjectHideFlags: 0
@@ -5576,7 +5576,7 @@ PrefabInstance:
     - target: {fileID: 1310706831444059463, guid: 23cb7bce27e00e5448e2bc6088ed373c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4521699994773658094, guid: 23cb7bce27e00e5448e2bc6088ed373c,
         type: 3}

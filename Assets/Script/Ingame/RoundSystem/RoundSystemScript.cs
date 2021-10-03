@@ -18,7 +18,6 @@ public class RoundSystemScript : MonoBehaviour
     public void deletedPlayer(int idPlayer)
     {
         nextRound();
-        
     }
 
     public void nextRound()

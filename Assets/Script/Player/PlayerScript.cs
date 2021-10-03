@@ -125,7 +125,6 @@ public class PlayerScript : MonoBehaviour
         ButtonInitialStatus();
     }
 
-
     private void ControllerEvents()
     {
         controls.Player.Jump.performed += Jump;
@@ -236,6 +235,7 @@ public class PlayerScript : MonoBehaviour
         weaponObject.transform.parent = weaponPlacement.transform;
         weapon = weaponObject.GetComponent<Weapon>();
         weapon.SetLayer(gameObject.layer);
+        weapon.SetIdPlayer(idPlayer);
         weapon.onPick();
         headExcepcion = false;
     }
@@ -374,7 +374,7 @@ public class PlayerScript : MonoBehaviour
 
     public void SelectController(int num, int idPlayer)
     {
-        Debug.Log("INFO: Id del jugador: " + idPlayer);
+        //Debug.Log("INFO: Id del jugador: " + idPlayer);
         
         this.idPlayer = idPlayer;
         if (num == -1)

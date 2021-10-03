@@ -146,6 +146,9 @@ public class PhoenixBlastScript : FireWeapon
         if (hit2D.rigidbody != null && hit2D.rigidbody.tag=="Player" && hit2D.rigidbody.gameObject.layer != gameObject.layer)
         {
             hit2D.rigidbody.gameObject.GetComponent<PlayerScript>().Die(true);
+
+            //Registramos la muerte en el sistema de rondas
+            ScoreData.addKill(idPlayer);
         } else if (hit2D.rigidbody != null && hit2D.rigidbody.tag == "Enemy")
         {
             hit2D.rigidbody.gameObject.GetComponent<EnemyAI>().Die();

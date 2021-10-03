@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour
 {
     [HideInInspector] public bool faceLeft;
     [HideInInspector] public float range;
+    [HideInInspector] public int idPlayer;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class BulletScript : MonoBehaviour
         }
         bulletRB.velocity = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle)) * BulletVelocity;
         StartCoroutine(RangeEnforcer());
+
     }
 
     private IEnumerator RangeEnforcer()
