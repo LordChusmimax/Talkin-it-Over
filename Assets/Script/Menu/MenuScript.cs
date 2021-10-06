@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System.IO;
 
 public class MenuScript : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MenuScript : MonoBehaviour
     {
         PlayerContainer.clearArray();
         RoundSystem.limpiarResultados();
+
     }
 
     #region Métodos para iniciar el juego o el Lab
@@ -23,8 +25,9 @@ public class MenuScript : MonoBehaviour
     /// </summary>
     public void Jugar()
     {
-        int escena = Random.Range(1, 5);
-        SceneManager.LoadScene("Stage" + escena);
+        int numStage = Random.Range(1, 6);
+        string stage = "Stage" + numStage;
+        SceneManager.LoadScene(stage);
     }
 
     /// <summary>
